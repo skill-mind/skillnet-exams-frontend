@@ -1,0 +1,2 @@
+# Normalize SVG line endings to LF
+*.svg text eol=lf
