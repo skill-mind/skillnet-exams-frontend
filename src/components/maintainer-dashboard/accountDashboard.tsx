@@ -1,13 +1,5 @@
 import type React from "react";
 
-// Define TypeScript interfaces
-interface AccountInfo {
-  accountType: string;
-  companySize: string;
-  location: string;
-  joined: string;
-}
-
 interface AccountStats {
   id: string;
   value: string | number;
@@ -47,8 +39,11 @@ const AccountDashboard: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      <div className=" rounded-xl p-6">
+    <div className="mt-28">
+      <h3 className="text-sm font-medium text-gray-300 mb-4">
+        User Detail
+      </h3>
+      <div className=" rounded-xl">
         {/* Account header with logo and info */}
         <div className="flex flex-col md:flex-row gap-6 mb-8">
           {/* Logo/Avatar */}
@@ -86,7 +81,7 @@ const AccountDashboard: React.FC = () => {
             </div>
             <div className="flex-1">
               <h3 className="text-[#ABABAB] text-sm font-medium mb-1">
-                Company Size: <span className="text-white">Company size: 101-500 employees</span>
+                Company Size: <span className="text-white">101-500 employees</span>
               </h3>
             </div>
             <div className="flex-1">
@@ -98,7 +93,7 @@ const AccountDashboard: React.FC = () => {
               <h3 className="text-[#ABABAB] text-sm font-medium mb-1">
                 Joined: <span className="text-white">May 1, 2021</span>
               </h3>
-            </div>
+            </div> 
           </div>
         </div>
 
