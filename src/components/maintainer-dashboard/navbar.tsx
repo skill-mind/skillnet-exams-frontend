@@ -1,5 +1,5 @@
 "use client";
-import { Bell, Menu, MoreVertical, Pencil, Search } from "lucide-react";
+import { Bell, Menu, MoreVertical, Search, Ban } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../../public/skillnet-black.png";
@@ -27,7 +27,7 @@ export default function Navbar({
 
           <Link href="/" className="hidden lg:block">
             <Image
-              className="w-[100px] h-[40px] ml-[10%]"
+              className="w-[100px] h-[40px] ml-[10%] brightness-200"
               src={Logo}
               alt="Logo"
             />
@@ -35,21 +35,15 @@ export default function Navbar({
         </div>
 
         {/* Navigation: “Home” & “Glance” */}
-        <nav className="hidden lg:flex items-center ml-auto mr-28 gap-3">
+        <nav className="hidden lg:flex  w-fit items-center ml-auto mr-28 gap-3">
           {" "}
           {/* Increased margin-right further */}
-          <Link
-            href="/dashboard"
-            className="text-white w-[80px] h-[24px] flex items-center justify-center"
-          >
-            Home
+          <Link href="/maintainer" className="text-white text-sm">
+            User Management
           </Link>
           {/* Separator line */}
-          <div className="w-[2px] h-[16px] bg-[#2F302F] rounded-lg"></div>
-          <Link
-            href="/dashboard/glance"
-            className="text-gray-400 hover:text-white w-[80px] h-[24px] flex items-center justify-center"
-          >
+          <div className="rounded-lg w-[2px] h-[12px] !bg-[#2F302F]"></div>
+          <Link href="/maintainer/glance" className="text-gray-400 text-sm">
             Glance
           </Link>
         </nav>
@@ -73,12 +67,12 @@ export default function Navbar({
         <div className="flex items-center gap-4">
           <Link
             href="/dashboard/exams/create"
-            className="hidden md:flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-3 py-1.5 rounded-md text-sm border border-[#1F1F1F]"
+            className="hidden md:flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-4 rounded-lg text-sm border border-[#1F1F1F]"
           >
-            <Pencil size={16} />
-            <span>Create Exam</span>
+            <Ban size={16} />
+            <span className="text-[12px]">Ban Users</span>
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 bg-[#161716] p-2 rounded-lg">
             <div className="h-8 w-8 rounded-full bg-gray-700 flex items-center justify-center">
               <img src="/Ellipse 43.svg" alt="Avatar" className="h-6 w-6" />
             </div>
