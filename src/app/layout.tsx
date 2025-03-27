@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Providers } from "@/components/Providers";
-import "./globals.css";
-
-
+import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "Skillnet Exam Hub",
@@ -17,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers> {children}</Providers>    
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
