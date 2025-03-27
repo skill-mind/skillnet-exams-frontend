@@ -12,7 +12,6 @@ import { useWalletContext } from "@/useContext/WalletContext";
 import { useAccount, useDisconnect } from "@starknet-react/core";
 import { WalletSelectorUI } from "@/components/WalletConnectModal";
 
-
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
@@ -25,16 +24,26 @@ export default function Navbar() {
 
   // Wallet connection hooks
   const { account, disconnectWallet } = useWalletContext();
-  const { address } = useAccount();
+  const { address, status } = useAccount();
   const { disconnect } = useDisconnect();
 
+  // Track connection status for UI updates
+  const [isConnecting, setIsConnecting] = useState(false);
 
+  useEffect(() => {
+    // Update connecting state based on status
+    if (status === "connecting") {
+      setIsConnecting(true);
+    } else {
+      setIsConnecting(false);
+    }
+  }, [status]);
 
   const isActive = (route: string) => {
     if (route === "") return pathname === "/dashboard/exam-page"; // Ensure base page is checked
     return pathname.startsWith(`/dashboard/exam-page/${route}`);
   };
-  
+
   // Helper function to truncate the wallet address
   const truncateAddress = (addr: string) => {
     if (!addr) return "Connect Wallet";
@@ -66,13 +75,28 @@ export default function Navbar() {
     };
   }, [isModalVisible]);
 
+  // Initialize search query from URL on component mount
+  useEffect(() => {
+    const query = searchParams.get("search") || "";
+    setSearchQuery(query);
+
+    // Update the hidden input in the exams page
+    const globalSearchInput = document.getElementById(
+      "global-search-input"
+    ) as HTMLInputElement;
+    if (globalSearchInput) {
+      globalSearchInput.value = query;
+      globalSearchInput.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  }, [searchParams]);
+
   // Handle search input
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     setSearchQuery(query);
 
     // Update URL with search query
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams.toString());
     if (query) {
       params.set("search", query);
     } else {
@@ -92,28 +116,10 @@ export default function Navbar() {
     }
   };
 
-  // Initialize search query from URL on component mount
-  useEffect(() => {
-    const query = searchParams.get("search") || "";
-    setSearchQuery(query);
-
-    // Update the hidden input in the exams page
-    const globalSearchInput = document.getElementById(
-      "global-search-input"
-    ) as HTMLInputElement;
-    if (globalSearchInput) {
-      globalSearchInput.value = query;
-      globalSearchInput.dispatchEvent(new Event("change", { bubbles: true }));
-    }
-  }, [searchParams]);
-
   return (
-    <header className="sticky top-0 z-50 w-full py-9 bg-black ">
+    <header className="sticky top-0 z-50 w-full py-9 bg-black">
       <div className="flex items-center w-full justify-between">
-        <Link
-          href="/"
-          className="mr-6 flex items-center gap-2"
-        >
+        <Link href="/" className="mr-6 flex items-center gap-2">
           <Image
             src="/images/exam-logo.png"
             alt="SkillNet Logo"
@@ -152,7 +158,7 @@ export default function Navbar() {
             Results
           </Link>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-0.5 md:gap-4">
           {/* Custom Button for Notifications */}
           <div className="flex items-center gap-1">
             <button
@@ -161,7 +167,7 @@ export default function Navbar() {
             >
               <Bell className="h-5 w-5" />
             </button>
-            <div className="hidden lg:flex md:flex-1 md:items-center md:justify-end">
+            <div className="hidden md:flex md:flex-1 md:items-center md:justify-end">
               <div className="relative flex items-center">
                 <Search className="absolute left-2.5 h-4 w-4 text-muted-foreground" />
                 {/* Custom Input for Search */}
@@ -239,9 +245,12 @@ export default function Navbar() {
             <div className="relative">
               <button
                 onClick={() => setIsModalVisible(true)}
-                className="flex items-center w-40 justify-center gap-2 rounded-lg border border-zinc-600 hover:zinc-300 px-4 py-2.5 text-xs font-medium  transition-colors"
+                disabled={isConnecting}
+                className={`flex items-center w-40 justify-center gap-2 rounded-lg border border-zinc-700 hover:border-zinc-600 px-4 py-2.5 text-xs font-medium transition-colors ${
+                  isConnecting ? "opacity-70 cursor-not-allowed" : ""
+                }`}
               >
-                Connect Wallet
+                {isConnecting ? "Connecting..." : "Connect Wallet"}
               </button>
               {isModalVisible && (
                 <div className="absolute right-0 mt-2 z-10" ref={modalRef}>
@@ -289,6 +298,19 @@ export default function Navbar() {
           </Link>
         </div>
       </nav>
+      {/* Mobile search bar */}
+      <div className="md:hidden px-4 pt-2">
+        <div className="relative flex items-center">
+          <Search className="absolute left-2.5 h-4 w-4 text-muted-foreground" />
+          <input
+            type="search"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={handleSearch}
+            className="w-full rounded-lg border border-[#1F1F1F] placeholder:italic border-input bg-background px-8 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          />
+        </div>
+      </div>
     </header>
   );
 }
