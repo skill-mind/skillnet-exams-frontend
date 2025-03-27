@@ -1,33 +1,16 @@
 "use client";
-import {
-  Home,
-  Bell,
-  ChevronDown,
-} from "lucide-react";
+import { Home, Bell, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 // Custom SVG Icons
-const WalletIcon = () => (
-  <img src="/wallet.svg" alt="Wallet Icon" className="h-5 w-5" />
-);
 
 const ExamIcon = () => (
   <img src="/exam.svg" alt="Exam Icon" className="h-5 w-5" />
 );
 
-const VeriIcon = () => (
-  <img src="/Veri.svg" alt="Verification Icon" className="h-5 w-5" />
-);
-
-const CertIcon = () => (
-  <img src="/cert.svg" alt="Certificate Icon" className="h-5 w-5" />
-);
-
-const CsIcon = () => (
-  <img src="/cs.svg" alt="CS Icon" className="h-5 w-5" />
-);
+const CsIcon = () => <img src="/cs.svg" alt="CS Icon" className="h-5 w-5" />;
 
 interface SidebarProps {
   isMobileMenuOpen: boolean;
@@ -35,19 +18,32 @@ interface SidebarProps {
 
 export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
   const pathname = usePathname();
-
+  console.log(pathname);
   const menuItems = [
-    { name: "Home", href: "/dashboard/institution", icon: () => <Home className="h-5 w-5 text-gray-300" /> },
-    { name: "Exams", href: "/dashboard/institution/exams", icon: ExamIcon },
-    { name: "Certificates", href: "/dashboard/institution/certificates", icon: CertIcon },
-    { name: "Verification", href: "/dashboard/institution/verification", icon: VeriIcon },
-    { name: "Notification", href: "/dashboard/institution/notification", icon: () => <Bell className="h-5 w-5 text-gray-300" /> },
-    { name: "Earnings", href: "/dashboard/institution/earnings", icon: WalletIcon },
+    {
+      name: "User Management",
+      href: "/dashboard/maintainer",
+      icon: () => <Home className="h-5 w-5 text-gray-300" />,
+    },
+    {
+      name: "Students",
+      href: "/dashboard/maintainer/students",
+      icon: ExamIcon,
+    },
+    {
+      name: "Institution Management",
+      href: "/dashboard/maintainer/institutions",
+      icon: CsIcon,
+    },
   ];
 
   const supportItems = [
-    { name: "Support", href: "/dashboard/institution/support", icon: CsIcon },
-    { name: "AI chat bot", href: "/dashboard/institution/ai-support", icon: CsIcon },
+    { name: "Support", href: "/dashboard/maintainer/support", icon: CsIcon },
+    {
+      name: "AI chat bot",
+      href: "/dashboard/maintainer/ai-support",
+      icon: CsIcon,
+    },
   ];
 
   return (
@@ -56,7 +52,7 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
         "fixed inset-y-0 left-0 z-50 w-64 border-r border-gray-800 transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0",
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
       )}
-      style={{ background: "#161716" }} 
+      style={{ background: "#161716" }}
     >
       <div className="flex flex-col h-full">
         {/* Organization selector */}
