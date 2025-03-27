@@ -1,5 +1,6 @@
 import Link from "next/link";
 import StatCard from "@/components/maintainer-dashboard/stat-card";
+import StudentsTable from "@/components/maintainer-dashboard/table.";
 
 // Define types for better type safety and maintainability
 interface QuickAction {
@@ -75,15 +76,7 @@ export default function Page() {
           Quick Actions
         </h3>
         <div className="flex flex-wrap gap-4">
-          {quickActions.map((action, index) => (
-            <Link
-              key={index}
-              href={action.href}
-              className="px-6 py-3 border border-gray-700 rounded-md text-white hover:bg-gray-800 transition-colors"
-            >
-              {action.label}
-            </Link>
-          ))}
+          <StudentsTable />
         </div>
       </div>
     </div>

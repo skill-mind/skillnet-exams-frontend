@@ -38,7 +38,7 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
   ];
 
   const supportItems = [
-    { name: "Support", href: "/dashboard/maintainer/support", icon: CsIcon },
+    // { name: "Support", href: "/dashboard/maintainer/support", icon: CsIcon },
     {
       name: "AI chat bot",
       href: "/dashboard/maintainer/ai-support",
