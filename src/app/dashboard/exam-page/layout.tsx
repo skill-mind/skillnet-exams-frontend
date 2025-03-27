@@ -15,7 +15,6 @@ export default function DashboardLayout({
     <Providers>
       <WalletProvider>
         <div className="flex min-h-screen flex-col bg-black text-white px-6  md:px-8 lg:px-16 xl:px-24">
-          =
           <Suspense fallback={<div className="h-24 bg-black"></div>}>
             <Navbar />
           </Suspense>
