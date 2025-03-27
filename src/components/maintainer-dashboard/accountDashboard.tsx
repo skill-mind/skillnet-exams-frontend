@@ -40,9 +40,7 @@ const AccountDashboard: React.FC = () => {
 
   return (
     <div className="mt-28">
-      <h3 className="text-sm font-medium text-gray-300 mb-4">
-        User Detail
-      </h3>
+      <h3 className="text-sm font-medium text-gray-300 mb-4">User Detail</h3>
       <div className=" rounded-xl">
         {/* Account header with logo and info */}
         <div className="flex flex-col md:flex-row gap-6 mb-8">
@@ -81,7 +79,8 @@ const AccountDashboard: React.FC = () => {
             </div>
             <div className="flex-1">
               <h3 className="text-[#ABABAB] text-sm font-medium mb-1">
-                Company Size: <span className="text-white">101-500 employees</span>
+                Company Size:{" "}
+                <span className="text-white">101-500 employees</span>
               </h3>
             </div>
             <div className="flex-1">
@@ -93,7 +92,7 @@ const AccountDashboard: React.FC = () => {
               <h3 className="text-[#ABABAB] text-sm font-medium mb-1">
                 Joined: <span className="text-white">May 1, 2021</span>
               </h3>
-            </div> 
+            </div>
           </div>
         </div>
 
@@ -105,7 +104,9 @@ const AccountDashboard: React.FC = () => {
               className="bg-[#161716] text-white p-6 rounded-lg"
             >
               <div className="text-lg font-[600] mb-2">{stat.value}</div>
-              <div className="text-gray-300 text-[14px] font-[500]">{stat.label}</div>
+              <div className="text-gray-300 text-[14px] font-[500]">
+                {stat.label}
+              </div>
             </div>
           ))}
         </div>

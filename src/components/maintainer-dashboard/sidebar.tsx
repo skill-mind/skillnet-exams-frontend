@@ -13,7 +13,7 @@ const ExamIcon = () => (
 const CsIcon = () => <img src="/cs.svg" alt="CS Icon" className="h-5 w-5" />;
 
 const InstitutionIcon = () => <img src="/institution.svg" alt="Institution Icon" className="h-5 w-5" />;
-
+  
 
 
 interface SidebarProps {

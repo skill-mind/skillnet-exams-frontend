@@ -2,7 +2,7 @@
 import { Bell, Menu, MoreVertical, Pencil, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "../../../public/skillnet-white logo.png";
+import Logo from "../../../public/skillnet-black.png";
 
 interface NavbarProps {
   isMobileMenuOpen: boolean;
@@ -14,7 +14,7 @@ export default function Navbar({
   setIsMobileMenuOpen,
 }: NavbarProps) {
   return (
-    <header className="border-b border-gray-800 bg-black">
+    <header className=" bg-[#101110]">
       <div className="container mx-auto flex items-center h-16 px-4">
         {/* Left section: hamburger menu + logo */}
         <div className="flex items-center gap-4">
