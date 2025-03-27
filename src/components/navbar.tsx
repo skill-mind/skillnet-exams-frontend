@@ -179,7 +179,6 @@ export default function Navbar({
           </div>
         </div>
       )}
-
       {isModalVisible && (
         <div className="absolute top-full left-0 right-3 md:right-10 md:left-auto px-4 mt-2 z-10">
           <WalletSelectorUI onClose={() => setIsModalVisible(false)} />

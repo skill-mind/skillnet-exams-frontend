@@ -35,7 +35,6 @@ interface SidebarProps {
 
 export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
   const pathname = usePathname();
-
   const menuItems = [
     { name: "Home", href: "/dashboard/institution", icon: () => <Home className="h-5 w-5 text-gray-300" /> },
     { name: "Exams", href: "/dashboard/institution/exams", icon: ExamIcon },
