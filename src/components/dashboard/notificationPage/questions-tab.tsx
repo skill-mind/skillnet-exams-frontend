@@ -24,8 +24,7 @@ const questions: QuestionType[] = [
     messages: [
       {
         id: 1,
-        content:
-          "What videos and materials can you recommend for a beginner started web design",
+        content: "hello Are u Legend4tech the programmer?",
         timestamp: "10:54 AM",
         sender: "user",
       },
@@ -53,7 +52,9 @@ const questions: QuestionType[] = [
 
 const QuestionsTab = () => {
   const [activeTab, setActiveTab] = useState("new");
-  const [selectedQuestionId, setSelectedQuestionId] = useState(null);
+  const [selectedQuestionId, setSelectedQuestionId] = useState<number | null>(
+    null
+  );
   const [isMobile, setIsMobile] = useState(false);
 
   // Check if we're on mobile
@@ -79,33 +80,6 @@ const QuestionsTab = () => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex border-b border-[#333] pb-3">
-        <Tabs.Root value={activeTab} onValueChange={setActiveTab}>
-          <Tabs.List className="flex gap-4">
-            <Tabs.Trigger
-              value="new"
-              className={`px-4 py-2 text-sm font-medium ${
-                activeTab === "new"
-                  ? "text-white border border-white rounded-md"
-                  : "text-gray-400 border border-gray-400 rounded-md"
-              }`}
-            >
-              New
-            </Tabs.Trigger>
-            <Tabs.Trigger
-              value="archived"
-              className={`px-4 py-2 text-sm font-medium ${
-                activeTab === "archived"
-                  ? "text-white border border-white rounded-md"
-                  : "text-gray-400 border border-gray-400 rounded-md"
-              }`}
-            >
-              Archived
-            </Tabs.Trigger>
-          </Tabs.List>
-        </Tabs.Root>
-      </div>
-
       <div className="flex flex-1 overflow-hidden">
         {/* Questions list - Hide on mobile when a question is selected */}
         <div
@@ -114,6 +88,32 @@ const QuestionsTab = () => {
             isMobile && selectedQuestionId ? "hidden" : "block"
           )}
         >
+          <div className="flex border-b border-[#333] pb-3">
+            <Tabs.Root value={activeTab} onValueChange={setActiveTab}>
+              <Tabs.List className="flex gap-4">
+                <Tabs.Trigger
+                  value="new"
+                  className={`px-4 py-2 text-sm font-medium ${
+                    activeTab === "new"
+                      ? "text-white border border-white rounded-md"
+                      : "text-gray-400 border border-gray-400 rounded-md"
+                  }`}
+                >
+                  New
+                </Tabs.Trigger>
+                <Tabs.Trigger
+                  value="archived"
+                  className={`px-4 py-2 text-sm font-medium ${
+                    activeTab === "archived"
+                      ? "text-white border border-white rounded-md"
+                      : "text-gray-400 border border-gray-400 rounded-md"
+                  }`}
+                >
+                  Archived
+                </Tabs.Trigger>
+              </Tabs.List>
+            </Tabs.Root>
+          </div>
           {questions.map((question) => (
             <div
               key={question.id}
