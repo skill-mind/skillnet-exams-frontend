@@ -6,6 +6,7 @@ import {
   SmileIcon,
   PaperclipIcon,
   ArrowLeftIcon,
+  MicIcon,
 } from "lucide-react";
 
 // Define types for our components
@@ -140,7 +141,7 @@ const QuestionChat = ({ question, onBack, isMobile }: QuestionChatProps) => {
       <div className="p-3 border-t border-[#333]">
         <div className="flex items-center bg-[#252525] rounded-full p-1">
           <button className="p-2 text-gray-400 hover:text-white">
-            <SmileIcon size={18} />
+            <MicIcon size={18} />
           </button>
           <button className="p-2 text-gray-400 hover:text-white">
             <PaperclipIcon size={18} />
