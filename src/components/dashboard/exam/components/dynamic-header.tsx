@@ -15,19 +15,19 @@ export default function DynamicHeader() {
   const getHeaderConfig = (): HeaderConfig => {
     if (pathname.includes("/registered")) {
       return {
-        title: "Registered examinations",
-        imageSrc: "/images/exam-feed.png",
+        title: "Registered exam",
+        imageSrc: "/images/exam-page-register-header.png",
       };
     } else if (pathname.includes("/results")) {
       return {
-        title: "Examination results",
-        imageSrc: "/skillnet-white logo.png",
+        title: "Results",
+        imageSrc: "/images/exam-page-results-header.png",
       };
     } else {
       // Default to exams
       return {
         title: "Ongoing examinations",
-        imageSrc: "/images/exam-feed.png",
+        imageSrc: "/images/exam-page-header.png",
       };
     }
   };
