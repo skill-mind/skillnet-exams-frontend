@@ -14,7 +14,7 @@ export default function Navbar({
   setIsMobileMenuOpen,
 }: NavbarProps) {
   return (
-    <header className=" bg-[#101110]">
+    <header className=" bg-[#101110] md:py-6">
       <div className="container mx-auto flex items-center h-16 px-4">
         {/* Left section: hamburger menu + logo */}
         <div className="flex items-center gap-4">
