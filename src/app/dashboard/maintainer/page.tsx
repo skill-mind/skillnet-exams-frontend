@@ -67,20 +67,20 @@ const activeJobsTableData: any = {
 
 const recentHiresTableData: any = {
   headings: [
-    " Student Name",
+    "Student Name",
     "Position",
     "Hire Date",
     "Certificate Verification",
   ],
   rows: [
     {
-      "Employee Name": "Ben Ejembi",
+      "Student Name": "Ben Ejembi",
       Position: "UI Designer",
       "Hire Date": "Feb 10, 2025",
       "Certificate Verification": "Blockchain Verified",
     },
     {
-      "Employee Name": "Flora Osatuyi",
+      "Student Name": "Flora Osatuyi",
       Position: "UX Researcher",
       "Hire Date": "Feb 05, 2025",
       "Certificate Verification": "Blockchain Verified",
@@ -164,6 +164,11 @@ export default function Page() {
           User Management
         </h3>
         <div className="flex flex-wrap gap-4">
+          <div className="flex gap-4 border-b border-[#2C2F35]">
+            <div className="text-[12px] p-2 min-w-[200px] text-center bg-[#2C2F35] text-white rounded-t-lg pointer-cursor">Students ({tableData.rows.length})</div>
+            <div className="text-[12px] p-2 min-w-[200px] text-center  text-white rounded-t-lg pointer-cursor">Institutions (23)</div>
+            <div className="text-[12px] p-2 min-w-[200px] text-center  text-white rounded-t-lg pointer-cursor">Banned Users (1)</div>
+          </div>
           <Table tableData={tableData} />
         </div>
       </div>
