@@ -207,7 +207,7 @@ export default function Navbar() {
                 </button>
 
                 {dropdownOpen && (
-                  <div className="absolute -right-2 z-10 mt-4 w-56 origin-top-right rounded-md border border-zinc-700 bg-[#161716] p-1 text-popover-foreground shadow-md focus:outline-none">
+                  <div className="absolute -right-2 top-6 z-10 mt-4 w-56 origin-top-right rounded-md border border-zinc-700 bg-[#161716] p-1 text-popover-foreground shadow-md focus:outline-none">
                     <button
                       className="relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
                       onClick={() => {
