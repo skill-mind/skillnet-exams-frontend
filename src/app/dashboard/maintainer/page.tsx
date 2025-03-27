@@ -1,7 +1,7 @@
 "use client";
 
 import StatCard from "@/components/maintainer-dashboard/stat-card";
-import Table from "@/components/maintainer-dashboard/table.";
+import Table from "@/components/maintainer-dashboard/table";
 import { useState } from "react";
 import AccountDashboard from "@/components/maintainer-dashboard/accountDashboard";
 // Define types for better type safety and maintainability
