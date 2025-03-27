@@ -1,12 +1,10 @@
-import Link from "next/link";
+"use client";
+
 import StatCard from "@/components/maintainer-dashboard/stat-card";
 import Table from "@/components/maintainer-dashboard/table.";
+import { useState } from "react";
 import AccountDashboard from "@/components/maintainer-dashboard/accountDashboard";
 // Define types for better type safety and maintainability
-interface QuickAction {
-  href: string;
-  label: string;
-}
 
 interface StatCardData {
   icon: "percentage" | "briefcase" | "certificate" | "message-square";
@@ -116,6 +114,8 @@ const examData: any = {
 };
 
 export default function Page() {
+  const [tab, setTab] = useState<string>("students");
+
   const statCards: StatCardData[] = [
     {
       icon: "percentage",
@@ -164,12 +164,49 @@ export default function Page() {
           User Management
         </h3>
         <div className="flex flex-wrap gap-4">
-          <div className="flex gap-4 border-b border-[#2C2F35]">
-            <div className="text-[12px] p-2 min-w-[200px] text-center bg-[#2C2F35] text-white rounded-t-lg pointer-cursor">Students ({tableData.rows.length})</div>
-            <div className="text-[12px] p-2 min-w-[200px] text-center  text-white rounded-t-lg pointer-cursor">Institutions (23)</div>
-            <div className="text-[12px] p-2 min-w-[200px] text-center  text-white rounded-t-lg pointer-cursor">Banned Users (1)</div>
+          <div className=" gap-4 border-b border-[#2C2F35] hidden md:flex">
+            <button
+              onClick={() => setTab("students")}
+              className={
+                tab === "students"
+                  ? "text-[12px] p-2 min-w-[200px] text-center bg-[#2C2F35] text-white rounded-t-lg pointer-cursor"
+                  : "text-[12px] p-2 min-w-[200px] text-center  text-white rounded-t-lg pointer-cursor"
+              }
+            >
+              Students ({tableData.rows.length})
+            </button>
+            <button
+              onClick={() => setTab("institutions")}
+              className={
+                tab === "institutions"
+                  ? "text-[12px] p-2 min-w-[200px] text-center bg-[#2C2F35] text-white rounded-t-lg pointer-cursor"
+                  : "text-[12px] p-2 min-w-[200px] text-center  text-white rounded-t-lg pointer-cursor"
+              }
+            >
+              Institutions (0)
+            </button>
+            <button
+              onClick={() => setTab("banned")}
+              className={
+                tab === "banned"
+                  ? "text-[12px] p-2 min-w-[200px] text-center bg-[#2C2F35] text-white rounded-t-lg pointer-cursor"
+                  : "text-[12px] p-2 min-w-[200px] text-center  text-white rounded-t-lg pointer-cursor"
+              }
+            >
+              Banned Users (0)
+            </button>
           </div>
-          <Table tableData={tableData} />
+          <div className="block w-full">
+            {tab === "students" && <Table tableData={tableData} />}
+
+            {tab === "institutions" && (
+              <div className=" text-center mt-5">No table Data available</div>
+            )}
+
+            {tab === "banned" && (
+              <div className=" text-center mt-5">No table Data available</div>
+            )}
+          </div>
         </div>
       </div>
 
