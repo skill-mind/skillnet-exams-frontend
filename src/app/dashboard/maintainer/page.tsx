@@ -1,7 +1,7 @@
 import Link from "next/link";
 import StatCard from "@/components/maintainer-dashboard/stat-card";
 import Table from "@/components/maintainer-dashboard/table.";
-
+import AccountDashboard from "@/components/maintainer-dashboard/accountDashboard";
 // Define types for better type safety and maintainability
 interface QuickAction {
   href: string;
@@ -89,26 +89,31 @@ const recentHiresTableData: any = {
 };
 
 const examData: any = {
-    title: "Custom Exams Created",
-    headings: ["Exam Title", "Creation Date", "Participants", "Avg. Score", "Status"],
-    rows: [
-      {
-        "Exam Title": "JavaScript Test",
-        "Creation Date": "Feb 18, 2025",
-        Participants: 24,
-        "Avg. Score": "78%",
-        Status: "Active",
-      },
-      {
-        "Exam Title": "Python Analysis",
-        "Creation Date": "Feb 22, 2025",
-        Participants: 44,
-        "Avg. Score": "88%",
-        Status: "Active",
-      },
-    ],
-  };
-  
+  title: "Custom Exams Created",
+  headings: [
+    "Exam Title",
+    "Creation Date",
+    "Participants",
+    "Avg. Score",
+    "Status",
+  ],
+  rows: [
+    {
+      "Exam Title": "JavaScript Test",
+      "Creation Date": "Feb 18, 2025",
+      Participants: 24,
+      "Avg. Score": "78%",
+      Status: "Active",
+    },
+    {
+      "Exam Title": "Python Analysis",
+      "Creation Date": "Feb 22, 2025",
+      Participants: 44,
+      "Avg. Score": "88%",
+      Status: "Active",
+    },
+  ],
+};
 
 export default function Page() {
   const statCards: StatCardData[] = [
@@ -163,6 +168,9 @@ export default function Page() {
         </div>
       </div>
 
+      <div>
+        <AccountDashboard />
+      </div>
       <div className="mt-12">
         <h3 className="text-sm font-medium text-gray-300 mb-4">
           Active Job Listings
@@ -172,11 +180,8 @@ export default function Page() {
         </div>
       </div>
 
-      
       <div className="mt-12">
-        <h3 className="text-sm font-medium text-gray-300 mb-4">
-          Recent Hires
-        </h3>
+        <h3 className="text-sm font-medium text-gray-300 mb-4">Recent Hires</h3>
         <div className="flex flex-wrap gap-4">
           <Table tableData={recentHiresTableData} />
         </div>
@@ -190,7 +195,6 @@ export default function Page() {
           <Table tableData={examData} />
         </div>
       </div>
-
     </div>
   );
 }
