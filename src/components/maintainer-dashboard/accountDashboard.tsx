@@ -70,25 +70,28 @@ const AccountDashboard: React.FC = () => {
           </div>
 
           {/* Account Information */}
-          <div className="flex gap-8">
-            <div className="flex-1">
-              <h2>Company Name</h2>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-6 sm:gap-12 w-full">
+            {/* Left Section */}
+            <div className="shrink-0 flex flex-col justify-between text-start sm:text-left">
+              <h2 className="text-lg font-semibold text-white">Company Name</h2>
               <h3 className="text-[#ABABAB] text-sm font-medium mb-1">
                 Account Type
               </h3>
-            </div>
-            <div className="flex-1">
-              <h3 className="text-[#ABABAB] text-sm font-medium mb-1">
-                Company Size:{" "}
-                <span className="text-white">101-500 employees</span>
+              <h3 className="text-[#ABABAB] text-sm font-medium mb-1 flex justify-start sm:justify-start">
+                <div>Company Size:</div>
+                <span className="text-white ml-1">101-500 employees</span>
               </h3>
             </div>
-            <div className="flex-1">
+
+            {/* Location */}
+            <div className="shrink-0 flex items-end justify-start sm:justify-start">
               <h3 className="text-[#ABABAB] text-sm font-medium mb-1">
                 Location: <span className="text-white">Kaduna, Nigeria</span>
               </h3>
             </div>
-            <div className="flex-1">
+
+            {/* Joined Date */}
+            <div className="shrink-0 flex items-end justify-start sm:justify-start">
               <h3 className="text-[#ABABAB] text-sm font-medium mb-1">
                 Joined: <span className="text-white">May 1, 2021</span>
               </h3>
