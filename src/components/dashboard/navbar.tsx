@@ -1,6 +1,8 @@
 "use client";
 import { Bell, Menu, MoreVertical, Pencil, Search } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import Logo from "../../../public/skillnet-white logo.png";
 
 interface NavbarProps {
   isMobileMenuOpen: boolean;
@@ -22,17 +24,20 @@ export default function Navbar({
           >
             <Menu size={24} />
           </button>
-          <Link href="/dashboard" className="hidden lg:block">
-            <img
-              src="/BLACK HORIZONTAL LOGO.svg"
-              alt="Icon"
-              className="h-6 w-auto"
+
+          <Link href="/" className="hidden lg:block">
+            <Image
+              className="w-[100px] h-[40px] ml-[10%]"
+              src={Logo}
+              alt="Logo"
             />
           </Link>
         </div>
 
         {/* Navigation: “Home” & “Glance” */}
-        <nav className="hidden lg:flex items-center ml-auto mr-28 gap-3"> {/* Increased margin-right further */}
+        <nav className="hidden lg:flex items-center ml-auto mr-28 gap-3">
+          {" "}
+          {/* Increased margin-right further */}
           <Link
             href="/dashboard"
             className="text-white w-[80px] h-[24px] flex items-center justify-center"
