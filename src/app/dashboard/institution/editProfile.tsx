@@ -14,12 +14,7 @@ const EditProfile: React.FC<EditProfileProps> = ({ onBack, onSave }) => {
   const [companyName, setCompanyName] = useState("SkillNet Org");
   const [companyType, setCompanyType] = useState("Design company");
   const [about, setAbout] = useState(`SkillNet Org is a forward-thinking design agency specializing in UI/UX, branding, and product design. 
-    We craft seamless, intuitive, and visually stunning experiences that captivate users and drive business 
-    growth. Our team of creative strategists, designers, and developers collaborate to transform ideas into 
-    reality—whether it's building digital products, designing brand identities, or optimizing user 
-    experiences. At Innovate Designs, we believe in blending creativity with cutting-edge technology to 
-    deliver impactful solutions that stand out in today's competitive market. Let's design the future, 
-    together.`);
+We craft seamless, intuitive, and visually stunning experiences that captivate users and drive business growth. Our team of creative strategists, designers, and developers collaborate to transform ideas into reality—whether it's building digital products, designing brand identities, or optimizing user experiences. At Innovate Designs, we believe in blending creativity with cutting-edge technology to deliver impactful solutions that stand out in today's competitive market. Let's design the future, together.`);
 
   const handleSave = () => {
     if (onSave) {
@@ -85,7 +80,7 @@ const EditProfile: React.FC<EditProfileProps> = ({ onBack, onSave }) => {
             <textarea
               value={about}
               onChange={(e) => setAbout(e.target.value)}
-              className="w-full bg-[#1a1a1a] text-gray-300 leading-relaxed p-3"
+              className="w-full bg-[#1a1a1a] text-gray-300 leading-relaxed p-3 whitespace-pre-wrap"
               rows={6}
             />
           </div>
