@@ -2,7 +2,7 @@
 import { Bell, Menu, MoreVertical, Search, Ban } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "../../../public/skillnet-black.png";
+import Logo from "../../../public/skillnet-white logo.png";
 import { usePathname } from "next/navigation";
 
 interface NavbarProps {
@@ -14,6 +14,7 @@ export default function Navbar({
   isMobileMenuOpen,
   setIsMobileMenuOpen,
 }: NavbarProps) {
+  //current url path
   const path = usePathname();
 
   return (
@@ -30,7 +31,7 @@ export default function Navbar({
 
           <Link href="/" className="hidden lg:block">
             <Image
-              className="w-[100px] h-[40px] ml-[10%] brightness-200"
+              className=" w-20 ml-[10%] brightness-200"
               src={Logo}
               alt="Logo"
             />
@@ -42,17 +43,17 @@ export default function Navbar({
           {" "}
           {/* Increased margin-right further */}
           {path === "/dashboard/maintainer" && (
-            <Link href="/maintainer" className="text-white text-sm">
+            <Link href="/dashboard/maintainer" className="text-white text-sm">
               User Management
             </Link>
           )}
           {path === "/dashboard/maintainer/students" && (
-            <Link href="/students" className="text-white text-sm">
+            <Link href="/dashboard/maintainer/students" className="text-white text-sm">
               Students
             </Link>
           )}
           {path === "/dashboard/maintainer/institutions" && (
-            <Link href="/institutions" className="text-white text-sm">
+            <Link href="/dashboard/maintainer/institutions" className="text-white text-sm">
               institution management
             </Link>
           )}
