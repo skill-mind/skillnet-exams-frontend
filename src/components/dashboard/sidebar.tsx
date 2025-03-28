@@ -44,17 +44,17 @@ export default function Sidebar({ isMobileMenuOpen,route, pathname }: SidebarPro
   }
 
   const menuItems = [
-    { name: "Home", href: "/dashboard/institution", icon: () => <Home className="h-5 w-5 text-gray-300" /> },
-    { name: "Exam", icon: ExamIcon },
-    { name: "Certificate",icon: CertIcon },
-    { name: "Verification",  icon: VeriIcon },
-    { name: "Notification", icon: () => <Bell className="h-5 w-5 text-gray-300" /> },
-    { name: "Earning",icon: WalletIcon },
+    { name: "home", href: "/dashboard/institution", icon: () => <Home className="h-5 w-5 text-gray-300" /> },
+    { name: "exam", icon: ExamIcon },
+    { name: "certificate",icon: CertIcon },
+    { name: "verification",  icon: VeriIcon },
+    { name: "notification", icon: () => <Bell className="h-5 w-5 text-gray-300" /> },
+    { name: "earning",icon: WalletIcon },
   ];
 
   const supportItems = [
-    { name: "Support",icon: CsIcon },
-    { name: "AI-Chat bot", icon: CsIcon },
+    { name: "support",icon: CsIcon },
+    { name: "ai-support", icon: CsIcon },
   ];
 
   return (
