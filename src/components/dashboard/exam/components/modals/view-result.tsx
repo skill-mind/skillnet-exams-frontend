@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useCallback } from "react"
 import Image from "next/image"
 
 // Define the props interface for type safety
@@ -14,22 +14,22 @@ interface ResultModalProps {
     status?: string
     score?: string
     date?: string
-    passingScore?: string
+    passingScore?: number | string
     certification?: string
   } | null
 }
 
 const ResultModal = ({ isOpen, onClose, examData }: ResultModalProps) => {
   // Close modal when Escape key is pressed
-  useEffect(() => {
-    const handleEscKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && isOpen) {
-        onClose()
-      }
+  const handleEscKey = useCallback((event: KeyboardEvent) => {
+    if (event.key === "Escape" && isOpen) {
+      onClose()
     }
+  }, [isOpen, onClose])
 
+  useEffect(() => {
     window.addEventListener("keydown", handleEscKey)
-
+    
     // Prevent scrolling when modal is open
     if (isOpen) {
       document.body.style.overflow = "hidden"
@@ -41,12 +41,17 @@ const ResultModal = ({ isOpen, onClose, examData }: ResultModalProps) => {
       window.removeEventListener("keydown", handleEscKey)
       document.body.style.overflow = "auto"
     }
-  }, [isOpen, onClose])
+  }, [isOpen, handleEscKey])
 
   if (!isOpen || !examData) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-0">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-0"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden={!isOpen}
+    >
       {/* Backdrop */}
       <div className="fixed inset-0 bg-black/80" onClick={onClose}></div>
 
@@ -90,7 +95,7 @@ const ResultModal = ({ isOpen, onClose, examData }: ResultModalProps) => {
             <div className="flex flex-col justify-center text-center sm:text-left">
               <h2 className="text-xl md:text-2xl font-bold mb-1">{examData.title}</h2>
               <p className="text-gray-400 mb-1">{examData.institution || "Name of Institution"}</p>
-              <p className="text-sm text-[#6E6E6E] mb-3 md:mb-4">FRONT-END DEVELOPMENT</p>
+              <p className="text-sm text-[#6E6E6E] mb-3 md:mb-4">{examData.category || "Category not available"}</p>
 
               <div className="space-y-1 text-sm">
                 <div className="flex flex-col sm:flex-row sm:items-center">
@@ -133,4 +138,3 @@ const ResultModal = ({ isOpen, onClose, examData }: ResultModalProps) => {
 }
 
 export default ResultModal
-

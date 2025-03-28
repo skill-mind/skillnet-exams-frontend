@@ -11,7 +11,7 @@ export default function ResultsPage() {
   const [selectedExam, setSelectedExam] = useState<any>(null)
 
   const handleViewResults = (exam: any) => {
-    setSelectedExam(exam)
+    setSelectedExam({ ...exam, passingScore: Number(exam.passingScore) })
     setOpenModal(true)
   }
 
@@ -24,14 +24,12 @@ export default function ResultsPage() {
       <div className="flex flex-col w-full">
         <DynamicHeader />
         
-        {/* Ensure full width and prevent max-width restrictions */}
         <div className="w-full flex flex-1 flex-col py-12">
           <div className="w-full flex justify-end items-center">
             <p>Chatbox</p>
             <Bot className="h-4 pr-1" />
           </div>
 
-          {/* Grid container for Exam Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 w-full">
             {exams.slice(0, 4).map((exam, index) => {
               const status = index % 2 === 0 ? "Pass" : "Failed"
@@ -51,15 +49,10 @@ export default function ResultsPage() {
                         </span>
                       </div>
                       
-                  
-                      
                       <div className="flex-1 flex flex-col w-full">
                         <p className="text-[12px] text-white">{exam.description}</p>
-
-                        
-
                         <div className="space-y-2 mt-auto text-[12px] ">
-                        <hr className=" mt-auto lg:mb-6" style={{ width: "100%", border: "1px solid #252625" }} />
+                          <hr className=" mt-auto lg:mb-6" style={{ width: "100%", border: "1px solid #252625" }} />
                           <div className="flex gap-2">
                             <span className="text-[#6E6E6E]">DATE:</span>
                             <span>{exam.date}</span>
@@ -90,10 +83,6 @@ export default function ResultsPage() {
                         </div>
                         <hr className="mt-6" style={{ width: "100%", border: "1px solid #252625" }} />
                       </div>
-
-                      
-
-                     
                     </div>
 
                     <div className="p-4 mt-auto">
@@ -111,7 +100,6 @@ export default function ResultsPage() {
           </div>
         </div>
 
-        {/* Modal for Viewing Exam Results */}
         <ResultModal isOpen={openModal} onClose={closeModal} examData={selectedExam} />
       </div>
     </Suspense>
