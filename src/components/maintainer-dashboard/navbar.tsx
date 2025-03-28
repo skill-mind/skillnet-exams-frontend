@@ -3,6 +3,7 @@ import { Bell, Menu, MoreVertical, Search, Ban } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../../public/skillnet-black.png";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   isMobileMenuOpen: boolean;
@@ -13,6 +14,8 @@ export default function Navbar({
   isMobileMenuOpen,
   setIsMobileMenuOpen,
 }: NavbarProps) {
+  const path = usePathname();
+
   return (
     <header className=" bg-[#101110] md:py-6">
       <div className="container mx-auto flex items-center h-16 px-4">
@@ -38,9 +41,21 @@ export default function Navbar({
         <nav className="hidden lg:flex  w-fit items-center ml-auto mr-28 gap-3">
           {" "}
           {/* Increased margin-right further */}
-          <Link href="/maintainer" className="text-white text-sm">
-            User Management
-          </Link>
+          {path === "/dashboard/maintainer" && (
+            <Link href="/maintainer" className="text-white text-sm">
+              User Management
+            </Link>
+          )}
+          {path === "/dashboard/maintainer/students" && (
+            <Link href="/students" className="text-white text-sm">
+              Students
+            </Link>
+          )}
+          {path === "/dashboard/maintainer/institutions" && (
+            <Link href="/institutions" className="text-white text-sm">
+              institution management
+            </Link>
+          )}
           {/* Separator line */}
           <div className="rounded-lg w-[2px] h-[12px] !bg-[#2F302F]"></div>
           <Link href="/maintainer/glance" className="text-gray-400 text-sm">
