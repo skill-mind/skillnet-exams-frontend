@@ -22,13 +22,14 @@ export interface ExamCardData {
 
 interface ExamCardProps {
     exam: ExamCardData;
+    setOpen: (open: boolean) => void;
 }
 
 function HorizontalLine() {
     return <div className="border-t border-[#262626]"></div>
 }
 
-const RegisteredExamsCard: React.FC<ExamCardProps> = ({ exam }) => {
+const RegisteredExamsCard: React.FC<ExamCardProps> = ({ exam, setOpen }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
@@ -151,6 +152,9 @@ const RegisteredExamsCard: React.FC<ExamCardProps> = ({ exam }) => {
                                     Close
                                 </button>
                                 <button
+                                    onClick={() => {
+                                        setOpen(true)
+                                    }}
                                     className="px-6 py-3 bg-[#1B1B1B] text-white border border-[#262626] rounded-lg hover:bg-[#262626] transition-colors"
                                 >
                                     Access Exam
