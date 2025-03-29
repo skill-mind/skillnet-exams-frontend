@@ -4,13 +4,14 @@
 
 body {
   @apply text-foreground bg-background;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-    to bottom,
-    transparent,
-    rgb(var(--background-end-rgb))
-  ) rgb(var(--background-start-rgb));
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,20 +24,29 @@ body {
 
 @layer utilities {
   .custom-scrollbar::-webkit-scrollbar {
-      width: 5px;
+    width: 5px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-      background: transparent;
+    background: transparent;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #262626;
-      border-radius: 8px;
+    background: #262626;
+    border-radius: 8px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #3a3a3a;
+    background: #3a3a3a;
   }
 }
 
+/* setting chatbot scrollbar to hidden. it can as well be edited and made slim  */
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
