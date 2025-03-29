@@ -7,6 +7,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 // Custom SVG Icons
 const WalletIcon = () => (
@@ -31,23 +32,29 @@ const CsIcon = () => (
 
 interface SidebarProps {
   isMobileMenuOpen: boolean;
+  route:(e:string)=>void; 
+  pathname:string;
 }
 
-export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
-  const pathname = usePathname();
+export default function Sidebar({ isMobileMenuOpen,route, pathname }: SidebarProps) {
+  const [showProfile, setShowProfile] =  useState(false)
+
+  const handleClick =  () => {
+    setShowProfile
+  }
 
   const menuItems = [
-    { name: "Home", href: "/dashboard/institution", icon: () => <Home className="h-5 w-5 text-gray-300" /> },
-    { name: "Exams", href: "/dashboard/institution/exams", icon: ExamIcon },
-    { name: "Certificates", href: "/dashboard/institution/certificates", icon: CertIcon },
-    { name: "Verification", href: "/dashboard/institution/verification", icon: VeriIcon },
-    { name: "Notification", href: "/dashboard/institution/notification", icon: () => <Bell className="h-5 w-5 text-gray-300" /> },
-    { name: "Earnings", href: "/dashboard/institution/earnings", icon: WalletIcon },
+    { name: "home", href: "/dashboard/institution", icon: () => <Home className="h-5 w-5 text-gray-300" /> },
+    { name: "exam", icon: ExamIcon },
+    { name: "certificate",icon: CertIcon },
+    { name: "verification",  icon: VeriIcon },
+    { name: "notification", icon: () => <Bell className="h-5 w-5 text-gray-300" /> },
+    { name: "earning",icon: WalletIcon },
   ];
 
   const supportItems = [
-    { name: "Support", href: "/dashboard/institution/support", icon: CsIcon },
-    { name: "AI chat bot", href: "/dashboard/institution/ai-support", icon: CsIcon },
+    { name: "support",icon: CsIcon },
+    { name: "ai-support", icon: CsIcon },
   ];
 
   return (
@@ -61,7 +68,9 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
       <div className="flex flex-col h-full">
         {/* Organization selector */}
         <div className="p-4 border-b border-gray-800">
-          <button className="flex items-center justify-between w-full p-2 rounded-md hover:bg-gray-800 transition-colors">
+          <button onClick={()=>{
+                    route("profile")
+                  }} className="flex items-center justify-between w-full p-2 rounded-md hover:bg-gray-800 transition-colors">
             <div className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-full bg-gray-700 flex items-center justify-center">
                 <img src="/Ellipse 1 (1).svg" alt="Icon" className="h-6 w-6" />
@@ -77,8 +86,10 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
           <ul className="space-y-1 px-2">
             {menuItems.map((item) => (
               <li key={item.name}>
-                <Link
-                  href={item.href}
+                <button
+                  onClick={()=>{
+                    route(item.name)
+                  }}
                   className={cn(
                     "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
                     pathname === item.href
@@ -88,7 +99,7 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
                 >
                   <item.icon />
                   <span>{item.name}</span>
-                </Link>
+                </button>
               </li>
             ))}
           </ul>
@@ -99,18 +110,20 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
           <ul className="space-y-1">
             {supportItems.map((item) => (
               <li key={item.name}>
-                <Link
-                  href={item.href}
+                <button
+                  onClick={()=>{
+                    route(item.name)
+                  }}
                   className={cn(
                     "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
-                    pathname === item.href
+                    pathname === item.name
                       ? "bg-gray-800 text-white"
                       : "text-gray-400 hover:text-white hover:bg-gray-800"
                   )}
                 >
                   <item.icon />
                   <span>{item.name}</span>
-                </Link>
+                </button>
               </li>
             ))}
           </ul>
