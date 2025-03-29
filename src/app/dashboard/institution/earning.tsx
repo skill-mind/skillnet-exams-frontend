@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import WeeklyEarns from "../components/WeeklyEarns";
-import MonthlyEarns from "../components/MonthlyEarns";
-import AllTimeEarns from "../components/AllTimeEarns";
+import WeeklyEarns from "./components/WeeklyEarns";
+import MonthlyEarns from "./components/MonthlyEarns";
+import AllTimeEarns from "./components/AllTimeEarns";
 
 type TimeFrame = "All-Time" | "Weekly" | "Monthly";
 
@@ -24,7 +24,7 @@ export default function EarningsDashboard() {
 
   return (
     <>
-      <div className="bg-transparent text-white -mt-6">
+      <div className="bg-transparent text-white -mt-4">
         <div className="flex gap-2 mb-6">
           {["All-Time", "Weekly", "Monthly"].map((timeFrame) => (
             <button
