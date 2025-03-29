@@ -41,7 +41,18 @@ export default function CertificatesPage() {
 
   return (
     <section className="w-full h-full flex flex-col mb-20">
-      <div className="w-full flex gap-[16px]">
+      {/* Title and Description */}
+      <div className="flex flex-col h-full w-full">
+        <h1 className="text-2xl font-bold mb-6">Certificates Management</h1>
+        <div className="bg-gray-900 rounded-lg p-6 border border-gray-800">
+          <p className="text-gray-400">
+            Manage certificates, issue new ones, and track distribution.
+          </p>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div className="w-full flex gap-[16px] mt-4">
         <button
           onClick={() => setActiveTab("issuedCertificate")}
           type="button"
