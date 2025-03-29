@@ -19,7 +19,7 @@ const ExamIcon = () => (
 );
 
 const VeriIcon = () => (
-  <img src="/Veri.svg" alt="Verification Icon" className="h-5 w-5" />
+  <img src="/veri.svg" alt="Verification Icon" className="h-5 w-5" />
 );
 
 const CertIcon = () => (
@@ -43,18 +43,20 @@ export default function Sidebar({ isMobileMenuOpen,route, pathname }: SidebarPro
     setShowProfile
   }
 
+
+
   const menuItems = [
-    { name: "home", href: "/dashboard/institution", icon: () => <Home className="h-5 w-5 text-gray-300" /> },
-    { name: "exam", icon: ExamIcon },
-    { name: "certificate",icon: CertIcon },
-    { name: "verification",  icon: VeriIcon },
-    { name: "notification", icon: () => <Bell className="h-5 w-5 text-gray-300" /> },
-    { name: "earning",icon: WalletIcon },
+    { name: "Home", href: "/dashboard/institution", icon: () => <Home className="h-5 w-5 text-gray-300" /> },
+    { name: "Exam", icon: ExamIcon },
+    { name: "Certificate",icon: CertIcon },
+    { name: "Verification",  icon: VeriIcon },
+    { name: "Notification", icon: () => <Bell className="h-5 w-5 text-gray-300" /> },
+    { name: "Earning",icon: WalletIcon },
   ];
 
   const supportItems = [
-    { name: "support",icon: CsIcon },
-    { name: "ai-support", icon: CsIcon },
+    { name: "Support",icon: CsIcon },
+    { name: "Ai-support", icon: CsIcon },
   ];
 
   return (
@@ -84,7 +86,7 @@ export default function Sidebar({ isMobileMenuOpen,route, pathname }: SidebarPro
         {/* Main navigation */}
         <nav className="flex-1 overflow-y-auto py-4">
           <ul className="space-y-1 px-2">
-            {menuItems.map((item) => (
+            {menuItems.map((item, index) => (
               <li key={item.name}>
                 <button
                   onClick={()=>{
@@ -92,13 +94,13 @@ export default function Sidebar({ isMobileMenuOpen,route, pathname }: SidebarPro
                   }}
                   className={cn(
                     "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
-                    pathname === item.href
-                      ? "bg-gray-800 text-white"
-                      : "text-gray-400 hover:text-white hover:bg-gray-800"
+                    pathname === item.name || (!pathname && index === 0)
+                      ? "bg-gray-800 text-white w-full"
+                      : "text-gray-400 hover:text-white hover:bg-gray-800 hover:w-full"
                   )}
                 >
                   <item.icon />
-                  <span>{item.name}</span>
+                  <span className="capitalize">{item.name}</span>
                 </button>
               </li>
             ))}
@@ -117,12 +119,12 @@ export default function Sidebar({ isMobileMenuOpen,route, pathname }: SidebarPro
                   className={cn(
                     "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
                     pathname === item.name
-                      ? "bg-gray-800 text-white"
-                      : "text-gray-400 hover:text-white hover:bg-gray-800"
+                      ? "bg-gray-800 text-white w-full"
+                      : "text-gray-400 hover:text-white hover:bg-gray-800 hover:w-full"
                   )}
                 >
                   <item.icon />
-                  <span>{item.name}</span>
+                  <span className="capitalize"> {item.name}</span>
                 </button>
               </li>
             ))}
