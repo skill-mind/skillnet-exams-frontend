@@ -1,4 +1,4 @@
-import NotificationTabs from "@/components/dashboard/notificationPage/notification-tabs";
+import NotificationTabs from "@/components/dashboard/notificationPage/NotificationTabs";
 
 export default function NotificationPage() {
   return (
