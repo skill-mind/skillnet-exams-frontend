@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { supportTopics, actionHistory } from "@/mock-data/support-page";
+import { supportTopics, actionHistory } from "@/lib/support-page-mock-data";
 
 export default function SupportPage() {
   const [expanded, setExpanded] = useState<number | null>(null);
