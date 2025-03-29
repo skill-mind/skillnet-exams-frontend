@@ -20,3 +20,23 @@ body {
     --background-end-rgb: 0, 0, 0;
   }
 }
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #262626;
+      border-radius: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #3a3a3a;
+  }
+}
+
