@@ -10,7 +10,6 @@ export default function ExamsPage() {
     <div className="text-white">
       <h1 className="text-xl font-bold mb-3">Exams</h1>
       
-      {/* Table of Exams */}
       <table className="w-[95%] mb-6 text-left">
         <thead>
           <tr className="bg-[#161716] text-white">
