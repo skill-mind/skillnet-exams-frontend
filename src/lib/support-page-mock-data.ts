@@ -19,6 +19,14 @@ const supportTopics = [
     title: "Blockchain Integration Help",
     description: "Understanding on-chain payments & certifications",
   },
+  {
+    title: "Technical Issues",
+    description: "Troubleshooting course uploads, media files, etc.",
+  },
+  {
+    title: "Blockchain Integration Help",
+    description: "Understanding on-chain payments & certifications",
+  },
 ];
 
 const actionHistory = [
@@ -40,6 +48,14 @@ const actionHistory = [
   },
   {
     id: 3,
+    date: "12th Dec, 2025",
+    ticketId: "#24680",
+    category: "Student Dispute",
+    status: "Completed",
+    lastUpdate: "2025-02-16",
+  },
+  {
+    id: 4,
     date: "12th Dec, 2025",
     ticketId: "#24680",
     category: "Student Dispute",

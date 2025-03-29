@@ -7,13 +7,14 @@ export default function SupportPage() {
   const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
-    <div className="p-6 text-[0.9rem] text-[#CCCCCC] min-h-screen">
+    <div className="p-2 md:p-6 text-[0.9rem] text-[#CCCCCC] overflow-y-auto h-screen min-h-screen">
       <h2 className="text-white font-semibold mb-4">Support</h2>
-      <div className="space-y-2">
+      <div className="space-y-2 overflow-y-auto max-h-[434px]">
         {supportTopics.map((topic, index) => (
           <div
             key={index}
             className="p-4 cursor-pointer border-b border-[#2D2E2D]"
+            onClick={() => setExpanded(expanded === index ? null : index)}
           >
             <div className="flex justify-between items-center">
               <span>
@@ -23,7 +24,6 @@ export default function SupportPage() {
                 variant="outline"
                 size="sm"
                 className="text-[0.75rem] text-[#FFFFFF] rounded-full border-[#2D2E2D]"
-                onClick={() => setExpanded(expanded === index ? null : index)}
               >
                 {expanded === index ? "Collapse" : "Expand"}
               </Button>
@@ -40,7 +40,7 @@ export default function SupportPage() {
       <h3 className="text-[#FCFCFC] font-semibold mt-6">
         Action History Table
       </h3>
-      <div className="text-[0.75rem] text-[#FFFFFF] overflow-x-auto mt-2">
+      <div className="text-[0.75rem] text-[#FFFFFF] overflow-x-auto mt-2 overflow-y-auto max-h-[250px]">
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-gray-400/10">
