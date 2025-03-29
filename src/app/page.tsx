@@ -47,7 +47,6 @@
 
 // export default Page;
 
-
 import Navbar from "@/components/navbar";
 import astronaut from "../../public/svg/astronaut.svg";
 import Image from "next/image";

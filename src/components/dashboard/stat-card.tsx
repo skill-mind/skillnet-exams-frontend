@@ -32,7 +32,6 @@ export default function StatCard({ icon, value, label, iconColor }: StatCardProp
       default:
         return null;
     }
-
     return <Image src={src} alt={altText} fill style={{ objectFit: "contain" }} />;
   };
 

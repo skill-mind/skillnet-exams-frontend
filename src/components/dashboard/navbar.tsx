@@ -14,7 +14,7 @@ export default function Navbar({
   setIsMobileMenuOpen,
 }: NavbarProps) {
   return (
-    <header className="border-b border-gray-800 bg-black">
+    <header className="bg-transparent h-[124px] flex items-center">
       <div className="container mx-auto flex items-center h-16 px-4">
         {/* Left section: hamburger menu + logo */}
         <div className="flex items-center gap-4">
@@ -24,7 +24,6 @@ export default function Navbar({
           >
             <Menu size={24} />
           </button>
-
           <Link href="/" className="hidden lg:block">
             <Image
               className="w-[100px] h-[40px] ml-[10%]"
