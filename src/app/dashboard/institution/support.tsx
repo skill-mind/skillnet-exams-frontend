@@ -19,7 +19,6 @@ export default function SupportPage() {
               <span>
                 {topic.title} ({topic.description})
               </span>
-
               <Button
                 variant="outline"
                 size="sm"
