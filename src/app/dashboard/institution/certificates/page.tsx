@@ -1,6 +1,6 @@
 "use client";
 
-import Table from "@/components/dashboard/certificate/table";
+import Table from "@/components/dashboard/table";
 import VerifyCertification from "@/components/verifyCertification";
 import { useState } from "react";
 import { motion } from "framer-motion";
