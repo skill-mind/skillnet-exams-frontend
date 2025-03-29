@@ -100,8 +100,8 @@ export default function Sidebar({
                   className={cn(
                     "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
                     pathname === item.name || (!pathname && index === 0)
-                      ? "bg-gray-800 text-white w-full"
-                      : "text-gray-400 hover:text-white hover:bg-gray-800 hover:w-full"
+                      ? "bg-[#2D2E2D] text-white w-full"
+                      : "text-gray-400 hover:text-white hover:bg-[#2D2E2D] hover:w-full"
                   )}
                 >
                   <item.icon />
@@ -124,8 +124,8 @@ export default function Sidebar({
                   className={cn(
                     "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
                     pathname === item.name
-                      ? "bg-gray-800 text-white w-full"
-                      : "text-gray-400 hover:text-white hover:bg-gray-800 hover:w-full"
+                      ? "bg-[#2D2E2D] text-white w-full"
+                      : "text-gray-400 hover:text-white hover:bg-[#2D2E2D] hover:w-full"
                   )}
                 >
                   <item.icon />
