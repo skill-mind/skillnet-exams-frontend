@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InputField from "./ui/Input";
+import InputField from "./ui/input";
 
 export default function VerifyCertification() {
   const [formData, setFormData] = useState({
@@ -110,7 +110,7 @@ export default function VerifyCertification() {
             name="finalScore"
             value={formData.finalScore}
             onChange={handleChange}
-          />252625
+          />
         </div>
       </div>
 
