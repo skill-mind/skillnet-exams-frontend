@@ -11,6 +11,7 @@ import Profile from "@/app/dashboard/institution/profile";
 import SupportPage from "@/app/dashboard/institution/support";
 import ExamsPage from "@/app/dashboard/institution/exam";
 import VerificationPage from "@/app/dashboard/institution/verification";
+import CandidatePage from "@/app/dashboard/institution/candidates/page";
 
 export default function DashboardLayout() {
   const [route, setRoute] = useState("home");
