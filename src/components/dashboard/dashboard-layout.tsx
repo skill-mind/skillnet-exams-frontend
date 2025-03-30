@@ -36,7 +36,7 @@ export default function DashboardLayout() {
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
       />
-      <div className="flex flex-1 overflow-hidden ">
+      <div className="flex flex-1  ">
         <Sidebar  isMobileMenuOpen={isMobileMenuOpen} route={routeHandle}  pathname={route} />
                 <div className="p-5 w-full"> 
         {route === "home" && <Home/>}
