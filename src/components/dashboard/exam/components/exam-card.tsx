@@ -41,7 +41,7 @@ export default function ExamCard({
   ];
 
   return (
-    <div className="h-full overflow-hidden flex flex-col rounded-lg border border-zinc-800 bg-zinc-900/50 gap-y-6 p-6">
+    <div className="h-full overflow-hidden flex flex-col rounded-lg border border-zinc-800 dark:bg-gradient-to-b from-white to-white dark:from-gray-900 dark:to-gray-900 gap-y-6 p-6">
       <div className="flex-grow space-y-6">
         <h3 className="text-base font-semibold">{title}</h3>
         <p className="text-xs font-medium">{description}</p>
@@ -88,7 +88,7 @@ export default function ExamCard({
         )}
       </div>
       <button
-        className="w-full mt-auto rounded-md border border-[#d9f99d] px-4 py-2 font-medium transition-colors hover:bg-zinc-900 focus:outline-none"
+        className="w-full mt-auto rounded-md border dark:border-[#d9f99d] hover:bg-gray-200 border-black/40px-4 py-2 font-medium transition-colors dark:hover:bg-zinc-900 focus:outline-none"
         onClick={onRegister}
       >
         REGISTER
