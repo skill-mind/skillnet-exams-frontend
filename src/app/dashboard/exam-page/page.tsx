@@ -1,14 +1,15 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
-import { Bot } from "lucide-react";
-import { categories, exams } from "@/lib/exam-mock-data";
-import DynamicHeader from "@/components/dashboard/exam/components/dynamic-header";
+import { Chatbot } from "@/components/chatbot";
 import CategoryCard from "@/components/dashboard/exam/components/category-card";
+import DynamicHeader from "@/components/dashboard/exam/components/dynamic-header";
 import ExamCard from "@/components/dashboard/exam/components/exam-card";
+import RegisterErrorModal from "@/components/dashboard/exam/components/modals/register-error";
 import RegisterModal from "@/components/dashboard/exam/components/modals/register-modal";
 import RegisterSuccessModal from "@/components/dashboard/exam/components/modals/register-success";
-import RegisterErrorModal from "@/components/dashboard/exam/components/modals/register-error";
+import { categories, exams } from "@/lib/exam-mock-data";
+import { Bot } from "lucide-react";
+import { Suspense, useEffect, useState } from "react";
 
 export default function page() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -78,6 +79,7 @@ export default function page() {
     setSearchQuery(query);
   };
 
+  const [isChatOpen, setIsChatOpen] = useState(false);
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className="flex flex-col gap-y-12 pb-12">
@@ -93,10 +95,14 @@ export default function page() {
           />
         </div>
 
-        <div className="w-full flex justify-end items-center">
+        <button
+          onClick={() => setIsChatOpen(true)}
+          className="w-full flex justify-end items-center"
+        >
           <p>Chatbox</p>
+          <Chatbot isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
           <Bot className="h-4 pr-1" />
-        </div>
+        </button>
 
         <div className="">
           <div className="flex overflow-hidden w-full overflow-x-scroll gap-x-3 pb-2">
