@@ -71,7 +71,7 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed bg-white dark:bg-[bg-gray-200 dark:bg-gray-800] inset-y-0 left-0 z-50 w-64 border-r border-gray-800 transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0",
+        "fixed bg-white  dark:bg-gray-800 inset-y-0 left-0 z-50 w-64 border-r border-gray-800 transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0",
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
       )}
     >

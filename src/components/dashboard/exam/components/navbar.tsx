@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { useWalletContext } from "@/useContext/WalletContext";
 import { useAccount, useDisconnect } from "@starknet-react/core";
 import { WalletSelectorUI } from "@/components/WalletConnectModal";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -259,6 +260,7 @@ export default function Navbar() {
               )}
             </div>
           )}
+          <ThemeToggle />
         </div>
       </div>
       <nav className="lg:hidden">
@@ -310,6 +312,7 @@ export default function Navbar() {
             className="w-full rounded-lg border border-[#1F1F1F] placeholder:italic border-input bg-background px-8 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
+        <ThemeToggle />
       </div>
     </header>
   );

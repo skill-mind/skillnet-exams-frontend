@@ -20,17 +20,37 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     // Check if running in the browser
     if (typeof window !== "undefined") {
       const savedTheme = localStorage.getItem("isDarkMode");
-      return savedTheme ? JSON.parse(savedTheme) : false; // Default to light mode
+      const theme = savedTheme ? JSON.parse(savedTheme) : false;
+      // Apply theme immediately on initial load
+      const htmlElement = document.documentElement;
+      if (theme) {
+        htmlElement.classList.add("dark");
+      } else {
+        htmlElement.classList.remove("dark");
+      }
+      return theme;
     }
-    return false; // Default to light mode if not in the browser
+    return false;
   });
+
+  // Add storage event listener to sync across tabs
+  useEffect(() => {
+    const handleStorageChange = (event: StorageEvent) => {
+      if (event.key === "isDarkMode") {
+        const newTheme = JSON.parse(event.newValue || "false");
+        setIsDarkMode(newTheme);
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   const toggleTheme = () => {
     setIsDarkMode((prev: boolean) => {
       const newTheme = !prev;
-      // Check if running in the browser
       if (typeof window !== "undefined") {
-        localStorage.setItem("isDarkMode", JSON.stringify(newTheme)); // Save preference
+        localStorage.setItem("isDarkMode", JSON.stringify(newTheme));
       }
       return newTheme;
     });

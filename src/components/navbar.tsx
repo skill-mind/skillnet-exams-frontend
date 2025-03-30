@@ -9,6 +9,7 @@ import { useWalletContext } from "../useContext/WalletContext";
 import { useAccount, useDisconnect } from "@starknet-react/core";
 import { WalletSelectorUI } from "./WalletConnectModal";
 import { useTheme } from "@/useContext/ThemeContext";
+import ThemeToggle from "./ThemeToggle";
 
 interface NavLinkProps {
   href: string;
@@ -98,13 +99,6 @@ export default function Navbar({ navLinks = [] }: NavbarProps) {
       </button>
 
       {/* Theme Toggle Button */}
-      <button
-        onClick={toggleTheme}
-        className="ml-4 p-2 rounded-lg border border-[#313130] transition-colors"
-        aria-label="Toggle theme"
-      >
-        {isDarkMode ? "Light Mode" : "Dark Mode"}
-      </button>
 
       <ul className="hidden md:flex justify-center items-center gap-4">
         {navLinks.map((link, index) => (
@@ -170,6 +164,7 @@ export default function Navbar({ navLinks = [] }: NavbarProps) {
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
+      <ThemeToggle />
 
       {isMenuOpen && (
         <div

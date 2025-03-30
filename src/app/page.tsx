@@ -8,7 +8,7 @@
 //     <>
 //       <Navbar />
 
-//       <section className="h-screen flex flex-col lg:flex-row items-center justify-center text-center lg:text-left px-6 lg:px-20 bg-gradient-to-b from-gray-900 to-black">
+//       <section className="h-screen flex flex-col lg:flex-row items-center justify-center text-center lg:text-left px-6 lg:px-20 bg-gradient-to-b from-white to-white dark:from-gray-900 dark:to-gray-900to-black">
 //         {/* Astronaut Image */}
 //         <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
 //           <Image
@@ -53,7 +53,7 @@ function HomePage() {
     <>
       <Navbar />
 
-      <section className="h-screen flex flex-col lg:flex-row items-center justify-center text-center lg:text-left px-6 lg:px-20 bg-gradient-to-b from-gray-900 to-black">
+      <section className="h-screen flex flex-col lg:flex-row items-center justify-center text-center lg:text-left px-6 lg:px-20 bg-gradient-to-b from-white to-white dark:from-gray-900 dark:to-gray-900to-black">
         {/* Astronaut Image */}
         <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
           <Image
