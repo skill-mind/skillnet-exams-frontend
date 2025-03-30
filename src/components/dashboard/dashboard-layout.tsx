@@ -11,13 +11,14 @@ import Profile from "@/app/dashboard/institution/profile";
 import SupportPage from "@/app/dashboard/institution/support";
 import ExamsPage from "@/app/dashboard/institution/exam";
 import VerificationPage from "@/app/dashboard/institution/verification";
+import CandidatePage from "@/app/dashboard/institution/candidates/page";
 
 export default function DashboardLayout() {
-  const [route,setRoute] = useState("home")
+  const [route, setRoute] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  function routeHandle(e:string){
-    setRoute(e)
+  function routeHandle(e: string) {
+    setRoute(e);
   }
   useEffect(() => {
     const handleResize = () => {
@@ -36,12 +37,13 @@ export default function DashboardLayout() {
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
       />
-      <div className="flex flex-1 overflow-hidden ">
+      <div className="flex flex-1  ">
         <Sidebar  isMobileMenuOpen={isMobileMenuOpen} route={routeHandle}  pathname={route} />
                 <div className="p-5 w-full"> 
         {route === "home" && <Home/>}
          {route === "ai-support" && <AISupportPage/>}
           {route === "certificate" && <CertificatesPage/>}
+          {route === "candidates" && <CandidatePage />}   
          {route === "notification" && <NotificationPage/>}
           {route === "earning" && <EarningsPage/>}
          {route === "profile" && <Profile/>}

@@ -1,3 +1,7 @@
+"use client"
+import { useState } from "react";
+import { CustomModal } from "../dashboard/exam/components/ui/custom-modal";
+import ExamDetailsModal from "./ExamDetailsModal";
 import RegisteredExamsCard, { ExamCardData } from "./ExamsRegisteredCard";
 
 // Mock Data Array
@@ -47,14 +51,19 @@ const MOCK_EXAM_DATA: ExamCardData[] = [
 ];
 
 const ExamsRegisteredComponent: React.FC = () => {
+    const [open, setOpen] = useState<boolean>(false)
     return (
         <div className="container mx-auto px-4 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 justify-items-center">
             {MOCK_EXAM_DATA.map(exam => (
                 <RegisteredExamsCard
+                    setOpen={setOpen}
                     key={exam.id}
                     exam={exam}
                 />
             ))}
+
+            <ExamDetailsModal open={open} setOpen={setOpen} />
+
         </div>
     );
 };
