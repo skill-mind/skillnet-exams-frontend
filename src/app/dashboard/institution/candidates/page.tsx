@@ -37,8 +37,8 @@ const CandidatesPage = () => {
             onClick={() => setActiveTab(tab.id)}
             className={`px-5 py-4 text-sm rounded-md font-medium ${
               activeTab === tab.id
-                ? "bg-[#161716]  text-white"
-                : "hover:bg-neutral-800 text-gray-300"
+                ? " bg-neutral-800  text-white"
+                : "hover:bg-[#161716] text-gray-300"
             }`}
           >
             {tab.label}
