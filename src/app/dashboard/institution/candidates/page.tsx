@@ -46,7 +46,7 @@ const CandidatesPage = () => {
         ))}
       </header>
       <div className="text-white flex flex-col gap-3 py-5">
-        <div className="overflow-x-auto font-sans text-sm pr-5 mt-10">
+        <div className="overflow-x-auto font-sans text-sm md:pr-5 mt-10">
           {renderComponent()}
         </div>
       </div>
