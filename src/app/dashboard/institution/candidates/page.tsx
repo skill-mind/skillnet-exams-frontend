@@ -29,13 +29,13 @@ const CandidatesPage = () => {
   };
 
   return (
-    <div className="mt-5 ml-10">
-      <header className="flex space-x-4 pb-2'">
+    <div className="mt-5">
+      <header className="flex gap-2 pb-2'">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-5 py-4 text-sm rounded-md font-medium ${
+            className={`px-2 md:px-5 py-4 text-[5px] md:text-sm font-medium ${
               activeTab === tab.id
                 ? " bg-neutral-800  text-white"
                 : "hover:bg-[#161716] text-gray-300"
