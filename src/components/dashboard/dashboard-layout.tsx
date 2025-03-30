@@ -14,7 +14,7 @@ import VerificationPage from "@/app/dashboard/institution/verification";
 import CandidatePage from "@/app/dashboard/institution/candidates/page";
 
 export default function DashboardLayout() {
-  const [route, setRoute] = useState("home");
+  const [route,setRoute] = useState("Home")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -77,4 +77,4 @@ export default function DashboardLayout() {
       </div>
     </div>
   );
-}
+}                                
