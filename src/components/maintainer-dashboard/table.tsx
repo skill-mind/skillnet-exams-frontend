@@ -3,12 +3,10 @@ import type React from "react";
 interface TableProps {
   headings: string[];
   rows: Record<string, any>[];
+  onViewClick?: (institution: any) => void; // Accept onViewClick as an optional prop
 }
 
-const DynamicTable: React.FC<TableProps> = ({ headings, rows }) => {
-  // Function to get status badge color based on status
-  
-
+const DynamicTable: React.FC<TableProps> = ({ headings, rows, onViewClick }) => {
   return (
     <div className="w-full">
       {/* Table Container */}
@@ -63,10 +61,15 @@ const DynamicTable: React.FC<TableProps> = ({ headings, rows }) => {
                   );
                 })}
                 <td>
-                   <div className="flex flex-row gap-4">
-                    <button className="text-white text-[12px] border border-white/20 rounded-full px-4 py-1">View</button>
+                  <div className="flex flex-row gap-4">
+                    <button 
+                      className="text-white text-[12px] border border-white/20 rounded-full px-4 py-1"
+                      onClick={() => onViewClick && onViewClick(row)} // Pass row data
+                    >
+                      View
+                    </button>
                     <button className="text-white text-[12px] border border-white/20 rounded-full px-4 py-1">Ban</button>
-                   </div>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -80,10 +83,11 @@ const DynamicTable: React.FC<TableProps> = ({ headings, rows }) => {
 // Define props type for StudentsTable
 interface StudentsTableProps {
   tableData: TableProps;
+  onViewClick?: (institution: any) => void; // Add onViewClick prop
 }
 
-const StudentsTable: React.FC<StudentsTableProps> = ({ tableData }) => {
-  return <DynamicTable headings={tableData.headings} rows={tableData.rows} />;
+const StudentsTable: React.FC<StudentsTableProps> = ({ tableData, onViewClick }) => {
+  return <DynamicTable headings={tableData.headings} rows={tableData.rows} onViewClick={onViewClick} />;
 };
 
 export default StudentsTable;
