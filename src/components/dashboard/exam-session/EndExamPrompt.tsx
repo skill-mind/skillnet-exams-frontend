@@ -1,4 +1,12 @@
-export default function EndExamPrompt() {
+"use client";
+import React from 'react';
+
+interface EndExamPromptProps {
+  score: number;
+  onFinish: () => void;
+}
+
+export default function EndExamPrompt({ score, onFinish }: EndExamPromptProps) {
   return (
     <div className="fixed inset-0 bg-[#101110] overflow-auto">
       <div className="relative w-full min-h-screen p-4 sm:p-6 md:p-8 flex flex-col">
@@ -32,7 +40,7 @@ export default function EndExamPrompt() {
             <div className="w-full h-[72px] rounded-lg md:rounded-[8px] border border-[#313130]">
               <div className="w-full h-full flex items-center justify-center gap-[10px] p-6 md:p-[24px] border-b border-[#313130]">
                 <div className="w-[191px] text-center font-['Ubuntu_Sans'] text-[20px] leading-[100%] tracking-[0%] text-[#FCFCFC]">
-                  Your score is: 70/100
+                  Your score is: {score}/100
                 </div>
               </div>
             </div>
@@ -40,7 +48,9 @@ export default function EndExamPrompt() {
         </div>
         <div className="w-full max-w-[1240px] mx-auto mb-8 md:mb-12 mt-8">
           <div className="w-[96px] h-[43px] mx-auto flex gap-6 md:gap-[24px]">
-            <button className="w-full h-full flex items-center justify-center gap-[10px] py-[12px] px-[24px] rounded-[8px] bg-[#2D2E2D] hover:bg-[#3E3F3E] transition-colors">
+            <button 
+              className="w-full h-full flex items-center justify-center gap-[10px] py-[12px] px-[24px] rounded-[8px] bg-[#2D2E2D] hover:bg-[#3E3F3E] transition-colors"
+              onClick={onFinish}>
               <div className="w-[48px] font-['Ubuntu_Sans'] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#FCFCFC] text-center">
                 FINISH
               </div>
