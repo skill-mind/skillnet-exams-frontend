@@ -1,6 +1,6 @@
 export default function AISupportPage() {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full w-full">
       <h1 className="text-2xl font-bold mb-6">AI Support Assistant</h1>
       <div className="bg-gray-200 dark:bg-gray-900 rounded-lg p-6 border border-gray-800 mb-4">
         <p className="text-black dark:text-gray-400">
