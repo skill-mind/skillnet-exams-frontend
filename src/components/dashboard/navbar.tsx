@@ -14,12 +14,12 @@ export default function Navbar({
   setIsMobileMenuOpen,
 }: NavbarProps) {
   return (
-    <header className="border-b border-gray-800 bg-black">
+    <header className="border-b border-gray-800 bg-white dark:bg-black">
       <div className="container mx-auto flex items-center h-16 px-4">
         {/* Left section: hamburger menu + logo */}
         <div className="flex items-center gap-4">
           <button
-            className="lg:hidden text-gray-400 hover:text-white"
+            className="lg:hidden text-black dark:text-gray-400 hover:text-black dark:text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <Menu size={24} />
@@ -40,7 +40,7 @@ export default function Navbar({
           {/* Increased margin-right further */}
           <Link
             href="/dashboard"
-            className="text-white w-[80px] h-[24px] flex items-center justify-center"
+            className="text-black dark:text-white w-[80px] h-[24px] flex items-center justify-center"
           >
             Home
           </Link>
@@ -48,14 +48,14 @@ export default function Navbar({
           <div className="w-[2px] h-[16px] bg-[#2F302F] rounded-lg"></div>
           <Link
             href="/dashboard/glance"
-            className="text-gray-400 hover:text-white w-[80px] h-[24px] flex items-center justify-center"
+            className="text-black dark:text-gray-400 hover:text-black dark:text-white w-[80px] h-[24px] flex items-center justify-center"
           >
             Glance
           </Link>
         </nav>
 
         {/* Notification Icon */}
-        <button className="hidden md:flex items-center justify-center w-[44px] h-[44px] rounded-lg p-2 text-gray-400 hover:text-white mr-4">
+        <button className="hidden md:flex items-center justify-center w-[44px] h-[44px] rounded-lg p-2 text-black dark:text-gray-400 hover:text-black dark:text-white mr-4">
           <Bell size={20} />
         </button>
 
@@ -73,7 +73,7 @@ export default function Navbar({
         <div className="flex items-center gap-4">
           <Link
             href="/dashboard/exams/create"
-            className="hidden md:flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-3 py-1.5 rounded-md text-sm border border-[#1F1F1F]"
+            className="hidden md:flex items-center gap-2 bg-primary hover:bg-primary/90 text-black dark:text-white px-3 py-1.5 rounded-md text-sm border border-[#1F1F1F]"
           >
             <Pencil size={16} />
             <span>Create Exam</span>
@@ -82,10 +82,10 @@ export default function Navbar({
             <div className="h-8 w-8 rounded-full bg-gray-700 flex items-center justify-center">
               <img src="/Ellipse 43.svg" alt="Avatar" className="h-6 w-6" />
             </div>
-            <span className="hidden md:block text-sm text-white">
+            <span className="hidden md:block text-sm text-black dark:text-white">
               osatuyipikin.braavos.eth
             </span>
-            <button className="text-gray-400 hover:text-white">
+            <button className="text-black dark:text-gray-400 hover:text-black dark:text-white">
               <MoreVertical size={20} />
             </button>
           </div>

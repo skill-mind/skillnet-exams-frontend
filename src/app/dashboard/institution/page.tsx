@@ -71,7 +71,7 @@ export default function Page() {
 
       {/* Quick Actions */}
       <div className="mt-4">
-        <h3 className="text-sm font-medium text-gray-300 mb-4">
+        <h3 className="text-sm font-medium text-black dark:text-gray-300 mb-4">
           Quick Actions
         </h3>
         <div className="flex flex-wrap gap-4">
@@ -79,7 +79,7 @@ export default function Page() {
             <Link
               key={index}
               href={action.href}
-              className="px-6 py-3 border border-gray-700 rounded-md text-white hover:bg-gray-800 transition-colors"
+              className="px-6 py-3 border border-gray-700 rounded-md text-black dark:text-white hover:bg-gray-200 dark:bg-gray-800 transition-colors"
             >
               {action.label}
             </Link>

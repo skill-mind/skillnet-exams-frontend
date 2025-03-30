@@ -22,7 +22,7 @@ export default function DashboardLayout({
   }, []);
 
   return (
-    <div className="flex flex-col h-screen bg-black text-white">
+    <div className="flex flex-col h-screen bg-white dark:bg-black text-black dark:text-white">
       <Navbar
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}

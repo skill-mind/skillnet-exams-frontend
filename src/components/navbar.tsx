@@ -8,6 +8,8 @@ import { Menu, X } from "lucide-react";
 import { useWalletContext } from "../useContext/WalletContext";
 import { useAccount, useDisconnect } from "@starknet-react/core";
 import { WalletSelectorUI } from "./WalletConnectModal";
+import { useTheme } from "@/useContext/ThemeContext";
+
 interface NavLinkProps {
   href: string;
   children: ReactNode;
@@ -30,7 +32,7 @@ const NavLink = ({ href, children }: NavLinkProps) => {
     <Link href={href}>
       <span
         className={`relative cursor-pointer pb-1 group ${
-          isActive ? "text-white" : "text-[#FCFCFC]"
+          isActive ? "text-black dark:text-white" : "text-[#FCFCFC]"
         }`}
       >
         {children}
@@ -43,17 +45,14 @@ const NavLink = ({ href, children }: NavLinkProps) => {
   );
 };
 
-export default function Navbar({
-  navLinks = [
-   
-  ],
-}: NavbarProps) {
+export default function Navbar({ navLinks = [] }: NavbarProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isDisconnectModalVisible, setIsDisconnectModalVisible] =
     useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const { account, disconnectWallet } = useWalletContext();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   // Toggle modal visibility; also ensure that if one is open, the other is closed.
   const showModal = () => {
@@ -86,10 +85,25 @@ export default function Navbar({
   const { disconnect } = useDisconnect();
 
   return (
-    <nav className="w-full flex justify-between items-center px-4 sm:px-8 lg:px-16 py-[22px] bg-[#101110] text-sm leading-6 text-[#FCFCFC] fixed top-0 left-0 z-50">
+    <nav
+      className={`w-full flex justify-between items-center px-4 sm:px-8 lg:px-16 py-[22px] ${
+        isDarkMode ? "bg-[#101110]" : "bg-white"
+      } text-sm leading-6 ${
+        isDarkMode ? "text-[#FCFCFC]" : "text-black"
+      } fixed top-0 left-0 z-50`}
+    >
       {/* Logo */}
       <button className="flex items-center cursor-pointer">
         <Image className="w-[100px] h-[40px]" src={Logo} alt="Logo" />
+      </button>
+
+      {/* Theme Toggle Button */}
+      <button
+        onClick={toggleTheme}
+        className="ml-4 p-2 rounded-lg border border-[#313130] transition-colors"
+        aria-label="Toggle theme"
+      >
+        {isDarkMode ? "Light Mode" : "Dark Mode"}
       </button>
 
       <ul className="hidden md:flex justify-center items-center gap-4">
@@ -111,19 +125,19 @@ export default function Navbar({
           <>
             <button
               onClick={() => setIsModalVisible(!isModalVisible)}
-              className="px-4 py-2 bg-greenish-500 hover:bg-greenish-300 cursor-pointer border text-white text-center font-semibold rounded-lg transition-colors hover:text-black hover:bg-white"
+              className="px-4 py-2 bg-greenish-500 hover:bg-greenish-300 cursor-pointer border text-black dark:text-white text-center font-semibold rounded-lg transition-colors hover:text-black hover:bg-white"
             >
               Connect Wallet
             </button>
           </>
         ) : (
           <div className="flex items-center gap-2">
-            <div className="text-base font-medium px-4 py-2 bg-greenish-500 text-white rounded-lg">
+            <div className="text-base font-medium px-4 py-2 bg-greenish-500 text-black dark:text-white rounded-lg">
               {address.slice(0, 6)}...{address.slice(-4)}
             </div>
             <button
               onClick={() => disconnect()}
-              className="cursor-pointer border px-4 py-2 bg-greenish-500 text-center hover:bg-greenish-300 text-white font-semibold rounded-lg transition-colors hover:text-black hover:bg-white"
+              className="cursor-pointer border px-4 py-2 bg-greenish-500 text-center hover:bg-greenish-300 text-black dark:text-white font-semibold rounded-lg transition-colors hover:text-black hover:bg-white"
             >
               Disconnect
             </button>
@@ -163,7 +177,9 @@ export default function Navbar({
           className="absolute top-full right-4 mt-2 w-64 rounded-lg bg-[#101110] border border-[#313130] shadow-lg md:hidden"
         >
           <div className="px-6 py-4 border-b border-[#313130]">
-            <h3 className="text-sm font-semibold text-white">SELECT PAGE</h3>
+            <h3 className="text-sm font-semibold text-black dark:text-white">
+              SELECT PAGE
+            </h3>
           </div>
           <div className="py-2">
             {navLinks.map((link) => (
@@ -188,7 +204,7 @@ export default function Navbar({
 
       {isDisconnectModalVisible && (
         <div
-          className="fixed inset-0 bg-black/60 z-[9999] backdrop-blur-sm flex items-center justify-center"
+          className="fixed inset-0 bg-white dark:bg-black/60 z-[9999] backdrop-blur-sm flex items-center justify-center"
           onClick={() => setIsDisconnectModalVisible(false)}
         >
           <div

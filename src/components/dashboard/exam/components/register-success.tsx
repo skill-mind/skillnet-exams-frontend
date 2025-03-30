@@ -1,22 +1,24 @@
 "use client";
 
-import { ArrowLeft, X } from "lucide-react";
+import { ArrowLeft, Check, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { CustomModal } from "../ui/custom-modal";
+import { CustomModal } from "./ui/custom-modal";
 
-interface RegisterErrorModalProps {
+interface RegisterSuccessModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   examPrice?: string;
-  errorMessage?: string;
+  uniqueCode?: string;
+  onProceed?: () => void;
 }
 
-export default function RegisterErrorModal({
+export default function RegisterSuccessModal({
   open,
   onOpenChange,
   examPrice = "$24.00 USD",
-  errorMessage = "PAYMENT AMOUNT NOT MET",
-}: RegisterErrorModalProps) {
+  uniqueCode = "CC4g1ffsytopiqA",
+  onProceed,
+}: RegisterSuccessModalProps) {
   const [mounted, setMounted] = useState(false);
 
   // Handle client-side rendering for the portal
@@ -30,7 +32,7 @@ export default function RegisterErrorModal({
     <CustomModal
       open={open}
       onClose={() => onOpenChange(false)}
-      className="bg-white dark:bg-[#161716] text-black dark:text-white border border-[#40403E] p-6 space-y-6"
+      className="bg-white dark:bg-[bg-gray-200 dark:bg-gray-800] text-black dark:text-white border border-[#40403E] p-6 space-y-6"
     >
       <div className="flex items-center justify-between ">
         <div className="flex items-center gap-2">
@@ -52,26 +54,41 @@ export default function RegisterErrorModal({
         </button>
       </div>
       <div className="h-0.5 bg-[#1D1D1C]" />
-      <div className="flex justify-center">
-        <div className="rounded-md bg-transparent py-1 px-5 text-[#C78989] border border-[#3B3B3A]">
-          Unpaid
+      <div className="flex flex-col items-center justify-center ">
+        <div className="rounded-md bg-[#252625] px-4 py-2">
+          <span className="text-xl font-bold">{examPrice}</span>
         </div>
       </div>
+
+      <div className="flex justify-center">
+        <div className="rounded-md bg-transparent py-1 px-5 text-[#d9f99d] border border-[#3B3B3A]">
+          Paid
+        </div>
+      </div>
+
       <div className="flex flex-col items-center justify-center space-y-6">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-zinc-800">
-          <X className="h-8 w-8 text-zinc-400" />
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#d9f99d]/20">
+          <Check className="h-8 w-8 text-[#d9f99d]" />
         </div>
 
-        <h3 className="text-xl font-semibold">Registration Failed</h3>
+        <h3 className="text-xl font-semibold">Registration Successful</h3>
 
-        <div className="text-center text-sm text-zinc-400">{errorMessage}</div>
+        <div className="text-center text-sm text-zinc-400">
+          HERE IS YOUR UNIQUE CODE:{" "}
+          <span className="font-medium text-black dark:text-white">
+            {uniqueCode}
+          </span>
+        </div>
       </div>
 
       <button
-        onClick={() => onOpenChange(false)}
+        onClick={() => {
+          onProceed?.();
+          onOpenChange(false);
+        }}
         className="w-full rounded-md bg-[#d9f99d] px-4 py-2 font-medium text-black transition-colors hover:bg-[#bef264] focus:outline-none focus:ring-2 focus:ring-[#d9f99d] focus:ring-offset-2"
       >
-        CLOSE
+        PROCEED
       </button>
     </CustomModal>
   );

@@ -32,12 +32,12 @@ export default function RegisterSuccessModal({
     <CustomModal
       open={open}
       onClose={() => onOpenChange(false)}
-      className="bg-[#161716] text-white border border-[#40403E] p-6 space-y-6"
+      className="bg-white dark:bg-[#161716] text-black dark:text-white border border-[#40403E] p-6 space-y-6"
     >
       <div className="flex items-center justify-between ">
         <div className="flex items-center gap-2">
           <button
-            className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:bg-zinc-800"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-md text-black dark:text-white hover:bg-zinc-800"
             onClick={() => onOpenChange(false)}
           >
             <ArrowLeft className="h-4 w-4" />
@@ -46,7 +46,7 @@ export default function RegisterSuccessModal({
           <h2 className="text-xl font-semibold">Registration</h2>
         </div>
         <button
-          className="inline-flex h-8 w-8 items-center justify-center rounded-md text-white hover:bg-zinc-800"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-md text-black dark:text-white hover:bg-zinc-800"
           onClick={() => onOpenChange(false)}
         >
           <X className="h-4 w-4" />
@@ -75,7 +75,9 @@ export default function RegisterSuccessModal({
 
         <div className="text-center text-sm text-zinc-400">
           HERE IS YOUR UNIQUE CODE:{" "}
-          <span className="font-medium text-white">{uniqueCode}</span>
+          <span className="font-medium text-black dark:text-white">
+            {uniqueCode}
+          </span>
         </div>
       </div>
 

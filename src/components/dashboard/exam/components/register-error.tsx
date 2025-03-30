@@ -2,7 +2,7 @@
 
 import { ArrowLeft, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { CustomModal } from "../ui/custom-modal";
+import { CustomModal } from "./ui/custom-modal";
 
 interface RegisterErrorModalProps {
   open: boolean;
@@ -30,7 +30,7 @@ export default function RegisterErrorModal({
     <CustomModal
       open={open}
       onClose={() => onOpenChange(false)}
-      className="bg-white dark:bg-[#161716] text-black dark:text-white border border-[#40403E] p-6 space-y-6"
+      className="bg-white dark:bg-[bg-gray-200 dark:bg-gray-800] text-black dark:text-white border border-[#40403E] p-6 space-y-6"
     >
       <div className="flex items-center justify-between ">
         <div className="flex items-center gap-2">

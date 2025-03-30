@@ -3,40 +3,106 @@
 @tailwind utilities;
 
 body {
-  @apply text-foreground bg-background;
+  /* @apply text-foreground bg-background; */
   font-family: 'Ubuntu', sans-serif;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgb(var(--background-end-rgb))
-  ) rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
-@media (prefers-color-scheme: dark) {
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
-
+} */
 @layer utilities {
   .custom-scrollbar::-webkit-scrollbar {
-      width: 5px;
+    width: 5px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-      background: transparent;
+    background: transparent;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #262626;
-      border-radius: 8px;
+    background: #262626;
+    border-radius: 8px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #3a3a3a;
+    background: #3a3a3a;
   }
 }
 
+/* Light theme colors */
+.light {
+  --background-color: #FFFFFF;
+  /* Primary Background */
+  --secondary-background-color: #F5F5F5;
+  /* Secondary Background */
+  --primary-text-color: #212121;
+  /* Primary Text */
+  --secondary-text-color: #757575;
+  /* Secondary Text */
+  --link-text-color: #1E88E5;
+  /* Link Text */
+  --primary-accent-color: #6200EE;
+  /* Primary Accent */
+  --secondary-accent-color: #03DAC6;
+  /* Secondary Accent */
+  --error-color: #D32F2F;
+  /* Error Color */
+  --light-border-color: #E0E0E0;
+  /* Light Border */
+  --hover-border-color: #6200EE;
+  /* Hover Border */
+}
+
+/* Dark theme colors */
+.dark {
+  --background-color: #121212;
+  /* Primary Background */
+  --secondary-background-color: #1E1E1E;
+  /* Secondary Background */
+  --primary-text-color: #E0E0E0;
+  /* Primary Text */
+  --secondary-text-color: #B0B0B0;
+  /* Secondary Text */
+  --link-text-color: #BB86FC;
+  /* Link Text */
+  --primary-accent-color: #BB86FC;
+  /* Primary Accent */
+  --secondary-accent-color: #03DAC6;
+  /* Secondary Accent */
+  --error-color: #CF6679;
+  /* Error Color */
+  --light-border-color: #373737;
+  /* Light Border */
+  --hover-border-color: #BB86FC;
+  /* Hover Border */
+}
+
+/* Light theme colors */
+:root {
+  --foreground-rgb: 0, 0, 0;
+  /* Black text for light mode */
+  --background-start-rgb: 255, 255, 255;
+  /* White background for light mode */
+  --background-end-rgb: 255, 255, 255;
+  /* White background for light mode */
+}
+
+/* Dark theme colors */
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  /* White text for dark mode */
+  --background-start-rgb: 0, 0, 0;
+  /* Black background for dark mode */
+  --background-end-rgb: 0, 0, 0;
+  /* Black background for dark mode */
+}
