@@ -1,39 +1,34 @@
-"use client"
+"use client";
 
-import { useState, Suspense } from "react"
-import { exams } from "@/lib/exam-mock-data"
-import { Bot } from "lucide-react"
-import DynamicHeader from "@/components/dashboard/exam/components/dynamic-header"
-import ResultModal from "@/components/dashboard/exam/components/modals/view-result"
-import { Chatbot } from "@/components/chatbot"
+import DynamicHeader from "@/components/dashboard/exam/components/dynamic-header";
+import ResultModal from "@/components/dashboard/exam/components/modals/view-result";
+import { exams } from "@/lib/exam-mock-data";
+import { Bot } from "lucide-react";
+import { Suspense, useState } from "react";
 
 export default function ResultsPage() {
-  const [openModal, setOpenModal] = useState(false)
-  const [selectedExam, setSelectedExam] = useState<any>(null)
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedExam, setSelectedExam] = useState<any>(null);
 
   const handleViewResults = (exam: any) => {
-    setSelectedExam({ ...exam, passingScore: Number(exam.passingScore) })
-    setOpenModal(true)
-  }
+    setSelectedExam({ ...exam, passingScore: Number(exam.passingScore) });
+    setOpenModal(true);
+  };
 
   const closeModal = () => {
-    setOpenModal(false)
-  }
- const [isChatOpen, setIsChatOpen] = useState(false);
+    setOpenModal(false);
+  };
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <div className="flex flex-col w-full">
         <DynamicHeader />
 
         <div className="w-full flex flex-1 flex-col py-12">
-          <button
-            onClick={() => setIsChatOpen(true)}
-            className="w-full flex justify-end items-center"
-          >
-            <Chatbot isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
+          <div className="w-full flex justify-end items-center">
             <p>Chatbox</p>
             <Bot className="h-4 pr-1" />
-          </button>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 w-full">
             {exams.slice(0, 4).map((exam, index) => {
