@@ -14,7 +14,7 @@ import VerificationPage from "@/app/dashboard/institution/verification";
 import CandidatePage from "@/app/dashboard/institution/candidates/page";
 
 export default function DashboardLayout() {
-  const [route, setRoute] = useState("home");
+  const [route,setRoute] = useState("Home")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   function routeHandle(e: string) {
@@ -40,16 +40,15 @@ export default function DashboardLayout() {
       <div className="flex flex-1  ">
         <Sidebar  isMobileMenuOpen={isMobileMenuOpen} route={routeHandle}  pathname={route} />
                 <div className="p-5 w-full"> 
-        {route === "home" && <Home/>}
-         {route === "ai-support" && <AISupportPage/>}
-          {route === "certificate" && <CertificatesPage/>}
-          {route === "candidates" && <CandidatePage />}   
-         {route === "notification" && <NotificationPage/>}
-          {route === "earning" && <EarningsPage/>}
-         {route === "profile" && <Profile/>}
-          {route === "support" && <SupportPage/>}
-         {route === "exam" && <ExamsPage/>}
-         {route === "verification" && <VerificationPage/>}
+        {route === "Home" && <Home/>}
+         {route === "Ai-support" && <AISupportPage/>}
+          {route === "Certificate" && <CertificatesPage/>}
+         {route === "Notification" && <NotificationPage/>}
+          {route === "Earning" && <EarningsPage/>}
+         {route === "Profile" && <Profile/>}
+          {route === "Support" && <SupportPage/>}
+         {route === "Exam" && <ExamsPage/>}
+         {route === "Verification" && <VerificationPage/>}
       </div>
       </div>
     </div>
