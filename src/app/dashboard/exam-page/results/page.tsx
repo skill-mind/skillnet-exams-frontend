@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, Suspense } from "react";
-import { exams } from "@/lib/exam-mock-data";
-import { Bot } from "lucide-react";
 import DynamicHeader from "@/components/dashboard/exam/components/dynamic-header";
 import ResultModal from "@/components/dashboard/exam/components/modals/view-result";
+import { exams } from "@/lib/exam-mock-data";
+import { Bot } from "lucide-react";
+import { Suspense, useState } from "react";
 
 export default function ResultsPage() {
   const [openModal, setOpenModal] = useState(false);

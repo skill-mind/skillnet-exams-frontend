@@ -1,8 +1,10 @@
 "use client";
-import { useState, useEffect } from "react";
-import PreviewComponent from "../../../components/dashboard/exam-session/PreviewComponent";
+import { Chatbot } from "@/components/chatbot";
+import { useEffect, useState } from "react";
 import EndExamComponent from "../../../components/dashboard/exam-session/EndExamComponent";
 import EndExamPrompt from "../../../components/dashboard/exam-session/EndExamPrompt";
+import PreviewComponent from "../../../components/dashboard/exam-session/PreviewComponent";
+import { useTheme } from "@/useContext/ThemeContext";
 
 type ExamState = "exam" | "preview" | "end-exam" | "exam-completed";
 
@@ -223,7 +225,8 @@ export default function ExamSessionPage() {
       <EndExamPrompt score={score} onFinish={() => setCurrentState("exam")} />
     ) : null;
   }
-
+  const { isDarkMode, toggleTheme } = useTheme();
+  const [isChatOpen, setIsChatOpen] = useState(false);
   return (
     <div className="min-h-screen bg-white dark:bg-[#101110]  p-4 sm:p-6 md:p-8">
       {/* Header */}
@@ -231,7 +234,7 @@ export default function ExamSessionPage() {
         <div className="w-full flex justify-between items-center p-4 md:px-[100px]  bg-white dark:bg-[#101110] ">
           <div className="flex items-center gap-4 md:gap-[252px] p-4 md:px-[80px] rounded-lg md:rounded-[8px] backdrop-blur-md md:backdrop-blur-[24px] bg-gray-200 dark:bg-[rgba(16,17,16,0.8)]">
             <img
-              src="/BLACK HORIZONTAL LOGO.svg"
+              src={`/BLACK HORIZONTAL LOGO.svg`}
               className="w-[80px] md:w-[100px] h-[32px] md:h-[40px]"
               alt="black-logo"
             />
@@ -248,9 +251,13 @@ export default function ExamSessionPage() {
       <div className="w-full max-w-[1240px] mx-auto mt-4 md:mt-8 flex flex-col gap-4 md:gap-[24px] p-4 md:p-[24px] bg-white dark:bg-[#101110]">
         {/* Chatbox Header */}
         <div className="w-full border border-[#313130] p-2 md:p-4">
-          <div className="w-full flex justify-end items-center gap-2">
+          <button
+            onClick={() => setIsChatOpen(true)}
+            className="w-full flex justify-end items-center gap-2"
+          >
             <div className="font-['Ubuntu_Sans'] font-normal text-[14px] md:text-[16px] leading-[100%] tracking-[0%] text-right capitalize text-[#101110] bg-[#ABABAB] rounded-[4px] px-2 py-1">
               Chatbox
+              <Chatbot isOpen={isChatOpen} setIsOpen={setIsChatOpen} />
             </div>
             <div className="w-5 h-5 flex items-center justify-center">
               <img
@@ -259,7 +266,7 @@ export default function ExamSessionPage() {
                 alt="Chat icon"
               />
             </div>
-          </div>
+          </button>
         </div>
 
         {/* Timer/Controls Section */}

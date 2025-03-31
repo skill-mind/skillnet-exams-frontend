@@ -126,3 +126,13 @@ div {
   @apply text-black dark:text-white;
   font-family: 'Ubuntu', 'Inter', sans-serif;
 }
+
+/* setting chatbot scrollbar to hidden. it can as well be edited and made slim  */
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
