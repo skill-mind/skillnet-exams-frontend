@@ -126,7 +126,7 @@ export default function Navbar({ navLinks = [] }: NavbarProps) {
           <>
             <button
               onClick={() => setIsModalVisible(!isModalVisible)}
-              className="px-4 py-2 bg-greenish-500 hover:bg-greenish-300 cursor-pointer border text-black dark:text-white text-center font-semibold rounded-lg transition-colors hover:text-black hover:bg-white"
+              className="px-4 py-2 bg-greenish-500 hover:bg-greenish-300 cursor-pointer border text-black dark:text-white dark:hover:text-white dark:hover:bg-gray-900 text-center font-semibold rounded-lg transition-colors hover:text-black hover:bg-white"
             >
               Connect Wallet
             </button>
