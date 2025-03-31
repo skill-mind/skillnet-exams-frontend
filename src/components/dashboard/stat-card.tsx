@@ -44,7 +44,7 @@ export default function StatCard({
   };
 
   return (
-    <div className="flex bg-white dark:bg-[bg-gray-200 dark:bg-gray-800] items-center p-4 border border-gray-800 shadow-md rounded-lg">
+    <div className="flex bg-white dark:bg-gray-900 items-center p-4 border border-gray-800 shadow-md rounded-lg">
       {/* Icon Section - Filling container without extra background */}
       <div className="h-12 w-12 relative mr-4 overflow-hidden">
         {renderIcon()}

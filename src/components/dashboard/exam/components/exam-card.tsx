@@ -88,7 +88,7 @@ export default function ExamCard({
         )}
       </div>
       <button
-        className="w-full mt-auto rounded-md border dark:border-[#d9f99d] hover:bg-gray-200 border-black/40px-4 py-2 font-medium transition-colors dark:hover:bg-zinc-900 focus:outline-none"
+        className="w-full mt-auto rounded-md border dark:border-[#d9f99d] hover:bg-gray-200 border-black/40px-4 py-2 font-medium transition-colors dark:hover:bg-zinc-900 dark:bg-transparent  text-white bg-gray-800 focus:outline-none"
         onClick={onRegister}
       >
         REGISTER

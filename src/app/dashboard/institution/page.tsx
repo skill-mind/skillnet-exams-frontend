@@ -14,7 +14,7 @@ interface StatCardData {
   iconColor: string;
 }
 
-export default function Page() {
+export default function Home() {
   const statCards: StatCardData[] = [
     {
       icon: "percentage",
@@ -55,7 +55,7 @@ export default function Page() {
   ];
 
   return (
-    <div className="flex flex-col h-full font-ubuntu">
+    <div className="flex flex-col h-full font-ubuntu w-full">
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {statCards.map((card, index) => (
@@ -71,7 +71,7 @@ export default function Page() {
 
       {/* Quick Actions */}
       <div className="mt-4">
-        <h3 className="text-sm font-medium text-black dark:text-gray-300 mb-4">
+        <h3 className="text-sm font-medium text-gray-300 mb-4">
           Quick Actions
         </h3>
         <div className="flex flex-wrap gap-4">
@@ -79,7 +79,7 @@ export default function Page() {
             <Link
               key={index}
               href={action.href}
-              className="px-6 py-3 border border-gray-700 rounded-md text-black dark:text-white hover:bg-gray-200 dark:bg-gray-800 transition-colors"
+              className="px-6 py-3 border bg-white dark:bg-gray-800 text-black dark:text-white border-gray-700 rounded-md  hover:bg-gray-800 transition-colors"
             >
               {action.label}
             </Link>

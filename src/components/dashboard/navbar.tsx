@@ -3,6 +3,7 @@ import { Bell, Menu, MoreVertical, Pencil, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../../public/skillnet-white logo.png";
+import ThemeToggle from "../ThemeToggle";
 
 interface NavbarProps {
   isMobileMenuOpen: boolean;
@@ -19,7 +20,7 @@ export default function Navbar({
         {/* Left section: hamburger menu + logo */}
         <div className="flex items-center gap-4">
           <button
-            className="lg:hidden text-black dark:text-gray-400 hover:text-black dark:text-white"
+            className="lg:hidden text-black  hover:text-black dark:text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <Menu size={24} />
@@ -48,14 +49,14 @@ export default function Navbar({
           <div className="w-[2px] h-[16px] bg-[#2F302F] rounded-lg"></div>
           <Link
             href="/dashboard/glance"
-            className="text-black dark:text-gray-400 hover:text-black dark:text-white w-[80px] h-[24px] flex items-center justify-center"
+            className="text-black  hover:text-black dark:text-white w-[80px] h-[24px] flex items-center justify-center"
           >
             Glance
           </Link>
         </nav>
 
         {/* Notification Icon */}
-        <button className="hidden md:flex items-center justify-center w-[44px] h-[44px] rounded-lg p-2 text-black dark:text-gray-400 hover:text-black dark:text-white mr-4">
+        <button className="hidden md:flex items-center justify-center w-[44px] h-[44px] rounded-lg p-2 text-black  hover:text-black dark:text-white mr-4">
           <Bell size={20} />
         </button>
 
@@ -85,10 +86,11 @@ export default function Navbar({
             <span className="hidden md:block text-sm text-black dark:text-white">
               osatuyipikin.braavos.eth
             </span>
-            <button className="text-black dark:text-gray-400 hover:text-black dark:text-white">
+            <button className="text-black  hover:text-black dark:text-white">
               <MoreVertical size={20} />
             </button>
           </div>
+          <ThemeToggle />
         </div>
       </div>
     </header>

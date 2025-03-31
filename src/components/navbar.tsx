@@ -1,5 +1,6 @@
 "use client";
 import Logo from "../../public/skillnet-white logo.png";
+import Logo_Dark from "../../public/skillnet-dark.jpg";
 import Image from "next/image";
 import React, { useState, useRef, useEffect, ReactNode, Fragment } from "react";
 import Link from "next/link";
@@ -33,7 +34,9 @@ const NavLink = ({ href, children }: NavLinkProps) => {
     <Link href={href}>
       <span
         className={`relative cursor-pointer pb-1 group ${
-          isActive ? "text-black dark:text-white" : "text-[#FCFCFC]"
+          isActive
+            ? "text-black dark:text-white"
+            : "text-black dark:text-[#FCFCFC]"
         }`}
       >
         {children}
@@ -90,12 +93,16 @@ export default function Navbar({ navLinks = [] }: NavbarProps) {
       className={`w-full flex justify-between items-center px-4 sm:px-8 lg:px-16 py-[22px] ${
         isDarkMode ? "bg-[#101110]" : "bg-white"
       } text-sm leading-6 ${
-        isDarkMode ? "text-[#FCFCFC]" : "text-black"
+        isDarkMode ? "text-black dark:text-[#FCFCFC]" : "text-black"
       } fixed top-0 left-0 z-50`}
     >
       {/* Logo */}
       <button className="flex items-center cursor-pointer">
-        <Image className="w-[100px] h-[40px]" src={Logo} alt="Logo" />
+        <Image
+          className="w-[100px] h-[40px]"
+          src={isDarkMode ? Logo_Dark : Logo}
+          alt="Logo"
+        />
       </button>
 
       {/* Theme Toggle Button */}
@@ -114,7 +121,7 @@ export default function Navbar({ navLinks = [] }: NavbarProps) {
       </ul>
 
       {/* Desktop Wallet Button */}
-      <div className="hidden md:flex items-center flex-col relative">
+      <div className="hidden md:flex md:flex-row items-center gap-12 flex-col relative">
         {!address ? (
           <>
             <button
@@ -137,6 +144,7 @@ export default function Navbar({ navLinks = [] }: NavbarProps) {
             </button>
           </div>
         )}
+        <ThemeToggle />
       </div>
 
       {/* Mobile Wallet Button and Menu Toggle */}
@@ -164,12 +172,11 @@ export default function Navbar({ navLinks = [] }: NavbarProps) {
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
-      <ThemeToggle />
 
       {isMenuOpen && (
         <div
           ref={menuRef}
-          className="absolute top-full right-4 mt-2 w-64 rounded-lg bg-[#101110] border border-[#313130] shadow-lg md:hidden"
+          className="absolute top-full right-4 mt-2 w-64 rounded-lg bg-white dark:bg-[#101110]  border border-[#313130] shadow-lg md:hidden"
         >
           <div className="px-6 py-4 border-b border-[#313130]">
             <h3 className="text-sm font-semibold text-black dark:text-white">
@@ -181,7 +188,7 @@ export default function Navbar({ navLinks = [] }: NavbarProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center px-6 py-3 hover:bg-[#313130] transition-colors text-[#FCFCFC] text-sm"
+                className="flex items-center px-6 py-3 hover:bg-[#313130] transition-colors text-black dark:text-[#FCFCFC] text-sm"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}

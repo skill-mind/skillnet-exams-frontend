@@ -4,11 +4,12 @@
 
 body {
   /* @apply text-foreground bg-background; */
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Ubuntu', 'Inter', sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(to bottom,
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  @apply text-black dark:text-white;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -105,4 +106,23 @@ body {
   /* Black background for dark mode */
   --background-end-rgb: 0, 0, 0;
   /* Black background for dark mode */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-black dark:text-white;
+  font-family: 'Ubuntu', 'Inter', sans-serif;
+}
+
+p,
+span,
+tr,
+th,
+div {
+  @apply text-black dark:text-white;
+  font-family: 'Ubuntu', 'Inter', sans-serif;
 }

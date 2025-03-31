@@ -1,12 +1,46 @@
-export default function EarningsPage() {
+"use client";
+import AllTimeEarns from "@/components/dashboard/earnings/AllTimeEarns";
+import MonthlyEarns from "@/components/dashboard/earnings/MonthlyEarns";
+import WeeklyEarns from "@/components/dashboard/earnings/WeeklyEarns";
+import { useState } from "react";
+
+type TimeFrame = "All-Time" | "Weekly" | "Monthly";
+
+export default function EarningsDashboard() {
+  const [activeTimeFrame, setActiveTimeFrame] = useState<TimeFrame>("All-Time");
+
+  const renderEarningsComponent = () => {
+    switch (activeTimeFrame) {
+      case "All-Time":
+        return <AllTimeEarns />;
+      case "Weekly":
+        return <WeeklyEarns />;
+      case "Monthly":
+        return <MonthlyEarns />;
+      default:
+        return <AllTimeEarns />;
+    }
+  };
+
   return (
-    <div className="flex flex-col h-full">
-      <h1 className="text-2xl font-bold mb-6">Earnings Dashboard</h1>
-      <div className="bg-gray-200 dark:bg-gray-900 rounded-lg p-6 border border-gray-800">
-        <p className="text-black dark:text-gray-400">
-          Track your earnings, view payment history, and manage withdrawals.
-        </p>
+    <>
+      <div className="bg-transparent text-white -mt-4">
+        <div className="flex gap-2 mb-6">
+          {["All-Time", "Weekly", "Monthly"].map((timeFrame) => (
+            <button
+              key={timeFrame}
+              className={`px-4 py-1 rounded-full text-sm cursor-pointer ${
+                activeTimeFrame === timeFrame ? "bg-[#2D2E2D]" : "bg-[#161716]"
+              }`}
+              onClick={() => setActiveTimeFrame(timeFrame as TimeFrame)}
+            >
+              {timeFrame}
+            </button>
+          ))}
+        </div>
+
+        <div className="earnings-content">{renderEarningsComponent()}</div>
       </div>
-    </div>
+    </>
   );
 }

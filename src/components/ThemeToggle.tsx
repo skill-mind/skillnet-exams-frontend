@@ -7,15 +7,14 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="relative w-16 px-6 h-8 rounded-full p-1 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-offset-2"
-      style={{
-        backgroundColor: isDarkMode ? "#4F46E5" : "#D1D5DB",
-        boxShadow: isDarkMode
-          ? "0 0 8px rgba(79, 70, 229, 0.5)"
-          : "0 0 8px rgba(209, 213, 219, 0.5)",
-      }}
+      className={`relative w-16 px-6 h-8 rounded-full p-1 transition-all duration-300 focus:outline-none dark:focus:ring-2 focus:ring-2 focus:ring-indigo-700 dark:focus:ring-white focus:ring-offset-2 ${
+        isDarkMode
+          ? "bg-[#0e0d1d] shadow-[0_0_8px_rgba(79,70,229,0.5)]"
+          : "bg-[#D1D5DB] shadow-[0_0_8px_rgba(209,213,219,0.5)]"
+      }`}
       aria-label="Toggle theme"
     >
+      {/* ToggleThumb */}
       <div
         className="absolute mb-8 w-6 h-6 bg-white rounded-full shadow-lg transform transition-all duration-300 ease-in-out"
         style={{

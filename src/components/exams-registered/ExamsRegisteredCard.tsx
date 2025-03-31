@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { SetStateAction, Dispatch, useState } from "react";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import { Dialog } from "@headlessui/react";
@@ -22,6 +22,7 @@ export interface ExamCardData {
 
 interface ExamCardProps {
   exam: ExamCardData;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 function HorizontalLine() {

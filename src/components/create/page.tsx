@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import Select from "../components/Select";
-import Question from "../components/Question";
-import { ExamQuestion } from "../components/Question"; 
+import Select from "../exams/Select";
+import Question from "../exams/Question";
+import { ExamQuestion } from "../exams/Question";
 
-export default function CreateExamPage() {
+export default function CreateExam() {
   const [examData, setExamData] = useState({
     examName: "Web3 Test",
     examAmount: "$50",
@@ -33,12 +33,12 @@ export default function CreateExamPage() {
   const handleAddQuestion = (question: ExamQuestion) => {
     console.log("New Question Added:", question);
   };
-  
+
   return (
     <div className="text-white p-6">
       <div className="lg:flex justify-center gap-7">
         <div className="lg:w-[80%] w-full">
-          <div className="bg-[#161716] rounded-lg mb-6">
+          <div className=" bg-gray-400 dark:bg-[#161716] rounded-lg mb-6">
             <div className="h-48 flex items-center justify-center">
               <div className="text-center">
                 <p className="text-gray-400 pb-6">Upload Image</p>
@@ -111,7 +111,9 @@ export default function CreateExamPage() {
             label="Course Category"
             options={["Front-end", "Back-end", "Full-stack"]}
             value={examData.courseCategory}
-            onValueChange={(value) => handleInputChange("courseCategory", value)}
+            onValueChange={(value) =>
+              handleInputChange("courseCategory", value)
+            }
           />
           <Select
             label="Certification"
@@ -125,7 +127,9 @@ export default function CreateExamPage() {
               label="Exam Duration"
               options={["1hrs", "2hrs", "3hrs"]}
               value={examData.examDuration}
-              onValueChange={(value) => handleInputChange("examDuration", value)}
+              onValueChange={(value) =>
+                handleInputChange("examDuration", value)
+              }
               required
             />
             <Select

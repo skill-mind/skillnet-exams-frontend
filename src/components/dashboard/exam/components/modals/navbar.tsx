@@ -183,7 +183,7 @@ export default function Navbar() {
           </div>
 
           {address ? (
-            <div className="flex items-center gap-2 rounded-lg w-40 bg-white dark:bg-[bg-gray-200 dark:bg-gray-800] px-2.5 py-2">
+            <div className="flex items-center gap-2 rounded-lg w-40 bg-white dark:bg-gray-900 px-2.5 py-2">
               <div className="relative h-6 w-6 overflow-hidden rounded-full">
                 <Image
                   src="/images/exam-navbar-avatar.png"
@@ -207,7 +207,7 @@ export default function Navbar() {
                 </button>
 
                 {dropdownOpen && (
-                  <div className="absolute -right-2 top-6 z-10 mt-4 w-56 origin-top-right rounded-md border border-zinc-700 bg-white dark:bg-[bg-gray-200 dark:bg-gray-800] p-1 text-popover-foreground shadow-md focus:outline-none">
+                  <div className="absolute -right-2 top-6 z-10 mt-4 w-56 origin-top-right rounded-md border border-zinc-700 bg-white dark:bg-gray-900 p-1 text-popover-foreground shadow-md focus:outline-none">
                     <button
                       className="relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
                       onClick={() => {

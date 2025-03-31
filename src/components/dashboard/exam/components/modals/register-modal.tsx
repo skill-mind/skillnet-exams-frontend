@@ -44,7 +44,7 @@ export default function RegisterModal({
     <CustomModal
       open={open}
       onClose={() => onOpenChange(false)}
-      className="bg-white dark:bg-[#161716] text-black dark:text-white border border-[#40403E] p-6 space-y-6"
+      className="bg-white  dark:bg-[#161716] text-black dark:text-white border border-[#40403E] p-6 space-y-6"
     >
       <div className="flex items-center justify-between ">
         <div className="flex items-center gap-2">
@@ -65,9 +65,12 @@ export default function RegisterModal({
           <span className="sr-only">Close</span>
         </button>
       </div>
-      <div className="h-0.5 bg-[#1D1D1C]" />
+      <div
+        className="h-0.5 bg-white
+       dark:bg-[#1D1D1C]"
+      />
       <div className="flex flex-col items-center justify-center ">
-        <div className="rounded-md bg-[#252625] px-4 py-2">
+        <div className="rounded-md bg-white dark:bg-[#252625] px-4 py-2">
           <span className="text-xl font-bold">{examPrice}</span>
         </div>
       </div>
@@ -121,7 +124,7 @@ export default function RegisterModal({
 
         <button
           type="submit"
-          className="w-full rounded-md bg-[#d9f99d] px-4 py-2 font-medium text-black transition-colors hover:bg-[#bef264] focus:outline-none focus:ring-2 focus:ring-[#d9f99d] focus:ring-offset-2"
+          className="w-full rounded-md bg-gray-700 hover:dark:bg-gray-800 text-white dark:bg-[#d9f99d] px-4 py-2 font-medium dark:text-black transition-colors dark:hover:bg-[#bef264] focus:outline-none focus:ring-2 focus:ring-[#d9f99d] focus:ring-offset-2"
         >
           PROCEED
         </button>

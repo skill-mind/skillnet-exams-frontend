@@ -50,7 +50,7 @@ export function CustomModal({
   // Use createPortal to render the modal at the end of the document body
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-black/50 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white/30 dark:bg-black/50 backdrop-blur-sm"
       onClick={handleBackdropClick}
     >
       <div

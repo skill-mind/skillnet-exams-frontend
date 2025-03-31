@@ -38,7 +38,7 @@ const CandidatesPage = () => {
             className={`px-2 md:px-5 py-4 text-[5px] md:text-sm font-medium ${
               activeTab === tab.id
                 ? " bg-neutral-800  text-white"
-                : "hover:bg-[#161716] text-gray-300"
+                : "hover: bg-gray-400 dark:bg-[#161716] text-gray-300"
             }`}
           >
             {tab.label}

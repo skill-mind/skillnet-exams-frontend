@@ -215,7 +215,7 @@ export default function Page() {
       </div>
       <div className="mt-12">
         <h3 className="text-sm font-medium text-black dark:text-gray-300 mb-4">
-          Active Job Listings
+          bg-white text-black dark:bg-[#2C2F35] dark:text-white
         </h3>
         <div className="flex flex-wrap gap-4">
           <Table tableData={activeJobsTableData} />

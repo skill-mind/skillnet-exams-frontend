@@ -50,7 +50,7 @@ export default function Home() {
     },
     {
       href: "/dashboard/institution/candidates",
-      label: "View Candidates",
+      label: "dark:bg-gray-900",
     },
   ];
 
@@ -79,7 +79,7 @@ export default function Home() {
             <Link
               key={index}
               href={action.href}
-              className="px-6 py-3 border border-gray-700 rounded-md text-white hover:bg-gray-800 transition-colors"
+              className="px-6 py-3 border bg-white dark:bg-gray-800 text-black dark:text-white border-gray-700 rounded-md  hover:bg-gray-800 transition-colors"
             >
               {action.label}
             </Link>

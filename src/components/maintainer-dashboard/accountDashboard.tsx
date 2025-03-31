@@ -104,10 +104,10 @@ const AccountDashboard: React.FC = () => {
           {accountStats.map((stat) => (
             <div
               key={stat.id}
-              className="bg-[#161716] text-white p-6 rounded-lg"
+              className=" bg-gray-200 dark:bg-[#161716] text-white p-6 rounded-lg"
             >
               <div className="text-lg font-[600] mb-2">{stat.value}</div>
-              <div className="text-gray-300 text-[14px] font-[500]">
+              <div className=" text-black dark:text-gray-300 text-[14px] font-[500]">
                 {stat.label}
               </div>
             </div>

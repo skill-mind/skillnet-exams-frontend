@@ -8,7 +8,7 @@ const Candidate: React.FC<ICandidates> = ({
   status,
 }) => {
   return (
-    <tr className="border-b-[#31283A] border-b text-left font-normal">
+    <tr className="border-b-[#31283A]  border-b text-left font-normal">
       <td className="p-4 py-6">{sn}</td>
       <td className="p-4 py-6">{address}</td>
       <td className="p-4 py-6">{date}</td>

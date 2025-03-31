@@ -30,7 +30,7 @@ export default function RegisterErrorModal({
     <CustomModal
       open={open}
       onClose={() => onOpenChange(false)}
-      className="bg-white dark:bg-[#161716] text-black dark:text-white border border-[#40403E] p-6 space-y-6"
+      className="bg-white  dark:bg-[#161716] text-black dark:text-white border border-[#40403E] p-6 space-y-6"
     >
       <div className="flex items-center justify-between ">
         <div className="flex items-center gap-2">
@@ -69,7 +69,7 @@ export default function RegisterErrorModal({
 
       <button
         onClick={() => onOpenChange(false)}
-        className="w-full rounded-md bg-[#d9f99d] px-4 py-2 font-medium text-black transition-colors hover:bg-[#bef264] focus:outline-none focus:ring-2 focus:ring-[#d9f99d] focus:ring-offset-2"
+        className="w-full rounded-md bg-gray-700 hover:dark:bg-gray-800 text-white dark:bg-[#d9f99d] px-4 py-2 font-medium dark:text-black transition-colors dark:hover:bg-[#bef264] focus:outline-none focus:ring-2 focus:ring-[#d9f99d] focus:ring-offset-2"
       >
         CLOSE
       </button>

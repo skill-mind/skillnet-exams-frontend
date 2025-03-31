@@ -1,12 +1,10 @@
-export default function ExamsPage() {
-  return (
-    <div className="flex flex-col h-full">
-      <h1 className="text-2xl font-bold mb-6">Exams Management</h1>
-      <div className="bg-gray-200 dark:bg-gray-900 rounded-lg p-6 border border-gray-800">
-        <p className="text-black dark:text-gray-400">
-          Manage your exams, create new ones, and view statistics.
-        </p>
-      </div>
-    </div>
-  );
+import ExamsPage from "../../../../components/exams/Exampage";
+import CreateExam from "../../../../components/create/page";
+
+export default function ExamMainPage({
+  searchParams,
+}: {
+  searchParams?: { create?: string };
+}) {
+  return searchParams?.create === "true" ? <CreateExam /> : <ExamsPage />;
 }
