@@ -763,7 +763,7 @@ export default function AISupportPage({ goBack }: AISupportPageProps) {
               disabled={isSelectionMode}
             />
 
-            {/* Send Button */}
+          
             <button
               className={`ml-2 w-8 h-8 flex items-center justify-center ${
                 inputMessage.trim() ||
