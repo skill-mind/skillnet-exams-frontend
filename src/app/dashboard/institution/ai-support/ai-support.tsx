@@ -91,7 +91,9 @@ export default function AISupportPage({ goBack }: AISupportPageProps) {
     null
   );
   const [isRecording, setIsRecording] = useState(false);
-  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
+    null
+  );
   const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
   const [isEmojiPickerOpen, setIsEmojiPickerOpen] = useState(false);
   const emojis = ["😀", "😂", "😍", "😎", "👍", "🎉", "😢", "😡"];
@@ -159,7 +161,9 @@ export default function AISupportPage({ goBack }: AISupportPageProps) {
     const k = 1024;
     const sizes = ["Bytes", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+    return (
+      Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
+    );
   };
 
   const getFileType = (mimeType: string): string => {
@@ -279,7 +283,9 @@ export default function AISupportPage({ goBack }: AISupportPageProps) {
   };
 
   const deleteSelectedMessages = () => {
-    setMessages((prev) => prev.filter((msg) => !selectedMessages.includes(msg.id)));
+    setMessages((prev) =>
+      prev.filter((msg) => !selectedMessages.includes(msg.id))
+    );
     setSelectedMessages([]);
     setIsSelectionMode(false);
   };
@@ -495,9 +501,7 @@ export default function AISupportPage({ goBack }: AISupportPageProps) {
             <div
               key={msg.id}
               className={`flex flex-col ${
-                msg.sender === "user"
-                  ? "items-end ml-auto"
-                  : "items-start"
+                msg.sender === "user" ? "items-end ml-auto" : "items-start"
               } max-w-[80%]`}
               onClick={() => isSelectionMode && toggleMessageSelection(msg.id)}
             >
@@ -763,7 +767,6 @@ export default function AISupportPage({ goBack }: AISupportPageProps) {
               disabled={isSelectionMode}
             />
 
-          
             <button
               className={`ml-2 w-8 h-8 flex items-center justify-center ${
                 inputMessage.trim() ||

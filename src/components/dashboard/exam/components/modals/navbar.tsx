@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils";
 import { useWalletContext } from "@/useContext/WalletContext";
 import { useAccount, useDisconnect } from "@starknet-react/core";
 import { WalletSelectorUI } from "@/components/WalletConnectModal";
-import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -184,7 +183,7 @@ export default function Navbar() {
           </div>
 
           {address ? (
-            <div className="flex items-center gap-2 rounded-lg w-40 bg-white dark: bg-gray-400 dark:bg-[#161716] px-2.5 py-2">
+            <div className="flex items-center gap-2 rounded-lg w-40 bg-white dark:bg-gray-900 px-2.5 py-2">
               <div className="relative h-6 w-6 overflow-hidden rounded-full">
                 <Image
                   src="/images/exam-navbar-avatar.png"
@@ -208,7 +207,7 @@ export default function Navbar() {
                 </button>
 
                 {dropdownOpen && (
-                  <div className="absolute -right-2 top-6 z-10 mt-4 w-56 origin-top-right rounded-md border border-zinc-700 bg-white dark: bg-gray-400 dark:bg-[#161716] p-1 text-popover-foreground shadow-md focus:outline-none">
+                  <div className="absolute -right-2 top-6 z-10 mt-4 w-56 origin-top-right rounded-md border border-zinc-700 bg-white dark:bg-gray-900 p-1 text-popover-foreground shadow-md focus:outline-none">
                     <button
                       className="relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
                       onClick={() => {
@@ -260,7 +259,6 @@ export default function Navbar() {
               )}
             </div>
           )}
-          <ThemeToggle />
         </div>
       </div>
       <nav className="lg:hidden">
@@ -312,7 +310,6 @@ export default function Navbar() {
             className="w-full rounded-lg border border-[#1F1F1F] placeholder:italic border-input bg-background px-8 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           />
         </div>
-        <ThemeToggle />
       </div>
     </header>
   );

@@ -23,11 +23,11 @@ export default function CategoryCard({
       <div
         className={`h-full overflow-hidden px-6 py-4 text-left rounded-lg border ${
           isActive
-            ? "border-[#d9f99d] bg-zinc-800/70"
-            : "border-zinc-800 bg-zinc-900/50"
-        } transition-all hover:bg-zinc-800`}
+            ? "dark:border-[#d9f99d] border-black/40 dark:bg-zinc-800/70"
+            : "border-zinc-800 dark:bg-gradient-to-b from-white to-white dark:from-gray-900 dark:to-gray-900"
+        } transition-all hover:bg-gray-200 dark:hover:bg-zinc-800`}
       >
-        <h3 className="font-bold text-xl text-[#EAEDE7] whitespace-nowrap overflow-hidden text-ellipsis">
+        <h3 className="font-bold text-xl text-black dark:text-[#EAEDE7] whitespace-nowrap overflow-hidden text-ellipsis">
           {title}
         </h3>
 

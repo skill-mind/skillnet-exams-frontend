@@ -22,14 +22,16 @@ export default function DashboardLayout({
   }, []);
 
   return (
-    <div className="flex flex-col h-screen bg-[#101110] text-white">
+    <div className="flex flex-col h-screen bg-white dark:bg-[#101110]  text-white">
       <Navbar
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
       />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar isMobileMenuOpen={isMobileMenuOpen} />
-        <main className="flex-1 overflow-y-auto px-6 pb-6">{children}</main>
+        <main className="flex-1 overflow-y-auto px-6 py-12 pb-6">
+          {children}
+        </main>
       </div>
     </div>
   );

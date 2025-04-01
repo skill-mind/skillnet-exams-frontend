@@ -1,8 +1,8 @@
 "use client";
+import AllTimeEarns from "@/components/dashboard/earnings/AllTimeEarns";
+import MonthlyEarns from "@/components/dashboard/earnings/MonthlyEarns";
+import WeeklyEarns from "@/components/dashboard/earnings/WeeklyEarns";
 import { useState } from "react";
-import WeeklyEarns from "./components/WeeklyEarns";
-import MonthlyEarns from "./components/MonthlyEarns";
-import AllTimeEarns from "./components/AllTimeEarns";
 
 type TimeFrame = "All-Time" | "Weekly" | "Monthly";
 

@@ -48,7 +48,7 @@ export function WalletSelectorUI({ onClose }: WalletSelectorUIProps) {
           </div>
           <Button
             variant="ghost"
-            className="w-full justify-center gap-2 rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-6 text-neutral-200 hover:bg-neutral-800 hover:text-white"
+            className="w-full justify-center gap-2 rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-6 text-neutral-200 hover:bg-neutral-800 hover:text-black dark:text-white"
             onClick={() => {
               disconnectWallet();
               onClose();
@@ -69,7 +69,7 @@ export function WalletSelectorUI({ onClose }: WalletSelectorUIProps) {
                 <Button
                   key={connector.id}
                   variant="ghost"
-                  className="w-full justify-start gap-2 rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-6 text-neutral-200 hover:bg-neutral-800 hover:text-white"
+                  className="w-full justify-start gap-2 rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-6 text-neutral-200 hover:bg-neutral-800 hover:text-black dark:text-white"
                   onClick={() => {
                     connect({ connector });
                     onClose();

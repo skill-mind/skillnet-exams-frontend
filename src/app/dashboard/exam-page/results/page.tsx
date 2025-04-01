@@ -36,7 +36,7 @@ export default function ResultsPage() {
 
               return (
                 <div key={exam.id} className="w-full">
-                  <div className="rounded-lg bg-[#161716] flex flex-col h-[500px] w-full">
+                  <div className="rounded-lg  bg-gray-200 dark:bg-[#161716] flex flex-col h-[500px] w-full">
                     <div className="p-8 flex-1 flex flex-col">
                       <div className="flex justify-between items-center mb-4">
                         <h2 className="text-[16px] font-bold">{exam.title}</h2>
@@ -52,7 +52,7 @@ export default function ResultsPage() {
                       </div>
 
                       <div className="flex-1 flex flex-col w-full">
-                        <p className="text-[12px] text-white">
+                        <p className="text-[12px] text-black dark:text-white">
                           {exam.description}
                         </p>
                         <div className="space-y-2 mt-auto text-[12px] ">
@@ -106,7 +106,7 @@ export default function ResultsPage() {
 
                     <div className="p-4 mt-auto">
                       <button
-                        className="w-full text-[16px] py-2 px-4 border border-[#D0EFB1] rounded-md bg-transparent text-white hover:bg-gray-800 transition-colors"
+                        className="w-full text-[16px] py-2 px-4 border border-[#D0EFB1] rounded-md dark:bg-transparent  text-white bg-gray-800 transition-colors"
                         onClick={() => handleViewResults({ ...exam, status })}
                       >
                         VIEW RESULTS

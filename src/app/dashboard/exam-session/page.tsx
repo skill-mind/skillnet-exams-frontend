@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import EndExamComponent from "../../../components/dashboard/exam-session/EndExamComponent";
 import EndExamPrompt from "../../../components/dashboard/exam-session/EndExamPrompt";
 import PreviewComponent from "../../../components/dashboard/exam-session/PreviewComponent";
+import { useTheme } from "@/useContext/ThemeContext";
 
 type ExamState = "exam" | "preview" | "end-exam" | "exam-completed";
 
@@ -100,13 +101,13 @@ export default function ExamSessionPage() {
             {/* Question Section */}
             <div className="w-full rounded-[8px] border border-[#313130]">
               <div className="w-full h-[60px] md:h-[72px] flex items-center gap-[10px] p-4 md:p-[24px] border-b border-[#313130]">
-                <div className="font-['Ubuntu_Sans'] font-semibold text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-[#FCFCFC]">
+                <div className="font-['Ubuntu_Sans'] font-semibold text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-black dark:text-[#FCFCFC]">
                   Questions {currentQuestion}/{totalQuestions}
                 </div>
               </div>
 
               <div className="w-full h-[60px] md:h-[72px] flex items-center gap-[10px] p-4 md:p-[24px] border-b border-[#313130]">
-                <div className="font-['Ubuntu_Sans'] font-normal text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-[#FCFCFC]">
+                <div className="font-['Ubuntu_Sans'] font-normal text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-black dark:text-[#FCFCFC]">
                   Which of the following best describes how a smart contract
                   operates on a blockchain?
                 </div>
@@ -116,7 +117,7 @@ export default function ExamSessionPage() {
             {/* Options Section */}
             <div className="w-full rounded-[8px] border border-[#313130] flex flex-col">
               <div className="w-full h-[60px] md:h-[72px] flex items-center gap-[10px] p-4 md:p-[24px] border-b border-[#313130]">
-                <div className="font-['Ubuntu_Sans'] font-semibold text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-[#FCFCFC]">
+                <div className="font-['Ubuntu_Sans'] font-semibold text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-black dark:text-[#FCFCFC]">
                   Options
                 </div>
               </div>
@@ -134,10 +135,10 @@ export default function ExamSessionPage() {
                           handleOptionSelect(currentQuestion, option)
                         }
                       >
-                        <div className="font-['Ubuntu_Sans'] font-normal text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-[#FCFCFC] min-w-[24px]">
+                        <div className="font-['Ubuntu_Sans'] font-normal text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-black dark:text-[#FCFCFC] min-w-[24px]">
                           {option}.
                         </div>
-                        <div className="font-['Ubuntu_Sans'] font-normal text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-[#FCFCFC] flex-grow">
+                        <div className="font-['Ubuntu_Sans'] font-normal text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-black dark:text-[#FCFCFC] flex-grow">
                           Option{" "}
                           {option === "A"
                             ? 1
@@ -185,10 +186,10 @@ export default function ExamSessionPage() {
                         setCurrentQuestion((prev) => Math.max(1, prev - 1))
                       }
                     >
-                      <span className="font-['Ubuntu_Sans'] text-[#ABABAB] text-[16px] md:text-[20px] leading-[100%]">
+                      <span className="font-['Ubuntu_Sans'] text-black dark:text-[#ABABAB] text-[16px] md:text-[20px] leading-[100%]">
                         ←
                       </span>
-                      <span className="font-['Ubuntu_Sans'] text-[#ABABAB] text-[14px] md:text-[16px]">
+                      <span className="font-['Ubuntu_Sans'] text-black dark:text-[#ABABAB] text-[14px] md:text-[16px]">
                         Previous
                       </span>
                     </button>
@@ -202,10 +203,10 @@ export default function ExamSessionPage() {
                         )
                       }
                     >
-                      <span className="font-['Ubuntu_Sans'] text-[#ABABAB] text-[14px] md:text-[16px]">
+                      <span className="font-['Ubuntu_Sans'] text-black dark:text-[#ABABAB] text-[14px] md:text-[16px]">
                         Next
                       </span>
-                      <span className="font-['Ubuntu_Sans'] text-[#ABABAB] text-[16px] md:text-[20px] leading-[100%]">
+                      <span className="font-['Ubuntu_Sans'] text-black dark:text-[#ABABAB] text-[16px] md:text-[20px] leading-[100%]">
                         →
                       </span>
                     </button>
@@ -224,21 +225,21 @@ export default function ExamSessionPage() {
       <EndExamPrompt score={score} onFinish={() => setCurrentState("exam")} />
     ) : null;
   }
-
+  const { isDarkMode, toggleTheme } = useTheme();
   const [isChatOpen, setIsChatOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-[#101110] p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen bg-white dark:bg-[#101110]  p-4 sm:p-6 md:p-8">
       {/* Header */}
       <header className="w-full max-w-7xl mx-auto">
-        <div className="w-full flex justify-between items-center p-4 md:px-[100px] bg-[#101110]">
-          <div className="flex items-center gap-4 md:gap-[252px] p-4 md:px-[80px] rounded-lg md:rounded-[8px] backdrop-blur-md md:backdrop-blur-[24px] bg-[rgba(16,17,16,0.8)]">
+        <div className="w-full flex justify-between items-center p-4 md:px-[100px]  bg-white dark:bg-[#101110] ">
+          <div className="flex items-center gap-4 md:gap-[252px] p-4 md:px-[80px] rounded-lg md:rounded-[8px] backdrop-blur-md md:backdrop-blur-[24px] bg-gray-200 dark:bg-[rgba(16,17,16,0.8)]">
             <img
-              src="/BLACK HORIZONTAL LOGO.svg"
+              src={`/BLACK HORIZONTAL LOGO.svg`}
               className="w-[80px] md:w-[100px] h-[32px] md:h-[40px]"
               alt="black-logo"
             />
             <div className="flex items-center justify-center gap-[16px]">
-              <div className="font-['Ubuntu_Sans'] font-normal text-[12px] md:text-[14px] leading-[24px] tracking-[0%] capitalize text-[#FCFCFC] whitespace-nowrap">
+              <div className="font-['Ubuntu_Sans'] font-normal text-[12px] md:text-[14px] leading-[24px] tracking-[0%] capitalize text-black dark:text-[#FCFCFC] whitespace-nowrap">
                 Candidate Name
               </div>
             </div>
@@ -247,7 +248,7 @@ export default function ExamSessionPage() {
       </header>
 
       {/* Main Content */}
-      <div className="w-full max-w-[1240px] mx-auto mt-4 md:mt-8 flex flex-col gap-4 md:gap-[24px] p-4 md:p-[24px] bg-[#101110]">
+      <div className="w-full max-w-[1240px] mx-auto mt-4 md:mt-8 flex flex-col gap-4 md:gap-[24px] p-4 md:p-[24px] bg-white dark:bg-[#101110]">
         {/* Chatbox Header */}
         <div className="w-full border border-[#313130] p-2 md:p-4">
           <button
@@ -271,11 +272,11 @@ export default function ExamSessionPage() {
         {/* Timer/Controls Section */}
         <div className="w-full rounded-[8px] border border-[#313130]">
           <div className="w-full h-[60px] md:h-[91px] flex flex-col sm:flex-row justify-between items-center p-4 md:p-[24px] border-b border-[#313130] gap-2">
-            <div className="font-['Ubuntu_Sans'] font-bold text-[16px] md:text-[20px] leading-[100%] text-white py-[2px] px-[5px] rounded-[4px]">
+            <div className="font-['Ubuntu_Sans'] font-bold text-[16px] md:text-[20px] leading-[100%] text-black dark:text-white py-[2px] px-[5px] rounded-[4px]">
               60:00 Mins
             </div>
 
-            <div className="font-['Ubuntu_Sans'] font-bold text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-white whitespace-nowrap py-[2px] px-[5px] rounded-[4px]">
+            <div className="font-['Ubuntu_Sans'] font-bold text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-black dark:text-white whitespace-nowrap py-[2px] px-[5px] rounded-[4px]">
               Timer: {formatTime(timeLeft)}
             </div>
 
@@ -307,26 +308,26 @@ export default function ExamSessionPage() {
         {/* Instructions Section */}
         <div className="w-full rounded-[8px] border border-[#313130]">
           <div className="w-full h-[60px] md:h-[72px] flex items-center gap-[10px] p-4 md:p-[24px] border-b border-[#313130]">
-            <div className="font-['Ubuntu_Sans'] font-semibold text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-[#FCFCFC]">
+            <div className="font-['Ubuntu_Sans'] font-semibold text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-black dark:text-[#FCFCFC]">
               Instructions
             </div>
           </div>
 
           <div className="w-full flex flex-col gap-4 p-4 md:p-[24px]">
-            <div className="font-['Ubuntu_Sans'] font-normal text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-[#FCFCFC]">
+            <div className="font-['Ubuntu_Sans'] font-normal text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-black dark:text-[#FCFCFC]">
               Read the question carefully before selecting your answer.
             </div>
 
-            <div className="font-['Ubuntu_Sans'] font-normal text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-[#FCFCFC]">
+            <div className="font-['Ubuntu_Sans'] font-normal text-[16px] md:text-[20px] leading-[100%] tracking-[0%] text-black dark:text-[#FCFCFC]">
               Select the most correct option.
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="w-full rounded-[8px] border border-[#313130] bg-[#101110] p-4 md:p-[24px]">
+        <div className="w-full rounded-[8px] border border-[#313130] bg-white dark:bg-[#101110]  p-4 md:p-[24px]">
           <div className="w-full flex justify-end">
-            <div className="font-['Ubuntu_Sans'] font-normal text-[14px] md:text-[16px] leading-[100%] tracking-[0%] text-[#FCFCFC]">
+            <div className="font-['Ubuntu_Sans'] font-normal text-[14px] md:text-[16px] leading-[100%] tracking-[0%] text-black dark:text-[#FCFCFC]">
               Powered by SkillNet
             </div>
           </div>

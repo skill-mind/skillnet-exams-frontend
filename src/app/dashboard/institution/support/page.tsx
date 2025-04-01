@@ -16,14 +16,14 @@ export default function SupportPage() {
             className="p-4 cursor-pointer border-b border-[#2D2E2D]"
             onClick={() => setExpanded(expanded === index ? null : index)}
           >
-            <div className="flex justify-between items-center">
-              <span>
+            <div className="flex  justify-between items-center">
+              <span className="text-black dark:text-white">
                 {topic.title} ({topic.description})
               </span>
               <Button
                 variant="outline"
                 size="sm"
-                className="text-[0.75rem] text-[#FFFFFF] rounded-full border-[#2D2E2D]"
+                className="text-[0.75rem] text-black dark:text-white rounded-full border-[#2D2E2D] dark:border-white"
               >
                 {expanded === index ? "Collapse" : "Expand"}
               </Button>
@@ -37,10 +37,10 @@ export default function SupportPage() {
         ))}
       </div>
 
-      <h3 className="text-[#FCFCFC] font-semibold mt-6">
+      <h3 className="text-black dark:text-[#FCFCFC] font-semibold mt-6">
         Action History Table
       </h3>
-      <div className="text-[0.75rem] text-[#FFFFFF] overflow-x-auto mt-2 overflow-y-auto max-h-[250px]">
+      <div className="text-[0.75rem] text-black dark:text-black overflow-x-auto mt-2 overflow-y-auto max-h-[250px]">
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-gray-400/10">
@@ -59,7 +59,7 @@ export default function SupportPage() {
                 <td className="p-2 text-center">{item.date}</td>
                 <td className="p-2 text-center">{item.ticketId}</td>
                 <td className="p-2 text-center">{item.category}</td>
-                <td className="p-2 text-center text-[#4B4B4B]">
+                <td className="p-2 text-center text-[#4B4B4B] dark:text-white">
                   {item.status}
                 </td>
                 <td className="p-2 text-center">{item.lastUpdate}</td>

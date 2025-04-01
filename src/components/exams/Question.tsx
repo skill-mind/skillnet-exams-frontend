@@ -16,12 +16,13 @@ export interface ExamQuestion {
   isExpanded: boolean;
 }
 
-
 interface ExamQuestionComponentProps {
   onAddQuestion: (question: ExamQuestion) => void;
 }
 
-const ExamQuestionComponent: React.FC<ExamQuestionComponentProps> = ({ onAddQuestion }) => {
+const ExamQuestionComponent: React.FC<ExamQuestionComponentProps> = ({
+  onAddQuestion,
+}) => {
   const [questions, setQuestions] = useState<ExamQuestion[]>([
     {
       question: "",
@@ -31,7 +32,11 @@ const ExamQuestionComponent: React.FC<ExamQuestionComponentProps> = ({ onAddQues
     },
   ]);
 
-  const handleQuestionChange = (index: number, field: keyof ExamQuestion, value: string) => {
+  const handleQuestionChange = (
+    index: number,
+    field: keyof ExamQuestion,
+    value: string
+  ) => {
     const newQuestions = [...questions];
     newQuestions[index] = {
       ...newQuestions[index],
@@ -40,7 +45,11 @@ const ExamQuestionComponent: React.FC<ExamQuestionComponentProps> = ({ onAddQues
     setQuestions(newQuestions);
   };
 
-  const handleOptionChange = (questionIndex: number, optionIndex: number, value: string) => {
+  const handleOptionChange = (
+    questionIndex: number,
+    optionIndex: number,
+    value: string
+  ) => {
     const newQuestions = [...questions];
     newQuestions[questionIndex].options[optionIndex].text = value;
     setQuestions(newQuestions);
@@ -48,7 +57,10 @@ const ExamQuestionComponent: React.FC<ExamQuestionComponentProps> = ({ onAddQues
 
   const addQuestion = () => {
     // Collapse all previous questions
-    const updatedQuestions = questions.map((q) => ({ ...q, isExpanded: false }));
+    const updatedQuestions = questions.map((q) => ({
+      ...q,
+      isExpanded: false,
+    }));
 
     // Create new question object
     const newQuestion: ExamQuestion = {
@@ -77,15 +89,24 @@ const ExamQuestionComponent: React.FC<ExamQuestionComponentProps> = ({ onAddQues
   return (
     <div className="space-y-6">
       {questions.map((question, questionIndex) => (
-        <div key={questionIndex} className="bg-[#161716] rounded-lg p-6 relative">
+        <div
+          key={questionIndex}
+          className=" bg-gray-400 dark:bg-[#161716] rounded-lg p-6 relative"
+        >
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold text-white">Question {questionIndex + 1}</h2>
+            <h2 className="text-lg font-semibold text-white">
+              Question {questionIndex + 1}
+            </h2>
             <div className="flex items-center space-x-2">
               <button
                 className="text-gray-400 hover:text-white"
                 onClick={() => toggleQuestionExpand(questionIndex)}
               >
-                {question.isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                {question.isExpanded ? (
+                  <ChevronUp size={16} />
+                ) : (
+                  <ChevronDown size={16} />
+                )}
               </button>
               <button
                 className="text-gray-400 hover:text-white"
@@ -105,24 +126,40 @@ const ExamQuestionComponent: React.FC<ExamQuestionComponentProps> = ({ onAddQues
           {question.isExpanded && (
             <>
               <div className="mb-4">
-                <label className="block text-sm mb-2 text-white">Question</label>
+                <label className="block text-sm mb-2 text-white">
+                  Question
+                </label>
                 <input
-                  className="lg:w-[80%] bg-[#161716] border border-[#2D2E2D] rounded-md px-3 py-2 text-white"
+                  className="lg:w-[80%]  bg-gray-400 dark:bg-[#161716] border border-[#2D2E2D] rounded-md px-3 py-2 text-white"
                   placeholder="Question"
                   value={question.question}
-                  onChange={(e) => handleQuestionChange(questionIndex, "question", e.target.value)}
+                  onChange={(e) =>
+                    handleQuestionChange(
+                      questionIndex,
+                      "question",
+                      e.target.value
+                    )
+                  }
                 />
               </div>
 
               <div className="space-y-4 mb-4">
                 {question.options.map((option, optionIndex) => (
                   <div key={optionIndex}>
-                    <label className="block text-sm mb-2 text-white">Option {optionIndex + 1}</label>
+                    <label className="block text-sm mb-2 text-white">
+                      Option {optionIndex + 1}
+                    </label>
                     <input
-                      className="lg:w-[80%] bg-[#161716] border border-[#2D2E2D] rounded-md px-3 py-2 text-white"
+                      className="lg:w-[80%]  bg-gray-400 dark:bg-[#161716] border border-[#2D2E2D] rounded-md px-3 py-2 text-white"
                       placeholder={` Option ${optionIndex + 1}`}
                       value={option.text}
-                      onChange={(e) => handleOptionChange(questionIndex, optionIndex, e.target.value)}
+                      onChange={(e) =>
+                        handleOptionChange(
+                          questionIndex,
+                          optionIndex,
+                          e.target.value
+                        )
+                      }
                     />
                   </div>
                 ))}
@@ -133,7 +170,9 @@ const ExamQuestionComponent: React.FC<ExamQuestionComponentProps> = ({ onAddQues
                 <Select
                   options={["Option 1", "Option 2", "Option 3", "Option 4"]}
                   value={question.correctAnswer}
-                  onValueChange={(value) => handleQuestionChange(questionIndex, "correctAnswer", value)}
+                  onValueChange={(value) =>
+                    handleQuestionChange(questionIndex, "correctAnswer", value)
+                  }
                   placeholder="Select correct answer"
                 />
               </div>

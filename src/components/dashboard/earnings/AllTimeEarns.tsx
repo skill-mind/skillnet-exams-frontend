@@ -6,7 +6,7 @@ type Transaction = {
   date: string;
 };
 
-export default function EarningsDashboard() {
+export default function AllTimeEarns() {
   const transactions: Transaction[] = [
     {
       id: "0xe4c6db1839a8f97df2e8ba...",
@@ -27,12 +27,12 @@ export default function EarningsDashboard() {
 
   return (
     <div className="bg-transparent text-white">
-      <div className="bg-[#161716] w-[332px] h-[124px] rounded-md mb-8 flex items-center justify-center">
+      <div className=" bg-gray-200 dark:bg-[#161716] w-[332px] h-[124px] rounded-md mb-8 flex items-center justify-center">
         <div className="mr-4 bg-[#3498DB33] rounded-full p-4">
           <div className=" w-6 h-6 flex items-center justify-center">%</div>
         </div>
         <div>
-          <h2 className="text-2xl font-bold">${(1500).toLocaleString()}</h2>
+          <h2 className="text-2xl font-bold">${(30500).toLocaleString()}</h2>
           <p className="text-sm">Total Earnings</p>
         </div>
       </div>
@@ -42,7 +42,7 @@ export default function EarningsDashboard() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="text-left text-gray-400 bg-[#161716]">
+              <tr className="text-left    text-black bg-gray-200 dark:bg-[#161716] ">
                 <th className="p-2 font-normal">SN</th>
                 <th className="py-2 font-normal">Transaction ID</th>
                 <th className="py-2 font-normal">Amount</th>

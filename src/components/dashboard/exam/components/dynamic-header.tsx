@@ -43,9 +43,9 @@ export default function DynamicHeader() {
         className="object-cover object-bottom brightness-75 rounded-lg"
       />
 
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-white dark:bg-black/30" />
       <div className="absolute inset-0 flex items-end p-5">
-        <h1 className="text-2xl font-bold text-white md:text-3xl lg:text-4xl">
+        <h1 className="text-2xl font-bold text-black dark:text-white md:text-3xl lg:text-4xl">
           {config.title}
         </h1>
       </div>
