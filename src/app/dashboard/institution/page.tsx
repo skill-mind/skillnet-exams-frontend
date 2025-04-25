@@ -1,6 +1,9 @@
-import DashboardLayout from "@/components/dashboard/dashboard-layout";
-import React from "react";
 
-export default function Page() {
-  return <DashboardLayout />
+function Page() {
+    return (
+        <>
+            <h1>Institution dashboard</h1>
+        </>
+    );
 }
+export default Page;
