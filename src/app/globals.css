@@ -40,3 +40,13 @@ body {
   }
 }
 
+@keyframes pulseBorder {
+  0%, 100% {
+    box-shadow: 0px 0px 0px 8px #418150, 0px 0px 0px 16px #385442;
+  }
+  50% {
+    box-shadow: 0px 0px 0px 12px #418150, 0px 0px 0px 20px #385442;
+  }
+}
+
+
