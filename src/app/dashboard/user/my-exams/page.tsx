@@ -3,13 +3,13 @@
 import DashboardLayout from '@/components/dashboard/exam/components/new-dashboard-layout';
 import { StatCard } from '@/components/dashboard/exam/components/ui/exams-page-content-header';
 import MyExamCard from '@/components/dashboard/exam/components/ui/my-exam-card';
-import ExamIcon from "../../../../public/license.svg";
-import RegisterIcon from "../../../../public/pencil-edit.svg";
+import ExamIcon from "../../../../../public/license.svg";
+import RegisterIcon from "../../../../../public/pencil-edit.svg";
 import { examData } from '@/components/dashboard/exam/examdata';
 import CertificationModal from '@/components/dashboard/exam/components/modals/course-detail-modal';
-import { examInfoProps } from '../register-exam/page';
 import { useState } from 'react';
 import TakeExamFlow from '@/components/dashboard/exam/components/modals/take-exams-flow-modal';
+import { examInfoProps } from '../register-exam/page';
 
 
 

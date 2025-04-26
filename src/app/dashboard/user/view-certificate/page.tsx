@@ -2,8 +2,8 @@
 
 import DashboardLayout from '@/components/dashboard/exam/components/new-dashboard-layout';
 import { StatCard } from '@/components/dashboard/exam/components/ui/exams-page-content-header';
-import CertificateIcon from "../../../../public/certificate.svg";
-import RegisterIcon from "../../../../public/pencil-edit.svg";
+import CertificateIcon from "../../../../../public/certificate.svg";
+import RegisterIcon from "../../../../../public/pencil-edit.svg";
 
 
 export default function ViewCertificate() {
