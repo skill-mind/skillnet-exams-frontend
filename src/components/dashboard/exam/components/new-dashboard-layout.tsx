@@ -60,10 +60,10 @@ export default function DashboardLayout({ children, title, activePage }: Dashboa
     }, [isMobile, sidebarOpen]);
 
     const navItems = [
-        { key: 'dashboard', label: 'Dashboard', icon: DashboardIcon, href: '/dashboard' },
-        { key: 'my-exams', label: 'My Exams', icon: ExamIcon, href: '/dashboard/my-exams' },
-        { key: 'certificates', label: 'View Certificates', icon: CertificateIcon, href: '/dashboard/view-certificate' },
-        { key: 'register', label: 'Register For Exams', icon: RegisterIcon, href: '/dashboard/register-exam' },
+        { key: 'dashboard', label: 'Dashboard', icon: DashboardIcon, href: '/dashboard/user' },
+        { key: 'my-exams', label: 'My Exams', icon: ExamIcon, href: '/dashboard/user/my-exams' },
+        { key: 'certificates', label: 'View Certificates', icon: CertificateIcon, href: '/dashboard/user/view-certificate' },
+        { key: 'register', label: 'Register For Exams', icon: RegisterIcon, href: '/dashboard/user/register-exam' },
     ];
 
     // Handle sidebar toggle for mobile view
@@ -155,7 +155,7 @@ export default function DashboardLayout({ children, title, activePage }: Dashboa
                         ))}
                         <hr className='border border-[#343B4F] my-4' />
                         <Link
-                            href="/dashboard/help-center"
+                            href="/dashboard/user/help-center"
                             onClick={handleNavClick}
                             className={cn(
                                 "flex items-center py-[10px] px-[10px] h-[45px] rounded-[12px] transition-colors",

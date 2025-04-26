@@ -1,6 +1,6 @@
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import { Fragment, useState } from 'react';
-import { examInfoProps } from '@/app/dashboard/register-exam/page';
+import { examInfoProps } from '@/app/dashboard/user/register-exam/page';
 import { DotIcon } from 'lucide-react';
 import CourseRegisterSuccessModal from './course-regiter-success';
 import PaymentConfirmationModal from './payment-confirmation';
@@ -20,7 +20,6 @@ export default function CertificationModal({ isOpen, onClose, examInfo }: Certif
     if (!examInfo) return null;
 
     const handleRegisterClick = () => {
-        // Show payment confirmation modal first
         setShowPaymentModal(true);
     };
 
@@ -39,7 +38,7 @@ export default function CertificationModal({ isOpen, onClose, examInfo }: Certif
 
     const handleSuccessModalClose = () => {
         setShowSuccessModal(false);
-        onClose(); // Close the parent modal too when success modal is closed
+        onClose(); 
     };
 
     return (

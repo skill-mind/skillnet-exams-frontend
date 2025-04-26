@@ -12,7 +12,7 @@ import RegisterIcon from "../../../../../../public/pencil-edit.svg";
 import MyExamCard from '@/components/dashboard/exam/components/ui/my-exam-card';
 import { examData } from '@/components/dashboard/exam/examdata';
 import CertificationModal from '../modals/course-detail-modal';
-import { examInfoProps } from '@/app/dashboard/register-exam/page';
+import { examInfoProps } from '@/app/dashboard/user/register-exam/page';
 
 // Stats Card Component
 export const StatCard = ({ icon, count, label }: { icon: string; count: number; label: string }) => (
