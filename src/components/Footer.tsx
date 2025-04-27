@@ -53,7 +53,8 @@ const Footer = () => {
           <AnimationWrapper variant="slideLeft" delay={0.2}>
             <div className="flex space-x-4 mb-4 md:mb-0">
               <Link
-                href="#"
+                href="https://github.com/skill-mind"
+                target="_blank"
                 className="text-[#FDFDFD] hover:text-white transition-colors"
               >
                 <Image
@@ -64,12 +65,25 @@ const Footer = () => {
                 />
               </Link>
               <Link
-                href="#"
+                href="https://x.com/projectSkillNet"
+                target="_blank"
                 className="text-[#FDFDFD] hover:text-white transition-colors"
               >
                 <Image
                   src={"/landing/twitter.svg"}
                   alt="twitter"
+                  width={30}
+                  height={30}
+                />
+              </Link>
+              <Link
+                href="https://t.me/+wkTCPZzVyGU5ZDFk"
+                target="_blank"
+                className="text-[#FDFDFD] hover:text-white transition-colors"
+              >
+                <Image
+                  src={"/landing/telegram.svg"}
+                  alt="telegram"
                   width={30}
                   height={30}
                 />

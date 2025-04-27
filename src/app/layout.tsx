@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import { Providers } from "@/components/Providers";
 import "@/app/globals.css";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: {
@@ -63,9 +61,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-[#00031B] text-[#EAEDE7]">
         <Providers>
-          <Navbar />
+          
           {children}
-          <Footer />
+         
         </Providers>
       </body>
     </html>
