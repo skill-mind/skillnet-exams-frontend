@@ -9,14 +9,18 @@ import AnimationWrapper from "@/motion/Animation-wrapper";
 import WalletConnectModal from "./Wallet-connect-modal";
 import WalletDisconnectModal from "./Wallet-disconnect-modal";
 
+// starknet imports
+import { useWalletContext } from "./WalletProvider";
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isConnectModalOpen, setIsConnectModalOpen] = useState(false);
   const [isDisconnectModalOpen, setIsDisconnectModalOpen] = useState(false);
-  const [connectedWallet, setConnectedWallet] = useState<string | null>(null);
-  const [walletAddress, setWalletAddress] = useState<string>("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const { account, connectWallet, disconnectWallet, connectors } =
+    useWalletContext();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -38,32 +42,24 @@ export default function Navbar() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
-  const handleConnectWallet = () => {
-    if (!connectedWallet) {
-      setIsConnectModalOpen(true);
-    }
-  };
-
-  const handleWalletClick = () => {
-    if (connectedWallet) {
-      setIsDisconnectModalOpen(true);
-    }
-  };
-
   const handleWalletSelect = (walletId: string) => {
-    setConnectedWallet(walletId);
-    // Set a sample wallet address based on the selected wallet
-    if (walletId === "braavos") {
-      setWalletAddress("Ebube.braavos.eth");
-    } else if (walletId.includes("argent")) {
-      setWalletAddress("0x1a2...3b4c");
+    const connector = connectors.find((c) => c.id === walletId);
+    if (connector) {
+      connectWallet(connector); // invoke Starknet-React’s useConnect() :contentReference[oaicite:3]{index=3}
     }
     setIsConnectModalOpen(false);
   };
 
+  const handleConnectWallet = () => {
+    setIsConnectModalOpen(true);
+  };
+
+  const handleWalletClick = () => {
+    setIsDisconnectModalOpen(true);
+  };
+
   const handleDisconnect = () => {
-    setConnectedWallet(null);
-    setWalletAddress("");
+    disconnectWallet(); // real Starknet-React disconnect :contentReference[oaicite:4]{index=4}
     setIsDisconnectModalOpen(false);
   };
 
@@ -108,7 +104,7 @@ export default function Navbar() {
           {/* Wallet Connection Button or Connected Wallet */}
           <div className="hidden md:block">
             <AnimationWrapper variant="slideLeft">
-              {!connectedWallet ? (
+              {!account ? (
                 <button
                   onClick={handleConnectWallet}
                   className="px-5 py-2 rounded-full bg-teal-500 text-white font-medium hover:bg-teal-600 transition-colors"
@@ -131,7 +127,7 @@ export default function Navbar() {
                       />
                     </div>
                     <span className="text-white font-medium">
-                      {walletAddress}
+                      {account.slice(0, 6)}…{account.slice(-4)}
                     </span>
                     <button
                       onClick={(e) => {
@@ -171,7 +167,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <AnimationWrapper variant="slideLeft">
-              {!connectedWallet ? (
+              {!account ? (
                 <button
                   onClick={handleConnectWallet}
                   className="px-4 py-1.5 mr-4 rounded-full bg-teal-500 text-white text-sm font-medium hover:bg-teal-600 transition-colors"
@@ -193,7 +189,7 @@ export default function Navbar() {
                     />
                   </div>
                   <span className="text-white text-xs font-medium">
-                    {walletAddress.substring(0, 10)}...
+                    {account.slice(0, 6)}…{account.slice(-4)}
                   </span>
                 </div>
               )}

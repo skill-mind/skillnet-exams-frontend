@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
 import AnimationWrapper from "@/motion/Animation-wrapper";
+import { useWalletContext } from "./WalletProvider";
 
 interface WalletOption {
   id: string;
@@ -18,24 +19,6 @@ interface WalletConnectModalProps {
   onSelect: (wallet: string) => void;
 }
 
-const walletOptions: WalletOption[] = [
-  {
-    id: "braavos",
-    name: "Braavos",
-    icon: "/landing/Bravologo.svg",
-  },
-  {
-    id: "argent-mobile",
-    name: "Argent Mobile",
-    icon: "/landing/Argentlogo.svg",
-  },
-  {
-    id: "argent-web",
-    name: "Argent Web",
-    icon: "/landing/Argentlogo.svg",
-  },
-];
-
 export default function WalletConnectModal({
   isOpen,
   onClose,
@@ -43,14 +26,24 @@ export default function WalletConnectModal({
 }: WalletConnectModalProps) {
   const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
 
+  const { connectors, connectWallet } = useWalletContext();
+
   const handleSelect = (walletId: string) => {
     setSelectedWallet(walletId);
   };
 
+  // ② On confirm, look up the connector object and call connectWallet
   const handleConfirm = () => {
-    if (selectedWallet) {
-      onSelect(selectedWallet);
+    if (!selectedWallet) return;
+
+    const connector = connectors.find((c) => c.id === selectedWallet);
+    if (!connector) {
+      console.error("Connector not found:", selectedWallet);
+      return;
     }
+
+    connectWallet(connector); // ← This invokes connect({ connector }) :contentReference[oaicite:1]{index=1}
+    onClose(); // then close the modal
   };
 
   const modalVariants = {
@@ -116,9 +109,9 @@ export default function WalletConnectModal({
             </p>
 
             <div className="space-y-3 mb-6">
-              {walletOptions.map((wallet, index) => (
+              {connectors.map((wallet, index) => (
                 <AnimationWrapper
-                  key={wallet.id}
+                  key={wallet?.id}
                   variant="slideRight"
                   delay={index * 0.1}
                 >
@@ -135,7 +128,7 @@ export default function WalletConnectModal({
                     >
                       <div className="">
                         <Image
-                          src={wallet.icon || "/placeholder.svg"}
+                          src={(wallet.icon as string) || "/placeholder.svg"}
                           alt={wallet.name}
                           width={30}
                           height={30}
@@ -149,17 +142,18 @@ export default function WalletConnectModal({
               ))}
             </div>
 
+            {/* ③ Confirmation button */}
             <AnimationWrapper variant="slideUp" delay={0.3}>
               <button
+                onClick={handleConfirm}
+                disabled={!selectedWallet}
                 className={`w-full py-3 rounded-full text-white font-medium transition-colors ${
                   selectedWallet
                     ? "bg-teal-500 hover:bg-teal-600"
                     : "bg-gray-700 cursor-not-allowed"
                 }`}
-                onClick={handleConfirm}
-                disabled={!selectedWallet}
               >
-                Select
+                Connect
               </button>
             </AnimationWrapper>
           </motion.div>
