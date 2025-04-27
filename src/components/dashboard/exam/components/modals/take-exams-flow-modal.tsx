@@ -29,7 +29,7 @@ export default function TakeExamFlow({ showTakeExamsModal, setShowTakeExamsModal
     };
 
     const handleStartExam = () => {
-        router.push("/dashboard/user/take-exams");
+        router.push("/dashboard/user");
     };
 
     const handleInputChange = (value: string, index: number) => {
