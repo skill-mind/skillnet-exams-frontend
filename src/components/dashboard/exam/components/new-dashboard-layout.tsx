@@ -36,7 +36,7 @@ export default function DashboardLayout({
   const [isMobile, setIsMobile] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isDisconnectModalOpen, setIsDisconnectModalOpen] = useState(false);
-
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   //wallet context destructure
 
   const { account, disconnectWallet } = useWalletContext();
@@ -260,205 +260,211 @@ export default function DashboardLayout({
               className="p-1 rounded-md hover:bg-[#0a1d3f]"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              onClick={() => setIsDetailsOpen(!isDetailsOpen)}
             >
               <EllipsisVertical size={16} />
             </motion.button>
           </motion.div>
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} // Start slightly below and invisible
-          animate={{ opacity: 1, y: 0 }} // Animate to full opacity and original position
-          transition={{ duration: 0.4, ease: "easeOut" }} // Adjust timing/easing
-          className="p-3 border border-[#343B4F] rounded-[12px]"
-        >
-          <div className="mb-4">
-            {/* Optional: Add subtle animation to image */}
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.3 }}
-              className="mb-5"
-            >
-              <Image
-                src="/institute-avatar.png"
-                alt="avatar"
-                className="block mx-auto w-fit"
-                width={100}
-                height={100}
-              />
-            </motion.div>
-            <div className="mb-6 text-center">
-              <h2 className="text-[18px] font-semibold mb-2">
-                Institution’s name {/* Replace with dynamic data */}
-              </h2>
-              <p className="text-xs text-[#AEB9E1]">Institution@gmail.com</p>{" "}
-              {/* Replace with dynamic data */}
-            </div>
-            <p
-              className="text-xs text-center truncate"
-              title={account || "Not connected"}
-            >
-              {account || "Not connected"}
-            </p>
-          </div>
-
-          {/* Optional: Animate balance box */}
+        {(isDetailsOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.4 }}
-            className="bg-[#0A1330] p-6 rounded-2xl flex flex-col gap-[18px] mb-6"
+            initial={{ opacity: 0, y: 20 }} // Start slightly below and invisible
+            animate={{ opacity: 1, y: 0 }} // Animate to full opacity and original position
+            transition={{ duration: 0.4, ease: "easeOut" }} // Adjust timing/easing
+            className="p-3 border border-[#343B4F] rounded-[12px]"
           >
-            <div className="flex justify-between items-center">
-              <h3>Total Balance</h3>
-              <Image src="/hidden.svg" alt="hidden" width={14} height={14} />
-            </div>
-            <div className="text-center">$0</div>{" "}
-            {/* Replace with dynamic data */}
-            {/* 2. Add hover/tap to Link styled as button - Wrap Link in motion.div */}
-            <motion.div
-              whileHover={{ scale: 1.03, filter: "brightness(1.1)" }} // Slight scale and brightness increase
-              whileTap={{ scale: 0.98 }} // Slight scale down on tap
-            >
-              <Link
-                href="/"
-                className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out" // Added transition for smoother effect (optional)
+            <div className="mb-4">
+              {/* Optional: Add subtle animation to image */}
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
+                className="mb-5"
               >
-                View Details
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          {/* Optional: Animate records section */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
-          >
-            <div>
-              <p className="mb-4 text-xs font-medium">Records</p>
-              <div className="flex justify-between items-center border-b border-[#AEB9E1] pb-2 mb-2">
-                <div className="text-[#AEB9E1] underline text-xs">
-                  Created Exams
-                </div>
-                <div className="text-xs font-medium">2</div>{" "}
+                <Image
+                  src="/institute-avatar.png"
+                  alt="avatar"
+                  className="block mx-auto w-fit"
+                  width={100}
+                  height={100}
+                />
+              </motion.div>
+              <div className="mb-6 text-center">
+                <h2 className="text-[18px] font-semibold mb-2">
+                  Institution’s name {/* Replace with dynamic data */}
+                </h2>
+                <p className="text-xs text-[#AEB9E1]">Institution@gmail.com</p>{" "}
                 {/* Replace with dynamic data */}
               </div>
-            </div>
-            <div className="text-[#AEB9E1] underline text-xs">Exam History</div>
-          </motion.div>
-
-          {/* Animate buttons section */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.4 }}
-            className="flex flex-col gap-4 mt-6"
-          >
-            {/* 3. Add hover/tap to Link styled as button - Wrap Link in motion.div */}
-            <motion.div
-              whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Link
-                href="/" // Link to actual edit profile page
-                className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
+              <p
+                className="text-xs text-center truncate"
+                title={account || "Not connected"}
               >
-                Edit Profile
-              </Link>
+                {account || "Not connected"}
+              </p>
+            </div>
+
+            {/* Optional: Animate balance box */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.4 }}
+              className="bg-[#0A1330] p-6 rounded-2xl flex flex-col gap-[18px] mb-6"
+            >
+              <div className="flex justify-between items-center">
+                <h3>Total Balance</h3>
+                <Image src="/hidden.svg" alt="hidden" width={14} height={14} />
+              </div>
+              <div className="text-center">$0</div>{" "}
+              {/* Replace with dynamic data */}
+              {/* 2. Add hover/tap to Link styled as button - Wrap Link in motion.div */}
+              <motion.div
+                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }} // Slight scale and brightness increase
+                whileTap={{ scale: 0.98 }} // Slight scale down on tap
+              >
+                <Link
+                  href="/"
+                  className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out" // Added transition for smoother effect (optional)
+                >
+                  View Details
+                </Link>
+              </motion.div>
             </motion.div>
 
-            {/* 4. Add hover/tap to actual button - Use motion.button */}
-            <motion.button
-              whileHover={{ scale: 1.03, filter: "brightness(1.1)" }} // Adjust brightness or background on hover if desired
-              whileTap={{ scale: 0.98 }}
-              disabled={isDisconnectModalOpen || !account}
-              onClick={() => setIsDisconnectModalOpen(true)}
-              className="border rounded-full disabled:opacity-50 text-xs p-[12px] w-full block text-center bg-[#1FACAA] border-[transparent] transition-opacity duration-150 ease-in-out" // Added transition
+            {/* Optional: Animate records section */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
             >
-              Disconnect Wallet
-            </motion.button>
+              <div>
+                <p className="mb-4 text-xs font-medium">Records</p>
+                <div className="flex justify-between items-center border-b border-[#AEB9E1] pb-2 mb-2">
+                  <div className="text-[#AEB9E1] underline text-xs">
+                    Created Exams
+                  </div>
+                  <div className="text-xs font-medium">2</div>{" "}
+                  {/* Replace with dynamic data */}
+                </div>
+              </div>
+              <div className="text-[#AEB9E1] underline text-xs">
+                Exam History
+              </div>
+            </motion.div>
+
+            {/* Animate buttons section */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+              className="flex flex-col gap-4 mt-6"
+            >
+              {/* 3. Add hover/tap to Link styled as button - Wrap Link in motion.div */}
+              <motion.div
+                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Link
+                  href="/" // Link to actual edit profile page
+                  className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
+                >
+                  Edit Profile
+                </Link>
+              </motion.div>
+
+              {/* 4. Add hover/tap to actual button - Use motion.button */}
+              <motion.button
+                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }} // Adjust brightness or background on hover if desired
+                whileTap={{ scale: 0.98 }}
+                disabled={isDisconnectModalOpen || !account}
+                onClick={() => setIsDisconnectModalOpen(true)}
+                className="border rounded-full disabled:opacity-50 text-xs p-[12px] w-full block text-center bg-[#1FACAA] border-[transparent] transition-opacity duration-150 ease-in-out" // Added transition
+              >
+                Disconnect Wallet
+              </motion.button>
+            </motion.div>
           </motion.div>
-        </motion.div>
-        {/* <nav className="mt-6">
-          <motion.hr
-            className="border border-[#343B4F] mb-6"
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
-          />
-          <ul className="space-y-3">
-            {navItems.map((item, index) => (
+        )) || (
+          <nav className="mt-6">
+            <motion.hr
+              className="border border-[#343B4F] mb-6"
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+            />
+            <ul className="space-y-3">
+              {navItems.map((item, index) => (
+                <motion.li
+                  key={item.key}
+                  custom={index}
+                  initial="initial"
+                  animate="animate"
+                  variants={navItemVariants}
+                >
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={handleNavClick}
+                      className={cn(
+                        "flex items-center py-[10px] px-[10px] h-[45px] rounded-[12px] transition-colors",
+                        activePage === item.key
+                          ? "bg-[#071630] text-white"
+                          : "text-gray-400 hover:bg-[#071630] hover:text-white"
+                      )}
+                    >
+                      <Image
+                        src={item.icon}
+                        alt={`${item.label} icon`}
+                        width={24}
+                        height={24}
+                      />
+                      <span className="ml-3">{item.label}</span>
+                    </Link>
+                  </motion.div>
+                </motion.li>
+              ))}
+              <motion.hr
+                className="border border-[#343B4F] my-4"
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ delay: 0.6, duration: 0.4 }}
+              />
               <motion.li
-                key={item.key}
-                custom={index}
                 initial="initial"
                 animate="animate"
                 variants={navItemVariants}
+                custom={5}
               >
                 <motion.div
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   <Link
-                    href={item.href}
+                    href="/dashboard/user/help-center"
                     onClick={handleNavClick}
                     className={cn(
                       "flex items-center py-[10px] px-[10px] h-[45px] rounded-[12px] transition-colors",
-                      activePage === item.key
+                      activePage === "help"
                         ? "bg-[#071630] text-white"
                         : "text-gray-400 hover:bg-[#071630] hover:text-white"
                     )}
                   >
                     <Image
-                      src={item.icon}
-                      alt={`${item.label} icon`}
+                      src={HelpIcon}
+                      alt={`help icon`}
                       width={24}
                       height={24}
                     />
-                    <span className="ml-3">{item.label}</span>
+                    <span className="ml-3">Help Center</span>
                   </Link>
                 </motion.div>
               </motion.li>
-            ))}
-            <motion.hr
-              className="border border-[#343B4F] my-4"
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ delay: 0.6, duration: 0.4 }}
-            />
-            <motion.li
-              initial="initial"
-              animate="animate"
-              variants={navItemVariants}
-              custom={5}
-            >
-              <motion.div
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              >
-                <Link
-                  href="/dashboard/user/help-center"
-                  onClick={handleNavClick}
-                  className={cn(
-                    "flex items-center py-[10px] px-[10px] h-[45px] rounded-[12px] transition-colors",
-                    activePage === "help"
-                      ? "bg-[#071630] text-white"
-                      : "text-gray-400 hover:bg-[#071630] hover:text-white"
-                  )}
-                >
-                  <Image
-                    src={HelpIcon}
-                    alt={`help icon`}
-                    width={24}
-                    height={24}
-                  />
-                  <span className="ml-3">Help Center</span>
-                </Link>
-              </motion.div>
-            </motion.li>
-          </ul>
-        </nav> */}
+            </ul>
+          </nav>
+        )}
       </motion.div>
 
       {/* Main Content */}
