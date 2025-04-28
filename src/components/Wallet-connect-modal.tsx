@@ -74,6 +74,8 @@ export default function WalletConnectModal({
     exit: { opacity: 0 },
   };
 
+
+  // helper to get icon source
   function getIconSource(
     icon: string | { dark: string; light: string }
   ): string {
