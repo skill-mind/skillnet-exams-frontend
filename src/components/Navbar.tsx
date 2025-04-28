@@ -21,7 +21,7 @@ export default function Navbar() {
 
   const { account, connectWallet, disconnectWallet, connectors } =
     useWalletContext();
-  console.log("account", account);
+  console.log("account", account);    
 
 
 
