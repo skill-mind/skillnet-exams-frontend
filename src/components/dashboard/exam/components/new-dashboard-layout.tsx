@@ -265,9 +265,20 @@ export default function DashboardLayout({
             </motion.button>
           </motion.div>
         </motion.div>
-        <div className="p-3 border border-[#343B4F] rounded-[12px]">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} // Start slightly below and invisible
+          animate={{ opacity: 1, y: 0 }} // Animate to full opacity and original position
+          transition={{ duration: 0.4, ease: "easeOut" }} // Adjust timing/easing
+          className="p-3 border border-[#343B4F] rounded-[12px]"
+        >
           <div className="mb-4">
-            <div className="mb-5">
+            {/* Optional: Add subtle animation to image */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
+              className="mb-5"
+            >
               <Image
                 src="/institute-avatar.png"
                 alt="avatar"
@@ -275,58 +286,100 @@ export default function DashboardLayout({
                 width={100}
                 height={100}
               />
-            </div>
+            </motion.div>
             <div className="mb-6 text-center">
               <h2 className="text-[18px] font-semibold mb-2">
-                Institution’s name
+                Institution’s name {/* Replace with dynamic data */}
               </h2>
-              <p className="text-xs text-[#AEB9E1]">Institution@gmail.com</p>
+              <p className="text-xs text-[#AEB9E1]">Institution@gmail.com</p>{" "}
+              {/* Replace with dynamic data */}
             </div>
-            <p className="text-xs text-center">{account || "Not connected"}</p>
+            <p
+              className="text-xs text-center truncate"
+              title={account || "Not connected"}
+            >
+              {account || "Not connected"}
+            </p>
           </div>
 
-          <div className="bg-[#0A1330] p-6 rounded-2xl flex flex-col gap-[18px] mb-6">
+          {/* Optional: Animate balance box */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+            className="bg-[#0A1330] p-6 rounded-2xl flex flex-col gap-[18px] mb-6"
+          >
             <div className="flex justify-between items-center">
               <h3>Total Balance</h3>
               <Image src="/hidden.svg" alt="hidden" width={14} height={14} />
             </div>
-            <div className="text-center">$0</div>
-            <Link
-              href="/"
-              className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F]"
+            <div className="text-center">$0</div>{" "}
+            {/* Replace with dynamic data */}
+            {/* 2. Add hover/tap to Link styled as button - Wrap Link in motion.div */}
+            <motion.div
+              whileHover={{ scale: 1.03, filter: "brightness(1.1)" }} // Slight scale and brightness increase
+              whileTap={{ scale: 0.98 }} // Slight scale down on tap
             >
-              View Details
-            </Link>
-          </div>
+              <Link
+                href="/"
+                className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out" // Added transition for smoother effect (optional)
+              >
+                View Details
+              </Link>
+            </motion.div>
+          </motion.div>
 
-          <div>
+          {/* Optional: Animate records section */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
+          >
             <div>
               <p className="mb-4 text-xs font-medium">Records</p>
               <div className="flex justify-between items-center border-b border-[#AEB9E1] pb-2 mb-2">
                 <div className="text-[#AEB9E1] underline text-xs">
                   Created Exams
                 </div>
-                <div className="text-xs font-medium">2</div>
+                <div className="text-xs font-medium">2</div>{" "}
+                {/* Replace with dynamic data */}
               </div>
             </div>
             <div className="text-[#AEB9E1] underline text-xs">Exam History</div>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col gap-4 mt-6">
-            <Link
-              href="/"
-              className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F]"
+          {/* Animate buttons section */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+            className="flex flex-col gap-4 mt-6"
+          >
+            {/* 3. Add hover/tap to Link styled as button - Wrap Link in motion.div */}
+            <motion.div
+              whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+              whileTap={{ scale: 0.98 }}
             >
-              Edit Profile
-            </Link>
-            <button
+              <Link
+                href="/" // Link to actual edit profile page
+                className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
+              >
+                Edit Profile
+              </Link>
+            </motion.div>
+
+            {/* 4. Add hover/tap to actual button - Use motion.button */}
+            <motion.button
+              whileHover={{ scale: 1.03, filter: "brightness(1.1)" }} // Adjust brightness or background on hover if desired
+              whileTap={{ scale: 0.98 }}
+              disabled={isDisconnectModalOpen || !account}
               onClick={() => setIsDisconnectModalOpen(true)}
-              className="border rounded-full text-xs p-[12px] w-full block text-center bg-[#1FACAA] border-[transparent]"
+              className="border rounded-full disabled:opacity-50 text-xs p-[12px] w-full block text-center bg-[#1FACAA] border-[transparent] transition-opacity duration-150 ease-in-out" // Added transition
             >
               Disconnect Wallet
-            </button>
-          </div>
-        </div>
+            </motion.button>
+          </motion.div>
+        </motion.div>
         {/* <nav className="mt-6">
           <motion.hr
             className="border border-[#343B4F] mb-6"
