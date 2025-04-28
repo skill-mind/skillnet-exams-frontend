@@ -65,10 +65,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: "Features", href: "#features" },
-    { name: "How It Works", href: "#how-it-works" },
-    { name: "Benefits", href: "#benefits" },
-    { name: "FAQs", href: "#faqs" },
+    { name: "Features", href: "/#features" },
+    { name: "How It Works", href: "/#how-it-works" },
+    { name: "Benefits", href: "/#benefits" },
+    { name: "FAQs", href: "/#faqs" },
   ];
 
   return (
