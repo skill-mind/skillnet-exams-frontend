@@ -151,7 +151,7 @@ export default function Navbar() {
                         >
                           Disconnect
                         </button>
-                        <Link href="/role/" className="w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 transition-colors">
+                        <Link href="/role/" className="w-full block text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 transition-colors">
                           View Profile
                         </Link>
                         <button className="w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 transition-colors">

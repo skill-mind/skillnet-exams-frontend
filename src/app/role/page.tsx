@@ -111,7 +111,7 @@ export default function page() {
           variants={headerVariants} // Apply header animation variant
         >
           <motion.h1
-            className="font-bold text-2xl md:text-3xl uppercase text-center mb-6 md:mb-8 text-white"
+            className="font-bold text-2xl  uppercase text-center mb-6 md:mb-8 text-white"
             variants={headerVariants} // Inherit stagger from parent
           >
             How do you want to use SkillNet?
@@ -131,7 +131,7 @@ export default function page() {
           {/* Added padding */}
           {/* User Profile Card */}
           <motion.div
-            className="card max-w-[800px] p-6 md:p-9 border border-[#343B4F] mx-auto rounded-[12px] bg-[#081028]"
+            className="card max-w-[800px] px-4 pt-4 pb-8 md:py-9 md:px-9 border border-[#343B4F] mx-auto rounded-[12px] bg-[#081028]"
             variants={cardVariants} 
           >
             <motion.h2 className="text-lg md:text-xl mb-[20px] font-medium text-white">
@@ -144,7 +144,7 @@ export default function page() {
               {userProfileFeatures.map((feature, index) => (
                 <motion.li
                   key={`user-${index}`} 
-                  className="leading-8 md:leading-9 list-disc text-sm md:text-base font-light text-gray-300" 
+                  className="leading-8 md:leading-9 list-disc text-sm  font-light text-gray-300" 
                   variants={listItemVariants} 
                 >
                   {feature}
@@ -159,8 +159,8 @@ export default function page() {
               className="inline-block" // Needed for transforms
             >
               <Link
-                href="/" 
-                className="border border-[#1FACAA] text-[#1FACAA] hover:bg-[#1FACAA] hover:text-[#081028] transition-colors duration-200 rounded-full px-[24px] py-[12px] text-sm md:text-base font-medium"
+                href="/dashboard/user" 
+                className="border border-[#1FACAA] text-[#1FACAA] hover:bg-[#1FACAA] hover:text-[#081028] transition-colors duration-200 rounded-full px-[24px] py-[12px] text-sm  font-medium"
               >
                 Proceed to dashboard
               </Link>
@@ -168,21 +168,21 @@ export default function page() {
           </motion.div>
           {/* Institution Profile Card */}
           <motion.div
-            className="card max-w-[800px] p-6 md:p-9 border border-[#343B4F] mx-auto rounded-[12px] mt-16 md:mt-28 bg-[#081028]" // Adjusted margin top
+            className="card max-w-[800px] px-4 pt-4 pb-8 md:py-9 md:px-9 border border-[#343B4F] mx-auto rounded-[12px] mt-16 md:mt-28 bg-[#081028]"
             variants={cardVariants} 
           >
             <motion.h2 className="text-lg md:text-xl mb-[20px] font-medium text-white">
               Institution Profile
             </motion.h2>
             <motion.ul
-              className="pl-5 md:pl-7 mb-[42px]" // Adjusted padding left
-              variants={listVariants} // Use list variants for staggering children
+              className="pl-5 md:pl-7 mb-[42px]" 
+              variants={listVariants} 
             >
               {institutionProfileFeatures.map((feature, index) => (
                 <motion.li
-                  key={`inst-${index}`} // More specific key
-                  className="leading-8 md:leading-9 list-disc text-sm md:text-base font-light text-gray-300" // Adjusted text style
-                  variants={listItemVariants} // Animate each list item
+                  key={`inst-${index}`} 
+                  className="leading-8 md:leading-9 list-disc text-sm  font-light text-gray-300" 
+                  variants={listItemVariants} 
                 >
                   {feature}
                 </motion.li>
@@ -196,7 +196,7 @@ export default function page() {
               className="inline-block" // Needed for transforms
             >
               <Link
-                href="/" // Update this link to the actual institution dashboard path
+                href="/dashboard/admin" 
                 className="border border-[#1FACAA] text-[#1FACAA] hover:bg-[#1FACAA] hover:text-[#081028] transition-colors duration-200 rounded-full px-[24px] py-[12px] text-sm md:text-base font-medium"
               >
                 Proceed to dashboard
