@@ -196,7 +196,7 @@ export default function page() {
               className="inline-block" // Needed for transforms
             >
               <Link
-                href="/dashboard/admin" 
+                href="/dashboard/institution" 
                 className="border border-[#1FACAA] text-[#1FACAA] hover:bg-[#1FACAA] hover:text-[#081028] transition-colors duration-200 rounded-full px-[24px] py-[12px] text-sm md:text-base font-medium"
               >
                 Proceed to dashboard

@@ -47,7 +47,7 @@ export default function WalletConnectModal({
       await connectAsync({ connector }); // ■ await the wallet prompt
       router.push("/role"); // ■ now safe to navigate
       onClose();
-    } catch (err) {
+    } catch (err) {  
       console.error("Wallet connection failed:", err); // ■ handle rejections
     }
   };
