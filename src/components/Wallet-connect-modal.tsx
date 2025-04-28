@@ -28,6 +28,8 @@ export default function WalletConnectModal({
 
   const { connectors, connectWallet } = useWalletContext();
 
+  console.log(connectors);
+
   const handleSelect = (walletId: string) => {
     setSelectedWallet(walletId);
   };
@@ -71,6 +73,18 @@ export default function WalletConnectModal({
     visible: { opacity: 1 },
     exit: { opacity: 0 },
   };
+
+  function getIconSource(
+    icon: string | { dark: string; light: string }
+  ): string {
+    if (typeof icon === "string") {
+      // If it's a string, use it directly
+      return icon;
+    } else {
+      // If it's an object, use the dark variant (or light, as needed)
+      return icon.dark; // Or icon.light, depending on your theme
+    }
+  }
 
   return (
     <AnimatePresence>
@@ -128,7 +142,7 @@ export default function WalletConnectModal({
                     >
                       <div className="">
                         <Image
-                          src={(wallet.icon as string) || "/placeholder.svg"}
+                          src={getIconSource(wallet.icon)}
                           alt={wallet.name}
                           width={30}
                           height={30}
