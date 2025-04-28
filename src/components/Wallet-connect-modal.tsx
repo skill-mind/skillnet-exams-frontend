@@ -6,6 +6,7 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import AnimationWrapper from "@/motion/Animation-wrapper";
 import { useWalletContext } from "./WalletProvider";
+import { useRouter } from "next/navigation";
 
 interface WalletOption {
   id: string;
@@ -25,10 +26,8 @@ export default function WalletConnectModal({
   onSelect,
 }: WalletConnectModalProps) {
   const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
-
   const { connectors, connectWallet } = useWalletContext();
-
-
+  const router = useRouter();
 
   const handleSelect = (walletId: string) => {
     setSelectedWallet(walletId);
@@ -45,6 +44,7 @@ export default function WalletConnectModal({
     }
 
     connectWallet(connector); // ← This invokes connect({ connector }) :contentReference[oaicite:1]{index=1}
+    router.push("/role");
     onClose(); // then close the modal
   };
 
@@ -73,7 +73,6 @@ export default function WalletConnectModal({
     visible: { opacity: 1 },
     exit: { opacity: 0 },
   };
-
 
   // helper to get icon source
   function getIconSource(
