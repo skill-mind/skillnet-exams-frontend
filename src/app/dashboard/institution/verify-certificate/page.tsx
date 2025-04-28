@@ -5,10 +5,10 @@ import InstitutionLayout from "@/components/dashboard/institution/components/ins
 
 export default function InstitutionDashboardPage() {
   return (
-    <InstitutionLayout title="Institution Dashboard" activePage="Dashboard">
+    <InstitutionLayout title="Institution Dashboard" activePage="Verify-Certificate">
       <Suspense fallback={<div>Loading...</div>}>
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-white mb-4">Welcome to Institution Dashboard</h2>
+          <h2 className="text-2xl font-bold text-white mb-4">Welcome to Institution Dashboard verify certificates</h2>
           <p className="text-gray-400">This section is under development.</p>
         </div>
       </Suspense>

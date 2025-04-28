@@ -264,13 +264,7 @@ export default function ExamCreator() {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 pb-16 bg-[#081028]">
-      <header className="flex justify-between items-center py-6">
-        <h1 className="text-white ml-10 lg:ml-0 text-xl font-medium">Create Exams</h1>
-        <Button variant="ghost" size="icon" className="text-white">
-          <Bell className="h-5 w-5" />
-          <span className="sr-only">Notifications</span>
-        </Button>
-      </header>
+      
 
       <div className="rounded-lg overflow-hidden mb-6">
         <Image
