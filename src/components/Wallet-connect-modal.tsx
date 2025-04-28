@@ -28,7 +28,7 @@ export default function WalletConnectModal({
 
   const { connectors, connectWallet } = useWalletContext();
 
-  console.log(connectors);
+
 
   const handleSelect = (walletId: string) => {
     setSelectedWallet(walletId);

@@ -9,7 +9,6 @@ import AnimationWrapper from "@/motion/Animation-wrapper";
 import WalletConnectModal from "./Wallet-connect-modal";
 import WalletDisconnectModal from "./Wallet-disconnect-modal";
 
-
 // starknet imports
 import { useWalletContext } from "./WalletProvider";
 
@@ -22,6 +21,9 @@ export default function Navbar() {
 
   const { account, connectWallet, disconnectWallet, connectors } =
     useWalletContext();
+  console.log("account", account);
+
+
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -151,7 +153,10 @@ export default function Navbar() {
                         >
                           Disconnect
                         </button>
-                        <Link href="/role/" className="w-full block text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 transition-colors">
+                        <Link
+                          href="/role/"
+                          className="w-full block text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 transition-colors"
+                        >
                           View Profile
                         </Link>
                         <button className="w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 transition-colors">
