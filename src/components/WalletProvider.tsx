@@ -12,6 +12,7 @@ import {
   useAccount,
   useDisconnect,
   Connector,
+  ConnectVariables
 } from "@starknet-react/core";
 
 interface WalletContextProps {
@@ -19,6 +20,7 @@ interface WalletContextProps {
   connectors: Connector[]; // ← Exposed connectors
   connectWallet: (connector: Connector) => void; // ← Takes connector arg
   disconnectWallet: () => void;
+  connectAsync: (args?: ConnectVariables) => Promise<void>;
 }
 
 const WalletContext = createContext<WalletContextProps>({
@@ -26,14 +28,15 @@ const WalletContext = createContext<WalletContextProps>({
   connectors: [], // ← Default empty
   connectWallet: () => {},
   disconnectWallet: () => {},
+  connectAsync: () => Promise.resolve(),
 });
 
 export const WalletProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const { connect, connectors } = useConnect();
+  const { connect, connectors, connectAsync } = useConnect();
   const { address } = useAccount();
-  console.log(useAccount())
+
   const { disconnect } = useDisconnect();
 
   // Accept a specific connector when connecting
@@ -60,12 +63,14 @@ export const WalletProvider: React.FC<{ children: ReactNode }> = ({
         connectors, // ← Now available to consumers
         connectWallet, // ← Can specify which connector
         disconnectWallet: disconnect,
+        connectAsync,
       }}
     >
       {children}
     </WalletContext.Provider>
   );
 };
+
 
 export const useWalletContext = () => {
   const ctx = useContext(WalletContext);

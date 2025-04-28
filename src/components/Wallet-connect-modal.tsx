@@ -23,18 +23,18 @@ interface WalletConnectModalProps {
 export default function WalletConnectModal({
   isOpen,
   onClose,
-  onSelect,
 }: WalletConnectModalProps) {
   const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
-  const { connectors, connectWallet } = useWalletContext();
+  const { connectors, connectAsync, account } = useWalletContext();
   const router = useRouter();
+
 
   const handleSelect = (walletId: string) => {
     setSelectedWallet(walletId);
   };
 
   // ② On confirm, look up the connector object and call connectWallet
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (!selectedWallet) return;
 
     const connector = connectors.find((c) => c.id === selectedWallet);
@@ -43,9 +43,13 @@ export default function WalletConnectModal({
       return;
     }
 
-    connectWallet(connector); // ← This invokes connect({ connector }) :contentReference[oaicite:1]{index=1}
-    router.push("/role");
-    onClose(); // then close the modal
+    try {
+      await connectAsync({ connector }); // ■ await the wallet prompt
+      router.push("/role"); // ■ now safe to navigate
+      onClose();
+    } catch (err) {
+      console.error("Wallet connection failed:", err); // ■ handle rejections
+    }
   };
 
   const modalVariants = {
