@@ -17,7 +17,7 @@ import UserIcon from "../../../../public/Ellipse 43.svg";
 import HelpIcon from "../../../../public/help-square.svg";
 import SkillNetLogo from "../../../../public/skillnet-white logo.png";
 import MenuCollapseIcon from "../../../../public/menu-collapse.svg";
-import { usePathname } from "next/navigation";
+import EditProfileModal from "../edit-profile-modal";
 import { useWalletContext } from "@/components/WalletProvider";
 
 import WalletDisconnectModal from "@/components/Wallet-disconnect-modal";
@@ -44,9 +44,8 @@ export default function InstitutionLayout({
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isDisconnectModalOpen, setIsDisconnectModalOpen] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-
-
-  console.log("active page", activePage)
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
+  console.log("active page", activePage);
 
   // wallet context
   const { account, disconnectWallet } = useWalletContext();
@@ -475,14 +474,14 @@ export default function InstitutionLayout({
                     onClick={handleNavClick}
                     className={cn(
                       "flex items-center py-[10px] px-[10px] h-[45px] rounded-[12px] transition-colors",
-                      activePage === "Help-Center" 
+                      activePage === "Help-Center"
                         ? "bg-[#071630] text-white"
                         : "text-gray-400 hover:bg-[#071630] hover:text-white"
                     )}
                   >
                     <Image
                       src={HelpIcon || "/placeholder.svg"}
-                      alt={`help icon`} 
+                      alt={`help icon`}
                       width={24}
                       height={24}
                     />
@@ -574,6 +573,10 @@ export default function InstitutionLayout({
         isOpen={isDisconnectModalOpen}
         onClose={() => setIsDisconnectModalOpen(false)}
         onDisconnect={handleDisconnect}
+      />
+      <EditProfileModal
+        isOpen={isEditProfileModalOpen}
+        onClose={() => setIsEditProfileModalOpen(false)}
       />
     </div>
   );
