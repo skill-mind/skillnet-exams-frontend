@@ -1,7 +1,7 @@
 "use client"
 
 import { Suspense } from "react"
-import InstitutionLayout from "@/components/dashboard/institution/components/institution-dashboard-layout"
+import InstitutionLayout from "@/components/dashboard/institution/institution-dashboard-layout"
 
 export default function InstitutionDashboardPage() {
   return (

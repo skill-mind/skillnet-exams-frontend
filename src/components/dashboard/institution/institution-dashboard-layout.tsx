@@ -8,15 +8,15 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 
 // Placeholder icons - replace with your actual icons
-import DashboardIcon from "../../../../../public/dashboard-square.svg"
-import CreateExamIcon from "../../../../../public/pencil-edit.svg"
-import CreatedExamIcon from "../../../../../public/notebook.svg"
-import VerifyCertificateIcon from "../../../../../public/certificate.svg"
-import ViewExamIcon from "../../../../../public/license.svg"
-import UserIcon from "../../../../../public/Ellipse 43.svg"
-import HelpIcon from "../../../../../public/help-square.svg"
-import SkillNetLogo from "../../../../../public/skillnet-white logo.png"
-import MenuCollapseIcon from "../../../../../public/menu-collapse.svg"
+import DashboardIcon from "../../../../public/dashboard-square.svg"
+import CreateExamIcon from "../../../../public/pencil-edit.svg"
+import CreatedExamIcon from "../../../../public/notebook.svg"
+import VerifyCertificateIcon from "../../../../public/certificate.svg"
+import ViewExamIcon from "../../../../public/license.svg"
+import UserIcon from "../../../../public/Ellipse 43.svg"
+import HelpIcon from "../../../../public/help-square.svg"
+import SkillNetLogo from "../../../../public/skillnet-white logo.png"
+import MenuCollapseIcon from "../../../../public/menu-collapse.svg"
 
 interface InstitutionLayoutProps {
   children: ReactNode
