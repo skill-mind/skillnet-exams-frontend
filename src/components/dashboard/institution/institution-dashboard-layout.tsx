@@ -392,12 +392,12 @@ export default function InstitutionLayout({
                 whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Button
+                <button
                   className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
                   onClick={() => setIsEditProfileModalOpen(true)}
                 >
                   Edit Profile
-                </Button>
+                </button>
               </motion.div>
 
               {/* 4. Add hover/tap to actual button - Use motion.button */}

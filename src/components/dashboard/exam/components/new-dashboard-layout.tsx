@@ -15,6 +15,7 @@ import HelpIcon from "../../../../../public/help-square.svg";
 import SkillNetLogo from "../../../../../public/skillnet-white logo.png";
 import MenuCollapseIcon from "../../../../../public/menu-collapse.svg";
 import Link from "next/link";
+import EditProfileModal from "../../edit-profile-modal";
 
 import WalletDisconnectModal from "@/components/Wallet-disconnect-modal";
 
@@ -37,8 +38,9 @@ export default function DashboardLayout({
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isDisconnectModalOpen, setIsDisconnectModalOpen] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-  //wallet context destructure
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
 
+  //wallet context destructure
   const { account, disconnectWallet } = useWalletContext();
 
   const handleDisconnect = () => {
@@ -266,7 +268,7 @@ export default function DashboardLayout({
             </motion.button>
           </motion.div>
         </motion.div>
-        
+
         {(isDetailsOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20 }} // Start slightly below and invisible
@@ -365,12 +367,12 @@ export default function DashboardLayout({
                 whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Link
-                  href="/" // Link to actual edit profile page
+                <button
                   className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
+                  onClick={() => setIsEditProfileModalOpen(true)}
                 >
                   Edit Profile
-                </Link>
+                </button>
               </motion.div>
 
               {/* 4. Add hover/tap to actual button - Use motion.button */}
@@ -548,6 +550,10 @@ export default function DashboardLayout({
         isOpen={isDisconnectModalOpen}
         onClose={() => setIsDisconnectModalOpen(false)}
         onDisconnect={handleDisconnect}
+      />
+      <EditProfileModal
+        isOpen={isEditProfileModalOpen}
+        onClose={() => setIsEditProfileModalOpen(false)}
       />
     </div>
   );
