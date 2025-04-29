@@ -266,6 +266,7 @@ export default function DashboardLayout({
             </motion.button>
           </motion.div>
         </motion.div>
+        
         {(isDetailsOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20 }} // Start slightly below and invisible
