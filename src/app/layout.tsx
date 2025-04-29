@@ -48,6 +48,7 @@ export const metadata: Metadata = {
     canonical: "https://www.skillnetexamhub.com",
   },
 };
+
 export const viewport = {
   width: "device-width",
   initialScale: 1,
