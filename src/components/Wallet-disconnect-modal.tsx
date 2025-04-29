@@ -17,7 +17,7 @@ export default function WalletDisconnectModal({
   onClose,
   onDisconnect,
 }: WalletDisconnectModalProps) {
-  console.log(usePathname());
+
 
   //pathname check
   const pathName = usePathname();

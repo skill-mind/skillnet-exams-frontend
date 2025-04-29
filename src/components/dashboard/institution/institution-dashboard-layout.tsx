@@ -17,7 +17,7 @@ import UserIcon from "../../../../public/Ellipse 43.svg";
 import HelpIcon from "../../../../public/help-square.svg";
 import SkillNetLogo from "../../../../public/skillnet-white logo.png";
 import MenuCollapseIcon from "../../../../public/menu-collapse.svg";
-
+import { usePathname } from "next/navigation";
 import { useWalletContext } from "@/components/WalletProvider";
 
 import WalletDisconnectModal from "@/components/Wallet-disconnect-modal";
@@ -44,6 +44,9 @@ export default function InstitutionLayout({
   const [isInitialRender, setIsInitialRender] = useState(true);
   const [isDisconnectModalOpen, setIsDisconnectModalOpen] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+
+
+  console.log("active page", activePage)
 
   // wallet context
   const { account, disconnectWallet } = useWalletContext();
@@ -96,31 +99,31 @@ export default function InstitutionLayout({
   // Institution-specific navigation items
   const navItems = [
     {
-      key: "dashboard",
+      key: "Dashboard",
       label: "Dashboard",
       icon: DashboardIcon,
       href: "/dashboard/institution",
     },
     {
-      key: "create-exam",
+      key: "Create-Exam",
       label: "Create Exam",
       icon: CreateExamIcon,
       href: "/dashboard/institution/create-exam",
     },
     {
-      key: "created-exam",
+      key: "Created-Exam",
       label: "Created Exams",
       icon: CreatedExamIcon,
       href: "/dashboard/institution/created-exam",
     },
     {
-      key: "verify-certificates",
+      key: "Verify-Certificate",
       label: "Verify Certificates",
       icon: VerifyCertificateIcon,
       href: "/dashboard/institution/verify-certificate",
     },
     {
-      key: "view-exam-details",
+      key: "View-Exam-Details",
       label: "View Exam Details",
       icon: ViewExamIcon,
       href: "/dashboard/institution/view-exam-details",
@@ -472,14 +475,14 @@ export default function InstitutionLayout({
                     onClick={handleNavClick}
                     className={cn(
                       "flex items-center py-[10px] px-[10px] h-[45px] rounded-[12px] transition-colors",
-                      activePage === "Help-Center"
+                      activePage === "Help-Center" 
                         ? "bg-[#071630] text-white"
                         : "text-gray-400 hover:bg-[#071630] hover:text-white"
                     )}
                   >
                     <Image
                       src={HelpIcon || "/placeholder.svg"}
-                      alt={`help icon`}
+                      alt={`help icon`} 
                       width={24}
                       height={24}
                     />
