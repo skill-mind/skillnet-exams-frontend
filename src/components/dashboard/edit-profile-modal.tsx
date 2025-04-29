@@ -12,7 +12,6 @@ export default function EditProfileModal({
   isOpen,
   onClose,
 }: EditProfileModalProps) {
-  isOpen = true;
   const modalVariants = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: {
@@ -73,7 +72,10 @@ export default function EditProfileModal({
             </div>
             <form action="">
               <div>
-                <label htmlFor="" className="mb-1 text-[#9596A0] text-sm font-[500]">
+                <label
+                  htmlFor=""
+                  className="mb-1 text-[#9596A0] text-sm font-[500]"
+                >
                   Name
                 </label>
                 <input
@@ -82,7 +84,10 @@ export default function EditProfileModal({
                 />
               </div>
               <div className="mt-6">
-                <label htmlFor="" className="mb-1 text-[#9596A0] text-sm font-[500]">
+                <label
+                  htmlFor=""
+                  className="mb-1 text-[#9596A0] text-sm font-[500]"
+                >
                   Email Address{" "}
                 </label>
                 <input
@@ -93,7 +98,10 @@ export default function EditProfileModal({
             </form>
 
             <div className="mt-6">
-              <button className="  w-full text-center rounded-[48px] bg-teal-500 text-white font-medium hover:bg-teal-600 transition-colors py-[12px]">
+              <button
+                onClick={onClose}
+                className="  w-full text-center rounded-[48px] bg-teal-500 text-white font-medium hover:bg-teal-600 transition-colors py-[12px]"
+              >
                 Save
               </button>
             </div>

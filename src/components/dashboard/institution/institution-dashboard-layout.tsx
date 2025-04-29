@@ -21,6 +21,7 @@ import EditProfileModal from "../edit-profile-modal";
 import { useWalletContext } from "@/components/WalletProvider";
 
 import WalletDisconnectModal from "@/components/Wallet-disconnect-modal";
+import { Button } from "@headlessui/react";
 
 interface InstitutionLayoutProps {
   children: ReactNode;
@@ -391,12 +392,12 @@ export default function InstitutionLayout({
                 whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Link
-                  href="/" // Link to actual edit profile page
+                <Button
                   className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
+                  onClick={() => setIsEditProfileModalOpen(true)}
                 >
                   Edit Profile
-                </Link>
+                </Button>
               </motion.div>
 
               {/* 4. Add hover/tap to actual button - Use motion.button */}
