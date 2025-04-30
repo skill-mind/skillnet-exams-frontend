@@ -2,6 +2,8 @@
 
 import AnimationWrapper from "@/motion/Animation-wrapper";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
 
 interface WalletDisconnectModalProps {
@@ -15,6 +17,26 @@ export default function WalletDisconnectModal({
   onClose,
   onDisconnect,
 }: WalletDisconnectModalProps) {
+
+
+  //pathname check
+  const pathName = usePathname();
+  const userDashboardPath = "/dashboard/user";
+  const institutionDashboardPath = "/dashboard/institution";
+
+  //router
+  const router = useRouter();
+      
+  const handleDisconnect = () => {
+    if (
+      userDashboardPath === pathName ||
+      institutionDashboardPath === pathName
+    ) {
+      router.push("/"); // ■ now safe to navigate
+    }
+    onDisconnect();
+  };
+
   const modalVariants = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: {
@@ -89,7 +111,7 @@ export default function WalletDisconnectModal({
 
               <button
                 className=" py-3 w-full text-center rounded-[48px] bg-teal-500 text-white font-medium hover:bg-teal-600 transition-colors"
-                onClick={onDisconnect}
+                onClick={handleDisconnect}
               >
                 Disconnect Wallet
               </button>
@@ -100,3 +122,4 @@ export default function WalletDisconnectModal({
     </AnimatePresence>
   );
 }
+ 

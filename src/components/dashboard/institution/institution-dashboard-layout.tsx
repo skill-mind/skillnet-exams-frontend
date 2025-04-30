@@ -17,7 +17,11 @@ import UserIcon from "../../../../public/Ellipse 43.svg";
 import HelpIcon from "../../../../public/help-square.svg";
 import SkillNetLogo from "../../../../public/skillnet-white logo.png";
 import MenuCollapseIcon from "../../../../public/menu-collapse.svg";
+import EditProfileModal from "../edit-profile-modal";
+import { useWalletContext } from "@/components/WalletProvider";
 import Notification from "../exam/components/modals/notification-modal";
+import WalletDisconnectModal from "@/components/Wallet-disconnect-modal";
+import { Button } from "@headlessui/react";
 
 interface InstitutionLayoutProps {
   children: ReactNode;
@@ -39,11 +43,23 @@ export default function InstitutionLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
+  const [isDisconnectModalOpen, setIsDisconnectModalOpen] = useState(false);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
   const [toggleNotification, setToggleNotification] = useState(false);
+
+  // wallet context
+  const { account, disconnectWallet } = useWalletContext();
+
+  const handleDisconnect = () => {
+    disconnectWallet();
+    setIsDisconnectModalOpen(false);
+  };
 
   const handleNotificationClick = () => {
     setToggleNotification(!toggleNotification);
   };
+
   // Handle responsive behavior
   useEffect(() => {
     const checkScreenSize = () => {
@@ -53,14 +69,9 @@ export default function InstitutionLayout({
 
     // Initial check
     checkScreenSize();
-
-    // Add event listener for window resize
     window.addEventListener("resize", checkScreenSize);
-
-    // Set initial render to false after first render
     setIsInitialRender(false);
 
-    // Cleanup
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
@@ -87,31 +98,31 @@ export default function InstitutionLayout({
   // Institution-specific navigation items
   const navItems = [
     {
-      key: "dashboard",
+      key: "Dashboard",
       label: "Dashboard",
       icon: DashboardIcon,
       href: "/dashboard/institution",
     },
     {
-      key: "create-exam",
+      key: "Create-Exam",
       label: "Create Exam",
       icon: CreateExamIcon,
       href: "/dashboard/institution/create-exam",
     },
     {
-      key: "created-exam",
+      key: "Created-Exam",
       label: "Created Exams",
       icon: CreatedExamIcon,
       href: "/dashboard/institution/created-exam",
     },
     {
-      key: "verify-certificates",
+      key: "Verify-Certificate",
       label: "Verify Certificates",
       icon: VerifyCertificateIcon,
       href: "/dashboard/institution/verify-certificate",
     },
     {
-      key: "view-exam-details",
+      key: "View-Exam-Details",
       label: "View Exam Details",
       icon: ViewExamIcon,
       href: "/dashboard/institution/view-exam-details",
@@ -207,17 +218,20 @@ export default function InstitutionLayout({
         )}
         initial={isInitialRender || !isMobile ? false : "closed"}
         animate={sidebarOpen ? "open" : "closed"}
-        variants={isMobile ? sidebarVariants : {}}>
+        variants={isMobile ? sidebarVariants : {}}
+      >
         <motion.div
           className="flex justify-between items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}>
+          transition={{ duration: 0.5 }}
+        >
           <div className="flex items-center space-x-2">
             <motion.div
               initial={{ rotate: -180, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
-              transition={{ duration: 0.5 }}>
+              transition={{ duration: 0.5 }}
+            >
               <Image
                 src={SkillNetLogo || "/placeholder.svg"}
                 alt="logo"
@@ -230,7 +244,8 @@ export default function InstitutionLayout({
             onClick={toggleSidebar}
             className="p-1 rounded-md hover:bg-[#071630]"
             whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}>
+            whileTap={{ scale: 0.9 }}
+          >
             {isMobile ? (
               <X size={24} />
             ) : (
@@ -249,11 +264,13 @@ export default function InstitutionLayout({
           className="mt-5 pb-2"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.3 }}>
+          transition={{ delay: 0.2, duration: 0.3 }}
+        >
           <motion.div
             className="flex items-center space-x-2 h-[48px] p-2 bg-[#071630] rounded-lg"
             whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
             <div className="w-6 h-6 rounded-full overflow-hidden">
               <Image
                 src={UserIcon || "/placeholder.svg"}
@@ -268,85 +285,216 @@ export default function InstitutionLayout({
             <motion.button
               className="p-1 rounded-md hover:bg-[#0a1d3f]"
               whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}>
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsDetailsOpen(!isDetailsOpen)}
+            >
               <EllipsisVertical size={16} />
             </motion.button>
           </motion.div>
         </motion.div>
 
-        <nav className="mt-6">
-          <motion.hr
-            className="border border-[#343B4F] mb-6"
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
-          />
-          <ul className="space-y-3">
-            {navItems.map((item, index) => (
+        {(isDetailsOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="p-3 border border-[#343B4F] rounded-[12px]"
+          >
+            <div className="mb-4">
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
+                className="mb-5 relative w-fit mx-auto"
+              >
+                <Image
+                  src="/institute-avatar.png"
+                  alt="avatar"
+                  className="block mx-auto w-fit"
+                  width={100}
+                  height={100}
+                />
+                <button className="absolute bottom-0 right-0  w-fit">
+                  <input
+                    type="file"
+                    className="absolute cursor-pointer inset-0 opacity-0"
+                  />
+                  <Image
+                    src="/institute-edit.svg"
+                    alt="edit"
+                    className="cursor-pointer"
+                    width={38}
+                    height={38}
+                  />
+                </button>
+              </motion.div>
+              <div className="mb-6 text-center">
+                <h2 className="text-[18px] font-semibold mb-2">
+                  Institution's name
+                </h2>
+                <p className="text-xs text-[#AEB9E1]">Institution@gmail.com</p>
+              </div>
+              <p
+                className="text-xs text-center truncate"
+                title={account || "Not connected"}
+              >
+                {account || "Not connected"}
+              </p>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.4 }}
+              className="bg-[#0A1330] p-6 rounded-2xl flex flex-col gap-[18px] mb-6"
+            >
+              <div className="flex justify-between items-center">
+                <h3>Total Balance</h3>
+                <Image src="/hidden.svg" alt="hidden" width={14} height={14} />
+              </div>
+              <div className="text-center">$0</div>
+              <motion.div
+                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Link
+                  href="/"
+                  className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
+                >
+                  View Details
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+            >
+              <div>
+                <p className="mb-4 text-xs font-medium">Records</p>
+                <div className="flex justify-between items-center border-b border-[#AEB9E1] pb-2 mb-2">
+                  <div className="text-[#AEB9E1] underline text-xs">
+                    Created Exams
+                  </div>
+                  <div className="text-xs font-medium">2</div>
+                </div>
+              </div>
+              <div className="text-[#AEB9E1] underline text-xs">
+                Exam History
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
+              className="flex flex-col gap-4 mt-6"
+            >
+              <motion.div
+                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <button
+                  className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
+                  onClick={() => setIsEditProfileModalOpen(true)}
+                >
+                  Edit Profile
+                </button>
+              </motion.div>
+
+              <motion.button
+                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+                whileTap={{ scale: 0.98 }}
+                disabled={isDisconnectModalOpen || !account}
+                onClick={() => setIsDisconnectModalOpen(true)}
+                className="border rounded-full disabled:opacity-50 text-xs p-[12px] w-full block text-center bg-[#1FACAA] border-[transparent] transition-opacity duration-150 ease-in-out"
+              >
+                Disconnect Wallet
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )) || (
+          <nav className="mt-6">
+            <motion.hr
+              className="border border-[#343B4F] mb-6"
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+            />
+            <ul className="space-y-3">
+              {navItems.map((item, index) => (
+                <motion.li
+                  key={item.key}
+                  custom={index}
+                  initial="initial"
+                  animate="animate"
+                  variants={navItemVariants}
+                >
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={handleNavClick}
+                      className={cn(
+                        "flex items-center py-[10px] px-[10px] h-[45px] rounded-[12px] transition-colors",
+                        activePage === item.key
+                          ? "bg-[#071630] text-white"
+                          : "text-gray-400 hover:bg-[#071630] hover:text-white"
+                      )}
+                    >
+                      <Image
+                        src={item.icon || "/placeholder.svg"}
+                        alt={`${item.label} icon`}
+                        width={24}
+                        height={24}
+                      />
+                      <span className="ml-3">{item.label}</span>
+                    </Link>
+                  </motion.div>
+                </motion.li>
+              ))}
+              <motion.hr
+                className="border border-[#343B4F] my-4"
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ delay: 0.6, duration: 0.4 }}
+              />
               <motion.li
-                key={item.key}
-                custom={index}
                 initial="initial"
                 animate="animate"
-                variants={navItemVariants}>
+                variants={navItemVariants}
+                custom={5}
+              >
                 <motion.div
                   whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}>
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
                   <Link
-                    href={item.href}
+                    href="/dashboard/institution/help-center"
                     onClick={handleNavClick}
                     className={cn(
                       "flex items-center py-[10px] px-[10px] h-[45px] rounded-[12px] transition-colors",
-                      activePage === item.key
+                      activePage === "Help-Center"
                         ? "bg-[#071630] text-white"
                         : "text-gray-400 hover:bg-[#071630] hover:text-white"
-                    )}>
+                    )}
+                  >
                     <Image
-                      src={item.icon || "/placeholder.svg"}
-                      alt={`${item.label} icon`}
+                      src={HelpIcon || "/placeholder.svg"}
+                      alt={`help icon`}
                       width={24}
                       height={24}
                     />
-                    <span className="ml-3">{item.label}</span>
+                    <span className="ml-3">Help Center</span>
                   </Link>
                 </motion.div>
               </motion.li>
-            ))}
-            <motion.hr
-              className="border border-[#343B4F] my-4"
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ delay: 0.6, duration: 0.4 }}
-            />
-            <motion.li
-              initial="initial"
-              animate="animate"
-              variants={navItemVariants}
-              custom={5}>
-              <motion.div
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}>
-                <Link
-                  href="/dashboard/institution/help-center"
-                  onClick={handleNavClick}
-                  className={cn(
-                    "flex items-center py-[10px] px-[10px] h-[45px] rounded-[12px] transition-colors",
-                    activePage === "Help-Center"
-                      ? "bg-[#071630] text-white"
-                      : "text-gray-400 hover:bg-[#071630] hover:text-white"
-                  )}>
-                  <Image
-                    src={HelpIcon || "/placeholder.svg"}
-                    alt={`help icon`}
-                    width={24}
-                    height={24}
-                  />
-                  <span className="ml-3">Help Center</span>
-                </Link>
-              </motion.div>
-            </motion.li>
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        )}
       </motion.div>
 
       {/* Main Content */}
@@ -357,27 +505,31 @@ export default function InstitutionLayout({
         )}
         initial="initial"
         animate="animate"
-        variants={contentVariants}>
+        variants={contentVariants}
+      >
         {/* Top Bar */}
         <motion.header
           className="flex justify-between items-center py-6 px-7 bg-[#081028] shadow-sm"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}>
+          transition={{ duration: 0.5 }}
+        >
           <div className="flex items-center">
             <motion.button
               id="menu-button"
               className="mr-4 lg:hidden p-2 rounded-md hover:bg-[#071630]"
               onClick={toggleSidebar}
               whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}>
+              whileTap={{ scale: 0.9 }}
+            >
               <Menu size={24} />
             </motion.button>
             <motion.h1
               className="text-xl font-semibold truncate"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}>
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
               {activePage}
             </motion.h1>
           </div>
@@ -385,23 +537,27 @@ export default function InstitutionLayout({
             className="flex items-center space-x-2"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}>
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
             <motion.button
               onClick={handleNotificationClick}
               className="p-2 rounded-full hover:bg-[#071630] relative"
               whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}>
+              whileTap={{ scale: 0.9 }}
+            >
               <Bell size={20} />
               <motion.span
                 className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: 0.8, duration: 0.3 }}></motion.span>
+                transition={{ delay: 0.8, duration: 0.3 }}
+              ></motion.span>
             </motion.button>
             <motion.h3
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.3 }}>
+              transition={{ delay: 0.4, duration: 0.3 }}
+            >
               Notifications
             </motion.h3>
           </motion.div>
@@ -412,12 +568,22 @@ export default function InstitutionLayout({
           className="flex-1 p-4 md:p-6 overflow-auto bg-[#081028]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}>
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
           {children}
         </motion.main>
       </motion.div>
-      {/* Notification Modal */}
-
+      
+      {/* Modals */}
+      <WalletDisconnectModal
+        isOpen={isDisconnectModalOpen}
+        onClose={() => setIsDisconnectModalOpen(false)}
+        onDisconnect={handleDisconnect}
+      />
+      <EditProfileModal
+        isOpen={isEditProfileModalOpen}
+        onClose={() => setIsEditProfileModalOpen(false)}
+      />
       <Notification
         isOpen={toggleNotification}
         onClose={handleNotificationClick}
