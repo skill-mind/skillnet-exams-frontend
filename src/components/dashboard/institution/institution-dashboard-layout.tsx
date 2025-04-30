@@ -307,7 +307,7 @@ export default function InstitutionLayout({
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.1, duration: 0.3 }}
-                className="mb-5"
+                className="mb-5 relative w-fit mx-auto"
               >
                 <Image
                   src="/institute-avatar.png"
@@ -316,6 +316,19 @@ export default function InstitutionLayout({
                   width={100}
                   height={100}
                 />
+                <button className="absolute bottom-0 right-0  w-fit">
+                  <input
+                    type="file"
+                    className="absolute cursor-pointer inset-0 opacity-0"
+                  />
+                  <Image
+                    src="/institute-edit.svg"
+                    alt="edit"
+                    className="cursor-pointer"
+                    width={38}
+                    height={38}
+                  />
+                </button>
               </motion.div>
               <div className="mb-6 text-center">
                 <h2 className="text-[18px] font-semibold mb-2">
