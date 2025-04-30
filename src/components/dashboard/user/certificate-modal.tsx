@@ -4,10 +4,19 @@ import { X } from "lucide-react";
 import CertificateCard from "./certificate-card";
 import type { Certificate } from "@/data/certificate-data";
 
+// Define interface for the candidate data passed from the table
+interface CandidateData {
+  examTitle?: string;
+  score?: string;
+  date?: string;
+  candidateName?: string;
+  [key: string]: any; // Allow additional properties
+}
+
 interface CertificateModalProps {
-  certificate?: Certificate;  // Made optional
-  candidateData?: any;        // Added candidateData prop
-  isOpen: boolean;           // Added isOpen prop
+  certificate?: Certificate;
+  candidateData?: CandidateData | null;
+  isOpen: boolean;
   onClose: () => void;
 }
 

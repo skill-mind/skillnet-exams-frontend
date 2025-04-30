@@ -199,6 +199,7 @@ export default function CertificateView() {
                 <CertificateModal
                   certificate={selectedCertificate}
                   onClose={handleCloseModal}
+                  isOpen={isModalOpen} // Added this required prop
                 />
               )}
             </AnimatePresence>
