@@ -19,7 +19,7 @@ import SkillNetLogo from "../../../../public/skillnet-white logo.png";
 import MenuCollapseIcon from "../../../../public/menu-collapse.svg";
 import EditProfileModal from "../edit-profile-modal";
 import { useWalletContext } from "@/components/WalletProvider";
-
+import Notification from "../exam/components/modals/notification-modal";
 import WalletDisconnectModal from "@/components/Wallet-disconnect-modal";
 import { Button } from "@headlessui/react";
 
@@ -46,14 +46,18 @@ export default function InstitutionLayout({
   const [isDisconnectModalOpen, setIsDisconnectModalOpen] = useState(false);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
-  console.log("active page", activePage);
+  const [toggleNotification, setToggleNotification] = useState(false);
 
   // wallet context
   const { account, disconnectWallet } = useWalletContext();
 
   const handleDisconnect = () => {
-    disconnectWallet(); // real Starknet-React disconnect :contentReference[oaicite:4]{index=4}
+    disconnectWallet();
     setIsDisconnectModalOpen(false);
+  };
+
+  const handleNotificationClick = () => {
+    setToggleNotification(!toggleNotification);
   };
 
   // Handle responsive behavior
@@ -65,14 +69,9 @@ export default function InstitutionLayout({
 
     // Initial check
     checkScreenSize();
-
-    // Add event listener for window resize
     window.addEventListener("resize", checkScreenSize);
-
-    // Set initial render to false after first render
     setIsInitialRender(false);
 
-    // Cleanup
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
@@ -296,13 +295,12 @@ export default function InstitutionLayout({
 
         {(isDetailsOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }} // Start slightly below and invisible
-            animate={{ opacity: 1, y: 0 }} // Animate to full opacity and original position
-            transition={{ duration: 0.4, ease: "easeOut" }} // Adjust timing/easing
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="p-3 border border-[#343B4F] rounded-[12px]"
           >
             <div className="mb-4">
-              {/* Optional: Add subtle animation to image */}
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -332,10 +330,9 @@ export default function InstitutionLayout({
               </motion.div>
               <div className="mb-6 text-center">
                 <h2 className="text-[18px] font-semibold mb-2">
-                  Institution’s name {/* Replace with dynamic data */}
+                  Institution's name
                 </h2>
-                <p className="text-xs text-[#AEB9E1]">Institution@gmail.com</p>{" "}
-                {/* Replace with dynamic data */}
+                <p className="text-xs text-[#AEB9E1]">Institution@gmail.com</p>
               </div>
               <p
                 className="text-xs text-center truncate"
@@ -345,7 +342,6 @@ export default function InstitutionLayout({
               </p>
             </div>
 
-            {/* Optional: Animate balance box */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -356,23 +352,20 @@ export default function InstitutionLayout({
                 <h3>Total Balance</h3>
                 <Image src="/hidden.svg" alt="hidden" width={14} height={14} />
               </div>
-              <div className="text-center">$0</div>{" "}
-              {/* Replace with dynamic data */}
-              {/* 2. Add hover/tap to Link styled as button - Wrap Link in motion.div */}
+              <div className="text-center">$0</div>
               <motion.div
-                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }} // Slight scale and brightness increase
-                whileTap={{ scale: 0.98 }} // Slight scale down on tap
+                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Link
                   href="/"
-                  className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out" // Added transition for smoother effect (optional)
+                  className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
                 >
                   View Details
                 </Link>
               </motion.div>
             </motion.div>
 
-            {/* Optional: Animate records section */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -384,8 +377,7 @@ export default function InstitutionLayout({
                   <div className="text-[#AEB9E1] underline text-xs">
                     Created Exams
                   </div>
-                  <div className="text-xs font-medium">2</div>{" "}
-                  {/* Replace with dynamic data */}
+                  <div className="text-xs font-medium">2</div>
                 </div>
               </div>
               <div className="text-[#AEB9E1] underline text-xs">
@@ -393,14 +385,12 @@ export default function InstitutionLayout({
               </div>
             </motion.div>
 
-            {/* Animate buttons section */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.4 }}
               className="flex flex-col gap-4 mt-6"
             >
-              {/* 3. Add hover/tap to Link styled as button - Wrap Link in motion.div */}
               <motion.div
                 whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
                 whileTap={{ scale: 0.98 }}
@@ -413,13 +403,12 @@ export default function InstitutionLayout({
                 </button>
               </motion.div>
 
-              {/* 4. Add hover/tap to actual button - Use motion.button */}
               <motion.button
-                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }} // Adjust brightness or background on hover if desired
+                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
                 whileTap={{ scale: 0.98 }}
                 disabled={isDisconnectModalOpen || !account}
                 onClick={() => setIsDisconnectModalOpen(true)}
-                className="border rounded-full disabled:opacity-50 text-xs p-[12px] w-full block text-center bg-[#1FACAA] border-[transparent] transition-opacity duration-150 ease-in-out" // Added transition
+                className="border rounded-full disabled:opacity-50 text-xs p-[12px] w-full block text-center bg-[#1FACAA] border-[transparent] transition-opacity duration-150 ease-in-out"
               >
                 Disconnect Wallet
               </motion.button>
@@ -551,6 +540,7 @@ export default function InstitutionLayout({
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <motion.button
+              onClick={handleNotificationClick}
               className="p-2 rounded-full hover:bg-[#071630] relative"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -583,6 +573,8 @@ export default function InstitutionLayout({
           {children}
         </motion.main>
       </motion.div>
+      
+      {/* Modals */}
       <WalletDisconnectModal
         isOpen={isDisconnectModalOpen}
         onClose={() => setIsDisconnectModalOpen(false)}
@@ -591,6 +583,10 @@ export default function InstitutionLayout({
       <EditProfileModal
         isOpen={isEditProfileModalOpen}
         onClose={() => setIsEditProfileModalOpen(false)}
+      />
+      <Notification
+        isOpen={toggleNotification}
+        onClose={handleNotificationClick}
       />
     </div>
   );

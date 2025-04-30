@@ -2,15 +2,13 @@
 
 import { Suspense } from "react"
 import InstitutionLayout from "@/components/dashboard/institution/institution-dashboard-layout"
+import HelpCenter from "@/components/dashboard/institution/pages/help-center"
 
 export default function InstitutionDashboardPage() {
   return (
     <InstitutionLayout title="Institution Dashboard" activePage="Help-Center">
       <Suspense fallback={<div>Loading...</div>}>
-        <div className="p-6">
-          <h2 className="text-2xl font-bold text-white mb-4">Welcome to Institution Dashboard help center</h2>
-          <p className="text-gray-400">This section is under development.</p>
-        </div>
+       <HelpCenter />
       </Suspense>
     </InstitutionLayout>
   )
