@@ -18,11 +18,11 @@ import MenuCollapseIcon from "../../../../../public/menu-collapse.svg";
 
 // Component/Context/Data Imports (Combined)
 import Link from "next/link";
-import EditProfileModal from "../../edit-profile-modal";           // From HEAD branch merge
-import WalletDisconnectModal from "@/components/Wallet-disconnect-modal"; // From HEAD branch merge
-import { useWalletContext } from "@/components/WalletProvider";      // From HEAD branch merge
-import NotificationModal from "./notification-modal";               // From d195... branch merge
-import { notificationsData } from "@/data/notification-data";       // From d195... branch merge
+import EditProfileModal from "../../edit-profile-modal";           
+import WalletDisconnectModal from "@/components/Wallet-disconnect-modal"; 
+import { useWalletContext } from "@/components/WalletProvider";      
+import NotificationModal from "./notification-modal";               
+import { notificationsData } from "@/data/notification-data";       
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -48,10 +48,10 @@ export default function DashboardLayout({
   const [notifications, setNotifications] = useState(notificationsData);
   const [unreadCount, setUnreadCount] = useState(0);
 
-  // --- Wallet Context (from HEAD) ---
+  // --- Wallet Context ---
   const { account, disconnectWallet } = useWalletContext();
 
-  // --- Handlers (Combined) ---
+  // --- Handlers ---
   const handleDisconnect = () => {
     disconnectWallet();
     setIsDisconnectModalOpen(false);
@@ -79,8 +79,8 @@ export default function DashboardLayout({
     }
   };
 
-  // --- Effects (Combined) ---
-  // Calculate unread count effect (from d195...)
+  // --- Effects ---
+  // Calculate unread count effect
   useEffect(() => {
     const count = notifications.filter(
       (notification) => !notification.read
@@ -88,7 +88,7 @@ export default function DashboardLayout({
     setUnreadCount(count);
   }, [notifications]);
 
-  // Handle responsive behavior effect (Keep one copy)
+  // Handle responsive behavior effect
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 1024);
@@ -100,7 +100,7 @@ export default function DashboardLayout({
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  // Close sidebar outside click effect (Keep one copy)
+  // Close sidebar outside click effect
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const sidebar = document.getElementById("sidebar");
@@ -119,7 +119,7 @@ export default function DashboardLayout({
   }, [isMobile, sidebarOpen]);
 
 
-  // --- Navigation Items (Keep one copy) ---
+  // --- Navigation Items ---
   const navItems = [
     {
       key: "dashboard",
@@ -148,7 +148,7 @@ export default function DashboardLayout({
   ];
 
 
-  // --- Animation Variants (Keep one copy) ---
+  // --- Animation Variants ---
   const sidebarVariants = {
     open: { x: 0, transition: { type: "spring", stiffness: 300, damping: 30 } },
     closed: { x: "-100%", transition: { type: "spring", stiffness: 300, damping: 30 } },
@@ -278,7 +278,7 @@ export default function DashboardLayout({
 
         {/* --- Conditional Rendering: Details Dropdown OR Navigation --- */}
         {isDetailsOpen ? (
-          // --- Details Dropdown (Content from HEAD) ---
+          // --- Details Dropdown ---
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -297,7 +297,7 @@ export default function DashboardLayout({
                 <Image
                   src="/institute-avatar.png"
                   alt="User avatar"
-                  className="block mx-auto w-fit rounded-full" // Added rounded-full
+                  className="block mx-auto w-fit rounded-[12px]" // Added rounded-full
                   width={100}
                   height={100}
                 />
