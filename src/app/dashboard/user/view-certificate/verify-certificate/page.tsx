@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import DashboardLayout from "@/components/dashboard/exam/components/new-dashboard-layout";
-import CertificateView from "@/components/dashboard/user/certificate-view";
+import VerificationSection from "@/components/dashboard/user/verification-section";
 
-export default function ViewCertificate() {
+export default function VerifyCertificate() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -27,15 +27,15 @@ export default function ViewCertificate() {
   };
 
   return (
-    <DashboardLayout title="Certificates" activePage="certificates">
+    <DashboardLayout title="Verify Certificate" activePage="certificates">
       {/* Animated Container */}
       <motion.div
         initial="hidden"
         animate={isLoaded ? "visible" : "hidden"}
         variants={containerVariants}
       >
-        <div className="container mx-auto font-ubuntu py-6">
-          <CertificateView />
+        <div className="container mx-auto font-ubuntu py-6 bg-[#081028]">
+          <VerificationSection />
         </div>
       </motion.div>
     </DashboardLayout>
