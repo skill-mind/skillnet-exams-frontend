@@ -30,6 +30,21 @@ export const StatCard = ({ icon, count, label }: { icon: string; count: number; 
     </motion.div>
 );
 
+// Stats Card 2
+export const StatCard2 = ({ icon, count, label }: { icon: string; count: number; label: string }) => (
+    <motion.div 
+        className="bg-[#0B1739] p-4 rounded-l rounded-lg border-l-2 border-l-[#1D88FE] flex items-center"
+        whileHover={{ scale: 1.03 }}
+        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+    >
+        <div className="text-blue-500 mr-3"><Image alt={label} src={icon} width={40} height={40} /></div>
+        <div>
+            <div className="text-xl font-bold text-white">{count}</div>
+            <div className="text-xs text-gray-400">{label}</div>
+        </div>
+    </motion.div>
+);
+
 // Not Found Component
 const NotFound = ({ category }: { category: string }) => (
     <motion.div 
