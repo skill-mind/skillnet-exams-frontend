@@ -56,7 +56,6 @@ export default function PublishModal({ exam, onClose }: ExamDetailsModalProps) {
     setIsConfirmOpen(false)
     onClose()
     // You can also perform final publication logic here
-    console.log("Exam published!")
   }
 
   return (

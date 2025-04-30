@@ -26,6 +26,7 @@ export function Providers({ children }: { children: ReactNode }) {
       })}
       connectors={connectors}
       explorer={voyager}
+      autoConnect
     >
       {children}
     </StarknetConfig>
