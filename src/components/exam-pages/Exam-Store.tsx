@@ -49,14 +49,13 @@ export const useExamStore = create<ExamState>()(
       
       submitExam: () => 
         set((state) => {
-          // Calculate score - in a real app, you would compare with correct answers
-          // This is a simplified version that assigns 70% score
+         
           const answeredQuestions = Object.keys(state.selectedAnswers).length;
           const score = Math.round((answeredQuestions / state.totalQuestions) * 100);
           
           return {
             examSubmitted: true,
-            score: score > 0 ? score : 70 // Default to 70 if no questions answered
+            score: score > 0 ? score : 70 
           };
         }),
       

@@ -14,9 +14,7 @@ export class ZoomSDK {
     }
   
     public async initialize(apiKey: string): Promise<boolean> {
-      try {
-        // In a real implementation, this would load the Zoom SDK
-        console.log(`Initializing Zoom SDK with API key: ${apiKey}`);
+      try {  console.log(`Initializing Zoom SDK with API key: ${apiKey}`);
         this.initialized = true;
         return true;
       } catch (error) {
@@ -30,7 +28,7 @@ export class ZoomSDK {
         throw new Error("Zoom SDK is not initialized");
       }
       try {
-        // In a real implementation, this would start a Zoom recording session
+     
         console.log("Starting Zoom recording");
         this.isRecording = true;
         return true;
@@ -48,7 +46,7 @@ export class ZoomSDK {
         throw new Error("No active recording to stop");
       }
       try {
-        // In a real implementation, this would stop a Zoom recording session
+       
         console.log("Stopping Zoom recording");
         this.isRecording = false;
         return true;

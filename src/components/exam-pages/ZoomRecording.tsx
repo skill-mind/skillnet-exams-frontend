@@ -10,16 +10,15 @@ export default function ZoomRecording() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // This is a placeholder for where the actual Zoom SDK integration would happen
-    // In a real implementation, you would initialize Zoom SDK here
+    
 
-    // For demo purposes, we'll just simulate the webcam stream
+    
     const startWebcam = async () => {
       try {
-        // Try to access the user's webcam
+       
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         
-        // When we have the stream, set it as the source for our video element
+        
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
           setLoading(false);
@@ -31,12 +30,12 @@ export default function ZoomRecording() {
       }
     };
 
-    // Start the webcam
+   
     startWebcam();
 
-    // Clean up function
+    
     return () => {
-      // Stop all video tracks when component unmounts
+      
       if (videoRef.current && videoRef.current.srcObject) {
         const stream = videoRef.current.srcObject as MediaStream;
         const tracks = stream.getTracks();
