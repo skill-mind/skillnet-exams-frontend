@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
+    "@radix-ui/react-checkbox": "^1.3.1",
     "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-progress": "^1.1.6",
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-tabs": "^1.1.3",
     "@starknet-react/chains": "^3.1.2",
@@ -31,9 +33,11 @@
     "react-hot-toast": "^2.5.2",
     "react-icons": "^5.5.0",
     "sharp": "^0.33.5",
+    "sonner": "^2.0.3",
     "starknet": "^6.23.1",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^5.0.4"
   },
   "devDependencies": {
     "@types/node": "^20",
