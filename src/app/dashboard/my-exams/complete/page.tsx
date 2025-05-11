@@ -17,7 +17,7 @@ export default function ExamCompletePage() {
 
   const handleClose = () => {
     resetExam();
-    window.location.href = '/dashboard/my-exams'; 
+    window.location.href = '/dashboard'; 
   };
 
   const handleViewCertificate = () => {
