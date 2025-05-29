@@ -1,39 +1,40 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { Users, BookOpen, Award, Activity } from "lucide-react"
-import AdminDashboardLayout from "@/components/dashboard/admin/layout/admin-dashboard-layout"
-import { StatCard } from "@/components/dashboard/admin/components/stat-card"
-import { RecentExamsCard } from "@/components/dashboard/admin/components/recent-exams-card"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Users, BookOpen, Award, Activity, Rows3 } from "lucide-react";
+import AdminDashboardLayout from "@/components/dashboard/admin/layout/admin-dashboard-layout";
+import { StatCard } from "@/components/dashboard/admin/components/stat-card";
+import { RecentExamsCard } from "@/components/dashboard/admin/components/recent-exams-card";
 
 // Dashboard stats with proper LucideIcon types
 const dashboardStats = [
   {
     title: "Total Exams",
     value: "2",
-    icon: BookOpen,
+    imgSrc: "/license.svg",
     color: "bg-[#1E3A8A]",
   },
   {
     title: "Active Exams",
     value: "23",
-    icon: Activity,
+    imgSrc: "/license.svg",
     color: "bg-[#059669]",
   },
   {
     title: "Total Users",
     value: "12",
-    icon: Users,
+    imgSrc: "/certificate.svg",
     color: "bg-[#7C3AED]",
   },
   {
     title: "Certificates Issued",
     value: "12",
-    icon: Award,
+    imgSrc: "/certificate.svg",
     color: "bg-[#DC2626]",
   },
-]
+];
+
 
 const recentExams = [
   {
@@ -57,17 +58,17 @@ const recentExams = [
     status: "ongoing" as const,
     avatar: "/placeholder.svg?height=40&width=40",
   },
-]
+];
 
 function AdminDashboard() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return <div className="min-h-screen bg-[#081028]" />
+    return <div className="min-h-screen bg-[#081028]" />;
   }
 
   return (
@@ -96,7 +97,7 @@ function AdminDashboard() {
         <RecentExamsCard exams={recentExams} />
       </div>
     </AdminDashboardLayout>
-  )
+  );
 }
 
-export default AdminDashboard
+export default AdminDashboard;

@@ -9,15 +9,15 @@ import Link from "next/link"
 
 // Admin-specific icons (using same style as institution)
 import DashboardIcon from "../../../../../public/dashboard-square.svg"
-import ExamsTakenIcon from "../../../../../public/notebook.svg"
-import OngoingExamsIcon from "../../../../../public/pencil-edit.svg"
-import RegistrationIcon from "../../../../../public/license.svg"
-import InstitutionsIcon from "../../../../../public/certificate.svg"
+import ExamsTakenIcon from "../../../../../public/license-draft.svg"
+import OngoingExamsIcon from "../../../../../public/license.svg"
+import RegistrationIcon from "../../../../../public/new-releases.svg"
+import InstitutionsIcon from "../../../../../public/new-releases.svg"
 import UsersIcon from "../../../../../public/Ellipse 43.svg"
 import HelpIcon from "../../../../../public/help-square.svg"
 import SkillNetLogo from "../../../../../public/skillnet-white logo.png"
 import MenuCollapseIcon from "../../../../../public/menu-collapse.svg"
-import UserIcon from "../../../../../public/Ellipse 43.svg"
+import UserIcon from "../../../../../public/new-releases.svg"
 
 interface AdminLayoutProps {
   children: ReactNode
@@ -103,7 +103,7 @@ export default function AdminDashboardLayout({ children, title, activePage }: Ad
     {
       key: "Users",
       label: "Users",
-      icon: UsersIcon,
+      icon: UserIcon,
       href: "/dashboard/admin/users",
     },
   ]
