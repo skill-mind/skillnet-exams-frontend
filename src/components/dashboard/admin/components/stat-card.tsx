@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import type { LucideIcon } from "lucide-react"
+import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
 
 interface StatCardProps {
   data: {
-    title: string
-    value: string
-    icon: LucideIcon
-    color: string
-  }
-  index: number
+    title: string;
+    value: string;
+    icon: LucideIcon;
+    color: string;
+  };
+  index: number;
 }
 
 export function StatCard({ data, index }: StatCardProps) {
-  const IconComponent = data.icon
+  const IconComponent = data.icon;
 
   return (
     <motion.div
@@ -22,17 +22,15 @@ export function StatCard({ data, index }: StatCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
       whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-      className="bg-[#1E3A8A] rounded-lg p-6 border-l-4 border-[#3B82F6]"
+      className="bg-[#0B1739] rounded-e-xl p-3 border-l-[2px] border-[#1FACAA]"
     >
-      <div className="flex items-center justify-between">
-        <div>
-          <div className="flex items-center space-x-3 mb-2">
-            <IconComponent className="w-8 h-8 text-white" />
-            <span className="text-4xl font-bold text-white">{data.value}</span>
-          </div>
-          <p className="text-gray-300 text-sm">{data.title}</p>
+      <div className="flex space-x-3 w-fit h-fit">
+        <IconComponent className="w-10 h-10 text-white" />
+        <div className="flex flex-col items-start space-y-2 mb-2">
+          <span className="text-4xl font-bold text-white">{data.value}</span>
+          <span className="text-gray-300 text-sm !ml-0">{data.title}</span>
         </div>
       </div>
     </motion.div>
-  )
+  );
 }

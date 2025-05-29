@@ -86,7 +86,7 @@ function AdminDashboard() {
         </motion.div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 w-fit">
           {dashboardStats.map((stat, index) => (
             <StatCard key={stat.title} data={stat} index={index} />
           ))}
