@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import { Users, BookOpen, Award, Activity, Rows3 } from "lucide-react";
 import AdminDashboardLayout from "@/components/dashboard/admin/layout/admin-dashboard-layout";
 import { StatCard } from "@/components/dashboard/admin/components/stat-card";
 import { RecentExamsCard } from "@/components/dashboard/admin/components/recent-exams-card";
+import { Providers } from "@/components/Providers";
+import { WalletProvider } from "@/components/WalletProvider";
 
 // Dashboard stats with proper LucideIcon types
 const dashboardStats = [
@@ -34,7 +36,6 @@ const dashboardStats = [
     color: "bg-[#DC2626]",
   },
 ];
-
 
 const recentExams = [
   {
@@ -72,31 +73,37 @@ function AdminDashboard() {
   }
 
   return (
-    <AdminDashboardLayout title="Dashboard" activePage="Dashboard">
-      <div className="space-y-6">
-        {/* Welcome Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8"
-        >
-          <h2 className="text-2xl font-semibold text-white mb-2">
-            For, <span className="text-white">Admin</span>
-          </h2>
-        </motion.div>
+    <Providers>
+      <WalletProvider>
+        <Suspense fallback={<div>Loading...</div>}>
+          <AdminDashboardLayout title="Dashboard" activePage="Dashboard">
+            <div className="space-y-6">
+              {/* Welcome Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mb-8"
+              >
+                <h2 className="text-2xl font-semibold text-white mb-2">
+                  For, <span className="text-white">Admin</span>
+                </h2>
+              </motion.div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 w-fit">
-          {dashboardStats.map((stat, index) => (
-            <StatCard key={stat.title} data={stat} index={index} />
-          ))}
-        </div>
+              {/* Stats Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 w-fit">
+                {dashboardStats.map((stat, index) => (
+                  <StatCard key={stat.title} data={stat} index={index} />
+                ))}
+              </div>
 
-        {/* Recent Exams Section */}
-        <RecentExamsCard exams={recentExams} />
-      </div>
-    </AdminDashboardLayout>
+              {/* Recent Exams Section */}
+              <RecentExamsCard exams={recentExams} />
+            </div>
+          </AdminDashboardLayout>
+        </Suspense>
+      </WalletProvider>
+    </Providers>
   );
 }
 
