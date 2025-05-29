@@ -30,8 +30,12 @@ export function StatCard({ data, index }: StatCardProps) {
         />
 
         <div className="flex flex-col items-start space-y-2 mb-2">
-          <span className="text-3xl lg:text-4xl font-bold text-white">{data.value}</span>
-          <span className="text-gray-300 text-xs lg:text-sm !ml-0">{data.title}</span>
+          <span className="text-3xl lg:text-4xl font-bold text-white">
+            {data.value}
+          </span>
+          <span className="text-gray-300 text-xs lg:text-sm !ml-0">
+            {data.title}
+          </span>
         </div>
       </div>
     </motion.div>

@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 interface RecentExam {
-  id: number
-  name: string
-  institution: string
-  status: "ongoing" | "completed"
-  avatar: string
+  id: number;
+  name: string;
+  institution: string;
+  status: "ongoing" | "completed";
+  avatar: string;
 }
 
 interface RecentExamsCardProps {
-  exams: RecentExam[]
+  exams: RecentExam[];
 }
 
 export function RecentExamsCard({ exams }: RecentExamsCardProps) {
@@ -24,7 +24,9 @@ export function RecentExamsCard({ exams }: RecentExamsCardProps) {
     >
       <div className="mb-6">
         <h3 className="text-xl font-semibold text-white mb-3">Recent Exams</h3>
-        <p className="text-[#AEB9E1] text-sm">Recently Created And Completed Exams</p>
+        <p className="text-[#AEB9E1] text-sm">
+          Recently Created And Completed Exams
+        </p>
       </div>
 
       <div className="space-y-4">
@@ -39,7 +41,9 @@ export function RecentExamsCard({ exams }: RecentExamsCardProps) {
           >
             <div className="flex items-center space-x-4">
               <div className="w-10 h-10 bg-[#D9D9D9] rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-medium">{exam.name.charAt(0)}</span>
+                <span className="text-white text-sm font-medium">
+                  {exam.name.charAt(0)}
+                </span>
               </div>
               <div>
                 <h4 className="text-white font-medium">{exam.name}</h4>
@@ -49,7 +53,9 @@ export function RecentExamsCard({ exams }: RecentExamsCardProps) {
             <motion.span
               whileHover={{ scale: 1.05 }}
               className={`px-2 py-1 rounded-full text-xs font-medium ${
-                exam.status === "ongoing" ? " border-[#1FACAA] text-white border " : "bg-[#1FACAA] text-white"
+                exam.status === "ongoing"
+                  ? " border-[#1FACAA] text-white border "
+                  : "bg-[#1FACAA] text-white"
               }`}
             >
               {exam.status === "ongoing" ? "Ongoing" : "Completed"}
@@ -58,5 +64,5 @@ export function RecentExamsCard({ exams }: RecentExamsCardProps) {
         ))}
       </div>
     </motion.div>
-  )
+  );
 }

@@ -1,21 +1,25 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { motion } from "framer-motion"
+import type React from "react";
+import { motion } from "framer-motion";
 
 interface Column {
-  key: string
-  label: string
-  render?: (value: any, row: any) => React.ReactNode
+  key: string;
+  label: string;
+  render?: (value: any, row: any) => React.ReactNode;
 }
 
 interface DataTableProps {
-  columns: Column[]
-  data: any[]
-  emptyMessage?: string
+  columns: Column[];
+  data: any[];
+  emptyMessage?: string;
 }
 
-export function DataTable({ columns, data, emptyMessage = "No data available" }: DataTableProps) {
+export function DataTable({
+  columns,
+  data,
+  emptyMessage = "No data available",
+}: DataTableProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,7 +32,10 @@ export function DataTable({ columns, data, emptyMessage = "No data available" }:
           <thead>
             <tr className="border-b border-[#31283A] bg-[#0B1739]">
               {columns.map((column) => (
-                <th key={column.key} className="text-left py-4 px-4 text-[#AEB9E1] font-medium">
+                <th
+                  key={column.key}
+                  className="text-left py-4 px-4 text-[#AEB9E1] font-medium"
+                >
                   {column.label}
                 </th>
               ))}
@@ -45,7 +52,9 @@ export function DataTable({ columns, data, emptyMessage = "No data available" }:
               >
                 {columns.map((column) => (
                   <td key={column.key} className="py-4 px-4 text-white">
-                    {column.render ? column.render(row[column.key], row) : row[column.key]}
+                    {column.render
+                      ? column.render(row[column.key], row)
+                      : row[column.key]}
                   </td>
                 ))}
               </motion.tr>
@@ -60,5 +69,5 @@ export function DataTable({ columns, data, emptyMessage = "No data available" }:
         </div>
       )}
     </motion.div>
-  )
+  );
 }

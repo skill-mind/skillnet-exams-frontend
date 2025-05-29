@@ -5,7 +5,6 @@ import AdminDashboardLayout from "@/components/dashboard/admin/layout/admin-dash
 import { DataTable } from "@/components/dashboard/admin/components/data-table";
 import { examHistory } from "@/data/admin-mock-data";
 
-
 function ExamsTaken() {
   const [mounted, setMounted] = useState(false);
 

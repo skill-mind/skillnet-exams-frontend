@@ -2,7 +2,6 @@
 
 import AdminDashboardLayout from "@/components/dashboard/admin/layout/admin-dashboard-layout";
 
-
 function Registration() {
   return (
     <AdminDashboardLayout title="Registration" activePage="Registration">

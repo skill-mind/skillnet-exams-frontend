@@ -2,7 +2,6 @@
 
 import AdminDashboardLayout from "@/components/dashboard/admin/layout/admin-dashboard-layout";
 
-
 function Institutions() {
   return (
     <AdminDashboardLayout title="Institutions" activePage="Institutions">

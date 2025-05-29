@@ -9,7 +9,7 @@ export const examHistory = [
     date: "12th Dec, 2025",
     score: "90/100",
     status: "Passed",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const examHistory = [
     date: "12th Dec, 2025",
     score: "85/100",
     status: "Passed",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ export const examHistory = [
     date: "12th Dec, 2025",
     score: "39/100",
     status: "Failed",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ export const examHistory = [
     date: "12th Dec, 2025",
     score: "78/100",
     status: "Passed",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 5,
@@ -49,7 +49,7 @@ export const examHistory = [
     date: "12th Dec, 2025",
     score: "78/100",
     status: "Passed",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 6,
@@ -59,7 +59,7 @@ export const examHistory = [
     date: "12th Dec, 2025",
     score: "78/100",
     status: "Passed",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 7,
@@ -69,7 +69,7 @@ export const examHistory = [
     date: "12th Dec, 2025",
     score: "78/100",
     status: "Passed",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 8,
@@ -79,7 +79,7 @@ export const examHistory = [
     date: "12th Dec, 2025",
     score: "78/100",
     status: "Passed",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 9,
@@ -89,7 +89,7 @@ export const examHistory = [
     date: "12th Dec, 2025",
     score: "78/100",
     status: "Passed",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
 ];
 
@@ -103,7 +103,7 @@ export const ongoingExams = [
     date: "12th Dec, 2025",
     startTime: "09:00 AM",
     status: "In Progress",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 2,
@@ -113,7 +113,7 @@ export const ongoingExams = [
     date: "15th Dec, 2025",
     startTime: "10:00 AM",
     status: "Scheduled",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 3,
@@ -123,7 +123,7 @@ export const ongoingExams = [
     date: "20th Dec, 2025",
     startTime: "11:30 AM",
     status: "Scheduled",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 4,
@@ -133,7 +133,7 @@ export const ongoingExams = [
     date: "22nd Dec, 2025",
     startTime: "01:00 PM",
     status: "Pending",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 5,
@@ -143,7 +143,7 @@ export const ongoingExams = [
     date: "25th Dec, 2025",
     startTime: "02:30 PM",
     status: "In Progress",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 6,
@@ -153,7 +153,7 @@ export const ongoingExams = [
     date: "28th Dec, 2025",
     startTime: "08:00 AM",
     status: "Scheduled",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 7,
@@ -163,7 +163,7 @@ export const ongoingExams = [
     date: "30th Dec, 2025",
     startTime: "03:00 PM",
     status: "Planned",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 8,
@@ -173,7 +173,7 @@ export const ongoingExams = [
     date: "02nd Jan, 2026",
     startTime: "09:15 AM",
     status: "Pending",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
   {
     id: 9,
@@ -183,6 +183,6 @@ export const ongoingExams = [
     date: "05th Jan, 2026",
     startTime: "10:45 AM",
     status: "In Progress",
-    options: true,
+    options: <Ellipsis className="w-4 h-4 text-[#AEB9E1] cursor-pointer" />,
   },
 ];

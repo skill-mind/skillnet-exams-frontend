@@ -1,24 +1,21 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import AdminDashboardLayout from "@/components/dashboard/admin/layout/admin-dashboard-layout"
-import { DataTable } from "@/components/dashboard/admin/components/data-table"
-import { ongoingExams } from "@/data/admin-mock-data"
-
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import AdminDashboardLayout from "@/components/dashboard/admin/layout/admin-dashboard-layout";
+import { DataTable } from "@/components/dashboard/admin/components/data-table";
+import { ongoingExams } from "@/data/admin-mock-data";
 
 function OngoingExams() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return <div className="min-h-screen bg-[#081028]" />
+    return <div className="min-h-screen bg-[#081028]" />;
   }
-
-
 
   return (
     <AdminDashboardLayout
@@ -43,13 +40,13 @@ function OngoingExams() {
             { key: "date", label: "Date" },
             { key: "startTime", label: "Start Time" },
             { key: "status", label: "Status" },
-            { key: "options", label: ""},
+            { key: "options", label: "" },
           ]}
           data={ongoingExams}
         />
       </div>
     </AdminDashboardLayout>
-  )
+  );
 }
 
-export default OngoingExams
+export default OngoingExams;

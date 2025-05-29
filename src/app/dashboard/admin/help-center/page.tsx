@@ -2,7 +2,6 @@
 
 import AdminDashboardLayout from "@/components/dashboard/admin/layout/admin-dashboard-layout";
 
-
 function HelpCenter() {
   return (
     <AdminDashboardLayout title="HelpCenter" activePage="Help-Center">
