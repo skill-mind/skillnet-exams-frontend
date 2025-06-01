@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
 import AnimationWrapper from "@/motion/Animation-wrapper";
+import { useWalletContext } from "./WalletProvider";
+import { useRouter } from "next/navigation";
 
 interface WalletOption {
   id: string;
@@ -18,38 +20,35 @@ interface WalletConnectModalProps {
   onSelect: (wallet: string) => void;
 }
 
-const walletOptions: WalletOption[] = [
-  {
-    id: "braavos",
-    name: "Braavos",
-    icon: "/landing/Bravologo.svg",
-  },
-  {
-    id: "argent-mobile",
-    name: "Argent Mobile",
-    icon: "/landing/Argentlogo.svg",
-  },
-  {
-    id: "argent-web",
-    name: "Argent Web",
-    icon: "/landing/Argentlogo.svg",
-  },
-];
-
 export default function WalletConnectModal({
   isOpen,
   onClose,
-  onSelect,
 }: WalletConnectModalProps) {
   const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
+  const { connectors, connectAsync, account } = useWalletContext();
+  const router = useRouter();
+
 
   const handleSelect = (walletId: string) => {
     setSelectedWallet(walletId);
   };
 
-  const handleConfirm = () => {
-    if (selectedWallet) {
-      onSelect(selectedWallet);
+  // ② On confirm, look up the connector object and call connectWallet
+  const handleConfirm = async () => {
+    if (!selectedWallet) return;
+
+    const connector = connectors.find((c) => c.id === selectedWallet);
+    if (!connector) {
+      console.error("Connector not found:", selectedWallet);
+      return;
+    }
+
+    try {
+      await connectAsync({ connector }); // ■ await the wallet prompt
+      router.push("/role"); // ■ now safe to navigate
+      onClose();
+    } catch (err) {  
+      console.error("Wallet connection failed:", err); // ■ handle rejections
     }
   };
 
@@ -78,6 +77,19 @@ export default function WalletConnectModal({
     visible: { opacity: 1 },
     exit: { opacity: 0 },
   };
+
+  // helper to get icon source
+  function getIconSource(
+    icon: string | { dark: string; light: string }
+  ): string {
+    if (typeof icon === "string") {
+      // If it's a string, use it directly
+      return icon;
+    } else {
+      // If it's an object, use the dark variant (or light, as needed)
+      return icon.dark; // Or icon.light, depending on your theme
+    }
+  }
 
   return (
     <AnimatePresence>
@@ -116,9 +128,9 @@ export default function WalletConnectModal({
             </p>
 
             <div className="space-y-3 mb-6">
-              {walletOptions.map((wallet, index) => (
+              {connectors.map((wallet, index) => (
                 <AnimationWrapper
-                  key={wallet.id}
+                  key={wallet?.id}
                   variant="slideRight"
                   delay={index * 0.1}
                 >
@@ -135,7 +147,7 @@ export default function WalletConnectModal({
                     >
                       <div className="">
                         <Image
-                          src={wallet.icon || "/placeholder.svg"}
+                          src={getIconSource(wallet.icon)}
                           alt={wallet.name}
                           width={30}
                           height={30}
@@ -149,17 +161,18 @@ export default function WalletConnectModal({
               ))}
             </div>
 
+            {/* ③ Confirmation button */}
             <AnimationWrapper variant="slideUp" delay={0.3}>
               <button
+                onClick={handleConfirm}
+                disabled={!selectedWallet}
                 className={`w-full py-3 rounded-full text-white font-medium transition-colors ${
                   selectedWallet
                     ? "bg-teal-500 hover:bg-teal-600"
                     : "bg-gray-700 cursor-not-allowed"
                 }`}
-                onClick={handleConfirm}
-                disabled={!selectedWallet}
               >
-                Select
+                Connect
               </button>
             </AnimationWrapper>
           </motion.div>
