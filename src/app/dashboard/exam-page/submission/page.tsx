@@ -1,11 +1,11 @@
 import React from "react";
-import ExampPageHeader from "@/components/exam-page/header";
+import ExamHeaderDefault from "@/components/exam-page/exam-header-default";
 
 const ExamSubmissionPage = () => {
   return (
     <div className="flex flex-col bg-[#F1EFEF]">
       {/* Header */}
-      <ExampPageHeader />
+      <ExamHeaderDefault />
       {/* Content */}
       <main className="flex-1 px-6 py-10 space-y-6 container mx-auto">
         <div className=" rounded-md text-xl">

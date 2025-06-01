@@ -1,5 +1,5 @@
-import ExampPageHeader from "@/components/exam-page/header";
 import PreviewQuestions from "@/components/exam-page/exam-preview-questions";
+import ExamHeaderDefault from "@/components/exam-page/exam-header-default";
 
 const ExamPreviewPage = () => {
   // Generate 25 dummy questions: odd IDs answered, even IDs not answered
@@ -15,7 +15,7 @@ const ExamPreviewPage = () => {
   return (
     <div className="flex flex-col bg-[#F1EFEF]">
       {/* Header */}
-      <ExampPageHeader />
+      <ExamHeaderDefault/>
       {/* Content */}
       <main className="flex-1 px-6 py-10 space-y-6 container mx-auto">
         <PreviewQuestions questions={dummyQuestions} />
