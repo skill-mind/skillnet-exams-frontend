@@ -2,9 +2,9 @@ import React from "react";
 
 const EndExamPage = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-[#F1EFEF]">
       {/* Header */}
-      <header className="flex justify-between items-center px-6 py-4 border-b bg-white">
+      <header className="flex justify-between items-center px-6 py-4 border-b  border-[#C3C3C3]">
         <div>
           <h1 className="text-sm font-semibold text-[#060812]">Institutions Name</h1>
           <p className="text-sm text-[#595959]">Solidity Basic Exam</p>

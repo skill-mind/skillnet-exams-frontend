@@ -1,0 +1,72 @@
+import React from "react";
+
+const ExamSubmissionPage = () => {
+  return (
+    <div className="flex flex-col bg-[#F1EFEF]">
+      {/* Header */}
+      <header className="flex justify-between items-center px-6 py-4 border-b  border-[#C3C3C3] ">
+        <div>
+          <h1 className="text-sm font-semibold text-[#060812]">
+            Institutions Name
+          </h1>
+          <p className="text-sm text-[#595959]">Solidity Basic Exam</p>
+        </div>
+        <div className="flex items-center gap-6">
+          <p className="text-sm font-medium text-[#060812]">
+            14 of 24 Questions
+          </p>
+          <div className="w-36  rounded-full h-1">
+            <div className="bg-[#3C83F9] h-1 rounded-full w-[58%]"></div>
+          </div>
+          <div className="text-center">
+            <p className="text-sm font-semibold text-[#060812]">20:10 Min</p>
+            <p className="text-sm text-[#595959]">Time Left</p>
+          </div>
+          <button className="px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100">
+            Preview
+          </button>
+          <button className="px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100">
+            Finish
+          </button>
+        </div>
+      </header>
+
+      {/* Content */}
+      <main className="flex-1 px-6 py-10 space-y-6 container mx-auto">
+        <div className=" rounded-md text-xl">
+          <p className="rounded-md font-semibold text-[#060812] border border-[#C3C3C3] p-6 text-xl">
+            Are you sure you want to end the exam?
+          </p>
+        </div>
+
+        <div className=" rounded-md border border-[#C3C3C3]">
+          <p className="font-semibold text-[#060812]  border-b border-[#C3C3C3] p-6 text-xl">
+            Once you submit:
+          </p>
+          <ul className="list-disc py-3 flex flex-col gap-4 list-inside text-[#060812] space-y-1 pl-4">
+            <li>All answered questions will be recorded.</li>
+            <li>You cannot go back and make changes.</li>
+            <li>Your final score will be calculated immediately.</li>
+          </ul>
+        </div>
+
+        <div className=" rounded-md border border-[#C3C3C3]">
+          <p className="font-semibold text-[#060812]  border-b border-[#C3C3C3] p-6 text-xl">
+            If you still have time left, you can continue answering.
+          </p>
+          <ul className="list-disc py-3 flex flex-col gap-4 list-inside text-[#060812] space-y-1 pl-4">
+            <li>Click "Yes, Submit Exam" to finalize.</li>
+            <li>Click "Cancel" to go back.</li>
+          </ul>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="text-center py-4 border-t text-base font-semibold text-[#060812] bg-[#D3D3D3]">
+        Powered By SkillNet
+      </footer>
+    </div>
+  );
+};
+
+export default ExamSubmissionPage;
