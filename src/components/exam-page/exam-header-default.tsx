@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function ExamHeaderDefault() {
   return (
@@ -31,12 +32,16 @@ export default function ExamHeaderDefault() {
 
         {/* Action Buttons */}
         <div className="flex gap-2 sm:gap-4 w-full sm:w-auto">
-          <button className="flex-1 sm:flex-none px-4 sm:px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100">
-            Preview
-          </button>
-          <button className="flex-1 sm:flex-none px-4 sm:px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100">
-            Finish
-          </button>
+          <Link href="/dashboard/exam-page/preview">
+            <button className="flex-1 sm:flex-none px-4 sm:px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100">
+              Preview
+            </button>
+          </Link>
+          <Link href="/dashboard/exam-page/end-exam-page">
+            <button className="flex-1 sm:flex-none px-4 sm:px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100">
+              Finish
+            </button>
+          </Link>
         </div>
       </div>
     </header>

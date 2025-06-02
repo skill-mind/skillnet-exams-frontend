@@ -1,6 +1,7 @@
 import { ExamData } from "@/app/dashboard/exam-page/types/exam-data.types";
 import { Clock } from "lucide-react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function ExamPageHeader({
   examData,
@@ -72,18 +73,22 @@ export default function ExamPageHeader({
 
         {/* Action Buttons */}
         <div className="flex gap-2 sm:gap-4 w-full sm:w-auto">
-          <button
-            onClick={handlePreview}
-            className="flex-1 sm:flex-none px-4 sm:px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100 transition-colors"
-          >
-            Preview
-          </button>
-          <button
-            onClick={handleFinish}
-            className="flex-1 sm:flex-none px-4 sm:px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100 transition-colors"
-          >
-            Finish
-          </button>
+          <Link href="/dashboard/exam-page/preview">
+            <button
+              onClick={handlePreview}
+              className="flex-1 sm:flex-none px-4 sm:px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100 transition-colors"
+            >
+              Preview
+            </button>
+          </Link>
+          <Link href="/dashboard/exam-page/submission">
+            <button
+              onClick={handleFinish}
+              className="flex-1 sm:flex-none px-4 sm:px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100 transition-colors"
+            >
+              Finish
+            </button>
+          </Link>
         </div>
       </div>
     </header>
