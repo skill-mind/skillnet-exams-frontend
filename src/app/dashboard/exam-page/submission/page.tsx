@@ -1,7 +1,15 @@
+"use client";
 import React from "react";
 import ExamHeaderDefault from "@/components/exam-page/exam-header-default";
+import { useRouter } from "next/navigation";
+import { isMobile } from "react-device-detect";
 
 const ExamSubmissionPage = () => {
+  const router = useRouter();
+
+  if (isMobile) {
+    router.push("/dashboard/exam-page/mobile-not-allowed");
+  }
   return (
     <div className="flex flex-col bg-[#F1EFEF]">
       {/* Header */}
@@ -13,7 +21,6 @@ const ExamSubmissionPage = () => {
             Are you sure you want to end the exam?
           </p>
         </div>
-
         <div className=" rounded-md border border-[#C3C3C3]">
           <p className="font-semibold text-[#060812]  border-b border-[#C3C3C3] p-6 text-xl">
             Once you submit:
@@ -24,7 +31,6 @@ const ExamSubmissionPage = () => {
             <li>Your final score will be calculated immediately.</li>
           </ul>
         </div>
-
         <div className=" rounded-md border border-[#C3C3C3]">
           <p className="font-semibold text-[#060812]  border-b border-[#C3C3C3] p-6 text-xl">
             If you still have time left, you can continue answering.
@@ -35,7 +41,6 @@ const ExamSubmissionPage = () => {
           </ul>
         </div>
       </main>
-
       {/* Footer */}
       <footer className="text-center py-4 border-t text-base font-semibold text-[#060812] bg-[#D3D3D3]">
         Powered By SkillNet

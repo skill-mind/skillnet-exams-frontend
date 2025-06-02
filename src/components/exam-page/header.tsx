@@ -1,11 +1,11 @@
 import { ExamData } from "@/app/dashboard/exam-page/types/exam-data.types";
 import { Clock } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function ExamPageHeader({
   examData,
   currentQuestion,
   progress,
-  timeLeft,
   handlePreview,
   handleFinish,
   formatTime,
@@ -13,11 +13,29 @@ export default function ExamPageHeader({
   examData: ExamData;
   currentQuestion: number;
   progress: number;
-  timeLeft: number;
   handlePreview: () => void;
   handleFinish: () => void;
   formatTime: (seconds: number) => string;
 }) {
+  
+  const [timeLeft, setTimeLeft] = useState(examData.timeLimit * 60); // Convert to seconds
+
+  // Timer effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          // Auto-submit exam when time runs out
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 sm:px-6 py-4 border-b border-[#C3C3C3] bg-white">
       {/* Left Section: Institution + Exam Title */}

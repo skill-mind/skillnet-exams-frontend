@@ -1,11 +1,17 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Clock } from "lucide-react";
 import { ExamData } from "./types/exam-data.types";
 import ExamNavigation from "@/components/exam-page/exam-navigation";
 import ExamPageHeader from "@/components/exam-page/header";
 import ExamOptions from "@/components/exam-page/exam-options";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { isMobile } from "react-device-detect";
+
+const CameraFeed = dynamic(() => import("@/components/exam-page/camera-feed"), {
+  ssr: false,
+});
 
 // Dummy exam data
 
@@ -80,28 +86,16 @@ export const examData: ExamData = {
 };
 
 export default function ExamPage() {
+  const router = useRouter();
+
+  if (isMobile) {
+    router.push("/dashboard/exam-page/mobile-not-allowed");
+  }
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: number]: number;
   }>({});
-  const [timeLeft, setTimeLeft] = useState(examData.timeLimit * 60); // Convert to seconds
-  const [isRecording, setIsRecording] = useState(true);
-
-  // Timer effect
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          // Auto-submit exam when time runs out
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   // Format time display
   const formatTime = (seconds: number) => {
@@ -158,7 +152,6 @@ export default function ExamPage() {
         examData={examData}
         currentQuestion={currentQuestion}
         progress={progress}
-        timeLeft={timeLeft}
         handlePreview={handlePreview}
         handleFinish={handleFinish}
         formatTime={formatTime}
@@ -168,30 +161,37 @@ export default function ExamPage() {
       <div className="flex gap-6 p-6 max-w-7xl mx-auto">
         {/* Question Content */}
         <div className="flex-1">
-          {/* Instructions */}
-          <div className="mb-6">
-            <h2 className=" font-medium text-[#595959] mb-2 text-base">
-              Instructions
-            </h2>
-            <p className="text-black font-medium">Select The Correct Option.</p>
-          </div>
+          <div className="flex md:flex-row flex-col gap-6 justify-between">
+            <div className=" w-full">
+              {/* Instructions */}
+              <div className="mb-6">
+                <h2 className=" font-medium text-[#595959] mb-2 text-base">
+                  Instructions
+                </h2>
+                <p className="text-black font-medium">
+                  Select The Correct Option.
+                </p>
+              </div>
 
-          {/* Question */}
-          <div className=" mb-6">
-            <h3 className="text-base text-[#595959] font-medium mb-2">
-              Question {currentQuestion + 1}
-            </h3>
-            <p className="text-black text-base font-medium mb-6">
-              {currentQuestionData.question}
-            </p>
+              {/* Question */}
+              <div className=" mb-6">
+                <h3 className="text-base text-[#595959] font-medium mb-2">
+                  Question {currentQuestion + 1}
+                </h3>
+                <p className="text-black text-base font-medium mb-6">
+                  {currentQuestionData.question}
+                </p>
 
-            {/* Options */}
-            <ExamOptions
-              currentQuestionData={currentQuestionData}
-              selectedAnswers={selectedAnswers}
-              handleOptionSelect={handleOptionSelect}
-              currentQuestion={currentQuestion}
-            />
+                {/* Options */}
+                <ExamOptions
+                  currentQuestionData={currentQuestionData}
+                  selectedAnswers={selectedAnswers}
+                  handleOptionSelect={handleOptionSelect}
+                  currentQuestion={currentQuestion}
+                />
+              </div>
+            </div>
+            <CameraFeed />
           </div>
 
           {/* Navigation */}

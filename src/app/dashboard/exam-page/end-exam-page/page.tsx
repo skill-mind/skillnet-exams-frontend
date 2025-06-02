@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const EndExamPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#F1EFEF]">
