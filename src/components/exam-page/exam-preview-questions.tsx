@@ -1,12 +1,24 @@
 // PreviewQuestions.jsx
+
+"use client";
 import React from "react";
 import Link from "next/link";
+import CertificateModal from "@/components/dashboard/user/certificate-modal";
+import { useState } from "react";
 
 const PreviewQuestions = ({
   questions,
 }: {
   questions: Array<{ id: number; option: string; answered: boolean }>;
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const candidateData = {
+    examTitle: "Dummy Exam Title",
+    score: "85%",
+    date: "June 4, 2025",
+    candidateName: "John Doe",
+  };
+
   return (
     <div className="border border-[#C3C3C3] rounded-lg my-6 pb-6">
       {/* Title */}
@@ -65,13 +77,19 @@ const PreviewQuestions = ({
               Go back
             </button>
           </Link>
-          <Link href="/dashboard/exam-page/submission">
-            <button className="px-5 py-2 border border-[#060812] rounded-full text-sm font-medium text-[#060812] hover:bg-gray-100">
-              Submit
-            </button>
-          </Link>
+          <button
+            onClick={() => setIsOpen(true)}
+            className="px-5 py-2 border border-[#060812] rounded-full text-sm font-medium text-[#060812] hover:bg-gray-100"
+          >
+            Submit
+          </button>
         </div>
       </div>
+      <CertificateModal
+        candidateData={candidateData}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
     </div>
   );
 };

@@ -1,7 +1,9 @@
+"use client";
 import { ExamData } from "@/app/dashboard/exam-page/types/exam-data.types";
 import { Clock } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import CertificateModal from "@/components/dashboard/user/certificate-modal";
 
 export default function ExamPageHeader({
   examData,
@@ -18,8 +20,16 @@ export default function ExamPageHeader({
   handleFinish: () => void;
   formatTime: (seconds: number) => string;
 }) {
-  
   const [timeLeft, setTimeLeft] = useState(examData.timeLimit * 60); // Convert to seconds
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const dummyData = {
+    examTitle: "Frontend Development Exam",
+    score: "90%",
+    date: "June 4, 2025",
+    candidateName: "Ebube",
+  };
 
   // Timer effect
   useEffect(() => {
@@ -81,16 +91,19 @@ export default function ExamPageHeader({
               Preview
             </button>
           </Link>
-          <Link href="/dashboard/exam-page/submission">
-            <button
-              onClick={handleFinish}
-              className="flex-1 sm:flex-none px-4 sm:px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100 transition-colors"
-            >
-              Finish
-            </button>
-          </Link>
+          <button
+            onClick={() => setIsOpen(true)}
+            className="flex-1 sm:flex-none px-4 sm:px-6 py-2 border border-[#545A64] rounded-full text-[#060812] text-sm font-medium hover:bg-gray-100 transition-colors"
+          >
+            Finish
+          </button>
         </div>
       </div>
+      <CertificateModal
+        candidateData={dummyData}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
     </header>
   );
 }
