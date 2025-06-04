@@ -34,7 +34,7 @@ const Hero = () => {
 
           <AnimationWrapper variant="slideLeft" delay={0.3}>
             <Link
-              href="#learn-more"
+              href="#how-it-works"
               className="px-8 py-3 rounded-full border border-gray-700 text-white font-medium hover:bg-gray-800 transition-colors"
             >
               Learn More

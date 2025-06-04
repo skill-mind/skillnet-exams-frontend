@@ -17,22 +17,20 @@ export default function WalletDisconnectModal({
   onClose,
   onDisconnect,
 }: WalletDisconnectModalProps) {
-
-
   //pathname check
   const pathName = usePathname();
   const userDashboardPath = "/dashboard/user";
   const institutionDashboardPath = "/dashboard/institution";
 
   //router
-  const router = useRouter();
-      
+  // const router = useRouter();
+
   const handleDisconnect = () => {
     if (
       userDashboardPath === pathName ||
       institutionDashboardPath === pathName
     ) {
-      router.push("/"); // ■ now safe to navigate
+      window.location.href = "/"; // full reload
     }
     onDisconnect();
   };
@@ -122,4 +120,3 @@ export default function WalletDisconnectModal({
     </AnimatePresence>
   );
 }
- 

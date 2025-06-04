@@ -60,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html className="scroll-smooth" lang="en">
       <body className="bg-[#00031B] text-[#EAEDE7]">
         <Providers>
           <WalletProvider>{children}</WalletProvider>

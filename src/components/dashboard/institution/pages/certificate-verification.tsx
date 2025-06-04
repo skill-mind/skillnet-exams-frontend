@@ -30,7 +30,7 @@ export default function CertificateVerification() {
   };
 
   return (
-    <div className="w-full min-h-screen rounded-[12px] p-[20px] flex flex-col gap-[60px] bg-[#081028]">
+    <div className="w-full min-h-screen rounded-[12px] p-[20px] flex flex-col gap-[60px] bg-[#081028] no-scrollbar">
       {/* Input Section */}
       <div className="flex flex-col gap-[16px]">
         <label

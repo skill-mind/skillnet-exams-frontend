@@ -213,7 +213,7 @@ export default function InstitutionLayout({
         id="sidebar"
         className={cn(
           "fixed lg:relative z-40 h-full bg-[#00031B]",
-          "w-[278px] md:w-[260px] p-5",
+          "w-[278px] md:w-[260px] p-5 overflow-y-auto no-scrollbar",
           !isMobile && "left-0"
         )}
         initial={isInitialRender || !isMobile ? false : "closed"}
@@ -298,121 +298,130 @@ export default function InstitutionLayout({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="p-3 border border-[#343B4F] rounded-[12px]"
+            className="p-3 border border-[#343B4F] rounded-[12px] "
           >
-            <div className="mb-4">
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.1, duration: 0.3 }}
-                className="mb-5 relative w-fit mx-auto"
-              >
-                <Image
-                  src="/institute-avatar.png"
-                  alt="avatar"
-                  className="block mx-auto w-fit"
-                  width={100}
-                  height={100}
-                />
-                <button className="absolute bottom-0 right-0  w-fit">
-                  <input
-                    type="file"
-                    className="absolute cursor-pointer inset-0 opacity-0"
-                  />
+            <div>
+              <div className="mb-4">
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.1, duration: 0.3 }}
+                  className="mb-5 relative w-fit mx-auto"
+                >
                   <Image
-                    src="/institute-edit.svg"
-                    alt="edit"
-                    className="cursor-pointer"
-                    width={38}
-                    height={38}
+                    src="/institute-avatar.png"
+                    alt="avatar"
+                    className="block mx-auto w-fit"
+                    width={100}
+                    height={100}
                   />
-                </button>
-              </motion.div>
-              <div className="mb-6 text-center">
-                <h2 className="text-[18px] font-semibold mb-2">
-                  Institution's name
-                </h2>
-                <p className="text-xs text-[#AEB9E1]">Institution@gmail.com</p>
-              </div>
-              <p
-                className="text-xs text-center truncate"
-                title={account || "Not connected"}
-              >
-                {account || "Not connected"}
-              </p>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
-              className="bg-[#0A1330] p-6 rounded-2xl flex flex-col gap-[18px] mb-6"
-            >
-              <div className="flex justify-between items-center">
-                <h3>Total Balance</h3>
-                <Image src="/hidden.svg" alt="hidden" width={14} height={14} />
-              </div>
-              <div className="text-center">$0</div>
-              <motion.div
-                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Link
-                  href="/"
-                  className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
-                >
-                  View Details
-                </Link>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.4 }}
-            >
-              <div>
-                <p className="mb-4 text-xs font-medium">Records</p>
-                <div className="flex justify-between items-center border-b border-[#AEB9E1] pb-2 mb-2">
-                  <div className="text-[#AEB9E1] underline text-xs">
-                    Created Exams
-                  </div>
-                  <div className="text-xs font-medium">2</div>
+                  <button className="absolute bottom-0 right-0  w-fit">
+                    <input
+                      type="file"
+                      className="absolute cursor-pointer inset-0 opacity-0"
+                    />
+                    <Image
+                      src="/institute-edit.svg"
+                      alt="edit"
+                      className="cursor-pointer"
+                      width={38}
+                      height={38}
+                    />
+                  </button>
+                </motion.div>
+                <div className="mb-6 text-center">
+                  <h2 className="text-[18px] font-semibold mb-2">
+                    Institution's name
+                  </h2>
+                  <p className="text-xs text-[#AEB9E1]">
+                    Institution@gmail.com
+                  </p>
                 </div>
-              </div>
-              <div className="text-[#AEB9E1] underline text-xs">
-                Exam History
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.4 }}
-              className="flex flex-col gap-4 mt-6"
-            >
-              <motion.div
-                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <button
-                  className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
-                  onClick={() => setIsEditProfileModalOpen(true)}
+                <p
+                  className="text-xs text-center truncate"
+                  title={account || "Not connected"}
                 >
-                  Edit Profile
-                </button>
+                  {account || "Not connected"}
+                </p>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+                className="bg-[#0A1330] p-6 rounded-2xl flex flex-col gap-[18px] mb-6"
+              >
+                <div className="flex justify-between items-center">
+                  <h3>Total Balance</h3>
+                  <Image
+                    src="/hidden.svg"
+                    alt="hidden"
+                    width={14}
+                    height={14}
+                  />
+                </div>
+                <div className="text-center">$0</div>
+                <motion.div
+                  whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Link
+                    href="/"
+                    className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
+                  >
+                    View Details
+                  </Link>
+                </motion.div>
               </motion.div>
 
-              <motion.button
-                whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
-                whileTap={{ scale: 0.98 }}
-                disabled={isDisconnectModalOpen || !account}
-                onClick={() => setIsDisconnectModalOpen(true)}
-                className="border rounded-full disabled:opacity-50 text-xs p-[12px] w-full block text-center bg-[#1FACAA] border-[transparent] transition-opacity duration-150 ease-in-out"
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.4 }}
               >
-                Disconnect Wallet
-              </motion.button>
-            </motion.div>
+                <div>
+                  <p className="mb-4 text-xs font-medium">Records</p>
+                  <div className="flex justify-between items-center border-b border-[#AEB9E1] pb-2 mb-2">
+                    <div className="text-[#AEB9E1] underline text-xs">
+                      Created Exams
+                    </div>
+                    <div className="text-xs font-medium">2</div>
+                  </div>
+                </div>
+                <div className="text-[#AEB9E1] underline text-xs">
+                  Exam History
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.4 }}
+                className="flex flex-col gap-4 mt-6"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <button
+                    className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out"
+                    onClick={() => setIsEditProfileModalOpen(true)}
+                  >
+                    Edit Profile
+                  </button>
+                </motion.div>
+
+                <motion.button
+                  whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
+                  whileTap={{ scale: 0.98 }}
+                  disabled={isDisconnectModalOpen || !account}
+                  onClick={() => setIsDisconnectModalOpen(true)}
+                  className="border rounded-full disabled:opacity-50 text-xs p-[12px] w-full block text-center bg-[#1FACAA] border-[transparent] transition-opacity duration-150 ease-in-out"
+                >
+                  Disconnect Wallet
+                </motion.button>
+              </motion.div>
+            </div>
           </motion.div>
         )) || (
           <nav className="mt-6">
@@ -573,7 +582,7 @@ export default function InstitutionLayout({
           {children}
         </motion.main>
       </motion.div>
-      
+
       {/* Modals */}
       <WalletDisconnectModal
         isOpen={isDisconnectModalOpen}

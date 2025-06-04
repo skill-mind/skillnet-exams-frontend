@@ -34,7 +34,7 @@ export default function ViewCertificate() {
         animate={isLoaded ? "visible" : "hidden"}
         variants={containerVariants}
       >
-        <div className="container mx-auto font-ubuntu py-6">
+        <div className="container mx-auto font-ubuntu py-6 no-scrollbar">
           <CertificateView />
         </div>
       </motion.div>

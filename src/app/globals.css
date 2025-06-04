@@ -14,6 +14,19 @@ body {
     rgb(var(--background-start-rgb)); */
 }
 
+section {
+  scroll-margin-top: 80px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
