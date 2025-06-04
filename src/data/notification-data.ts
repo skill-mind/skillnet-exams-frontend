@@ -1,4 +1,4 @@
-import type { Notification } from "@/components/dashboard/exam/components/notification-modal";
+import type { Notification } from "@/components/dashboard/exam/components/notification-modal-ui";
 
 export const notificationsData: Notification[] = [
   {
