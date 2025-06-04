@@ -6,8 +6,7 @@ import ExamNavigation from "@/components/exam-page/exam-navigation";
 import ExamPageHeader from "@/components/exam-page/header";
 import ExamOptions from "@/components/exam-page/exam-options";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
-import { isMobile } from "react-device-detect";
+import { useMobileRedirect } from "@/hooks/useMobileRedirect";
 
 const CameraFeed = dynamic(() => import("@/components/exam-page/camera-feed"), {
   ssr: false,
@@ -15,13 +14,8 @@ const CameraFeed = dynamic(() => import("@/components/exam-page/camera-feed"), {
 
 // Dummy exam data
 
-
 export default function ExamPage() {
-  const router = useRouter();
-
-  if (isMobile) {
-    router.push("/dashboard/exam-page/mobile-not-allowed");
-  }
+  useMobileRedirect("/dashboard/exam-page/mobile-not-allowed");
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<{

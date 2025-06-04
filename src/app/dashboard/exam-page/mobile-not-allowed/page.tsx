@@ -1,16 +1,11 @@
-"use client"
+"use client";
 import React from "react";
 import { AlertTriangle, Camera, Laptop, Mic, HelpCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { isMobile } from "react-device-detect";
 
 
 export default function MobileNotAllowedPage() {
-  const router = useRouter();
 
-  if (!isMobile) {
-    router.push("/dashboard");
-  }
+
   return (
     <main className="flex-1 px-6 py-10 space-y-6 container mx-auto max-w-3xl">
       <html></html>

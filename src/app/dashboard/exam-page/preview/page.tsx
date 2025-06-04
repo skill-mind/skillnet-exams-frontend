@@ -1,16 +1,11 @@
-
-"use client"
+"use client";
 import PreviewQuestions from "@/components/exam-page/exam-preview-questions";
 import ExamHeaderDefault from "@/components/exam-page/exam-header-default";
-import { useRouter } from "next/navigation";
-import { isMobile } from "react-device-detect";
+import { useMobileRedirect } from "@/hooks/useMobileRedirect";
 
 const ExamPreviewPage = () => {
-  const router = useRouter();
 
-  if (isMobile) {
-    router.push("/dashboard/exam-page/mobile-not-allowed");
-  }
+  useMobileRedirect("/dashboard/exam-page/mobile-not-allowed");
 
   // Generate 25 dummy questions: odd IDs answered, even IDs not answered
   const dummyQuestions = Array.from({ length: 25 }, (_, i) => {
@@ -25,7 +20,7 @@ const ExamPreviewPage = () => {
   return (
     <div className="flex flex-col bg-[#F1EFEF]">
       {/* Header */}
-      <ExamHeaderDefault/>
+      <ExamHeaderDefault />
       {/* Content */}
       <main className="flex-1 px-6 py-10 space-y-6 container mx-auto">
         <PreviewQuestions questions={dummyQuestions} />

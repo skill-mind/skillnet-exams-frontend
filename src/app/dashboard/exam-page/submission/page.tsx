@@ -1,15 +1,11 @@
 "use client";
 import React from "react";
 import ExamHeaderDefault from "@/components/exam-page/exam-header-default";
-import { useRouter } from "next/navigation";
-import { isMobile } from "react-device-detect";
+import { useMobileRedirect } from "@/hooks/useMobileRedirect";
 
 const ExamSubmissionPage = () => {
-  const router = useRouter();
+  useMobileRedirect("/dashboard/exam-page/mobile-not-allowed");
 
-  if (isMobile) {
-    router.push("/dashboard/exam-page/mobile-not-allowed");
-  }
   return (
     <div className="flex flex-col bg-[#F1EFEF]">
       {/* Header */}
