@@ -1,5 +1,6 @@
 // PreviewQuestions.jsx
 import React from "react";
+import Link from "next/link";
 
 const PreviewQuestions = ({
   questions,
@@ -59,12 +60,16 @@ const PreviewQuestions = ({
 
         {/* Buttons */}
         <div className="flex justify-end space-x-4 mt-6">
-          <button className="px-5 py-2 border border-[#060812] rounded-full text-sm font-medium text-[#060812] hover:bg-gray-100">
-            Go back
-          </button>
-          <button className="px-5 py-2 border border-[#060812] rounded-full text-sm font-medium text-[#060812] hover:bg-gray-100">
-            Submit
-          </button>
+          <Link href="/dashboard/exam-page">
+            <button className="px-5 py-2 border border-[#060812] rounded-full text-sm font-medium text-[#060812] hover:bg-gray-100">
+              Go back
+            </button>
+          </Link>
+          <Link href="/dashboard/exam-page/submission">
+            <button className="px-5 py-2 border border-[#060812] rounded-full text-sm font-medium text-[#060812] hover:bg-gray-100">
+              Submit
+            </button>
+          </Link>
         </div>
       </div>
     </div>
