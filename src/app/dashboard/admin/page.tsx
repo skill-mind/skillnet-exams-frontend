@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState, useEffect, Suspense } from "react"
-import { motion } from "framer-motion"
-import AdminDashboardLayout from "@/components/dashboard/admin/layout/admin-dashboard-layout"
-import { StatCard } from "@/components/dashboard/admin/components/stat-card"
-import { RecentExamsCard } from "@/components/dashboard/admin/components/recent-exams-card"
-import { useWalletContext } from "@/components/WalletProvider"
+import { useState, useEffect, Suspense } from "react";
+import { motion } from "framer-motion";
+import AdminDashboardLayout from "@/components/dashboard/admin/layout/admin-dashboard-layout";
+import { StatCard } from "@/components/dashboard/admin/components/stat-card";
+import { RecentExamsCard } from "@/components/dashboard/admin/components/recent-exams-card";
+import { useWalletContext } from "@/components/WalletProvider";
 
 // Dashboard stats with proper LucideIcon types
 const dashboardStats = [
@@ -33,7 +33,13 @@ const dashboardStats = [
     imgSrc: "/certificate.svg",
     color: "bg-[#DC2626]",
   },
-]
+  {
+    title: "Total Revenue",
+    value: "12",
+    imgSrc: "/certificate.svg",
+    color: "bg-[#DC2626]",
+  },
+];
 
 const recentExams = [
   {
@@ -57,35 +63,35 @@ const recentExams = [
     status: "ongoing" as const,
     avatar: "/placeholder.svg?height=40&width=40",
   },
-]
+];
 
 function AdminDashboard() {
-  const [mounted, setMounted] = useState(false)
-  const { account } = useWalletContext()
+  const [mounted, setMounted] = useState(false);
+  const { account } = useWalletContext();
   const [profileData, setProfileData] = useState({
     name: "Admin",
     email: "admin@skillnet.com",
-  })
+  });
 
   // Load profile data from localStorage when component mounts or account changes
   useEffect(() => {
-    setMounted(true)
+    setMounted(true);
 
     if (account) {
-      const savedProfile = localStorage.getItem(`profile-${account}`)
+      const savedProfile = localStorage.getItem(`profile-${account}`);
       if (savedProfile) {
         try {
-          const parsedProfile = JSON.parse(savedProfile)
+          const parsedProfile = JSON.parse(savedProfile);
           setProfileData({
             name: parsedProfile.name || "Admin",
             email: parsedProfile.email || "admin@skillnet.com",
-          })
+          });
         } catch (error) {
-          console.error("Failed to parse profile data:", error)
+          console.error("Failed to parse profile data:", error);
         }
       }
     }
-  }, [account])
+  }, [account]);
 
   // Listen for profile update events from the layout
   useEffect(() => {
@@ -94,25 +100,25 @@ function AdminDashboard() {
         setProfileData({
           name: event.detail.profileData.name,
           email: event.detail.profileData.email,
-        })
+        });
       }
-    }
+    };
 
-    window.addEventListener("profile-updated" as any, handleProfileUpdate)
+    window.addEventListener("profile-updated" as any, handleProfileUpdate);
 
     return () => {
-      window.removeEventListener("profile-updated" as any, handleProfileUpdate)
-    }
-  }, [])
+      window.removeEventListener("profile-updated" as any, handleProfileUpdate);
+    };
+  }, []);
 
   if (!mounted) {
-    return <div className="min-h-screen bg-[#081028]" />
+    return <div className="min-h-screen bg-[#081028]" />;
   }
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <AdminDashboardLayout title="Dashboard" activePage="Dashboard">
-        <div className="space-y-6">
+        <div className="space-y-6 no-scrollbar">
           {/* Welcome Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -126,7 +132,7 @@ function AdminDashboard() {
           </motion.div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 w-fit">
+          <div className="grid grid-cols-2 md:flex  gap-6 mb-8 w-fit ">
             {dashboardStats.map((stat, index) => (
               <StatCard key={stat.title} data={stat} index={index} />
             ))}
@@ -137,7 +143,7 @@ function AdminDashboard() {
         </div>
       </AdminDashboardLayout>
     </Suspense>
-  )
+  );
 }
 
-export default AdminDashboard
+export default AdminDashboard;

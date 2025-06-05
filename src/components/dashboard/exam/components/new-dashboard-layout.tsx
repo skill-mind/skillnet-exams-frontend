@@ -18,11 +18,12 @@ import MenuCollapseIcon from "../../../../../public/menu-collapse.svg";
 
 // Component/Context/Data Imports (Combined)
 import Link from "next/link";
-import EditProfileModal from "../../edit-profile-modal";           
-import WalletDisconnectModal from "@/components/Wallet-disconnect-modal"; 
-import { useWalletContext } from "@/components/WalletProvider";      
-import NotificationModal from "./notification-modal";               
-import { notificationsData } from "@/data/notification-data";       
+import EditProfileModal from "../../edit-profile-modal";
+import WalletDisconnectModal from "@/components/Wallet-disconnect-modal";
+import { useWalletContext } from "@/components/WalletProvider";
+import NotificationModal from "./notification-modal";
+import { notificationsData } from "@/data/notification-data";
+import { redirect } from "next/navigation";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -59,6 +60,7 @@ export default function DashboardLayout({
 
   const toggleNotification = () => {
     setNotificationOpen(!notificationOpen);
+    console.log("clicked");
   };
 
   const markAllAsRead = () => {
@@ -118,7 +120,6 @@ export default function DashboardLayout({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isMobile, sidebarOpen]);
 
-
   // --- Navigation Items ---
   const navItems = [
     {
@@ -147,11 +148,13 @@ export default function DashboardLayout({
     },
   ];
 
-
   // --- Animation Variants ---
   const sidebarVariants = {
     open: { x: 0, transition: { type: "spring", stiffness: 300, damping: 30 } },
-    closed: { x: "-100%", transition: { type: "spring", stiffness: 300, damping: 30 } },
+    closed: {
+      x: "-100%",
+      transition: { type: "spring", stiffness: 300, damping: 30 },
+    },
   };
 
   const overlayVariants = {
@@ -162,7 +165,9 @@ export default function DashboardLayout({
   const navItemVariants = {
     initial: { opacity: 0, x: -20 },
     animate: (index: number) => ({
-      opacity: 1, x: 0, transition: { delay: 0.1 + index * 0.1, duration: 0.3 },
+      opacity: 1,
+      x: 0,
+      transition: { delay: 0.1 + index * 0.1, duration: 0.3 },
     }),
   };
 
@@ -171,10 +176,9 @@ export default function DashboardLayout({
     animate: { opacity: 1, transition: { duration: 0.5 } },
   };
 
-
   // --- JSX Return ---
   return (
-    <div className="flex h-screen bg-[#081028] text-white relative overflow-hidden">
+    <div className="flex h-screen bg-[#081028] text-white relative overflow-hidden no-scrollbar">
       {/* Overlay for mobile */}
       <AnimatePresence>
         {isMobile && sidebarOpen && (
@@ -188,13 +192,12 @@ export default function DashboardLayout({
           />
         )}
       </AnimatePresence>
-
       {/* Sidebar */}
       <motion.div
         id="sidebar"
         className={cn(
           "fixed lg:relative z-40 h-full bg-[#00031B]",
-          "w-[278px] md:w-[260px] p-5 overflow-y-auto", // Keep overflow-y-auto from HEAD
+          "w-[278px] md:w-[260px] p-5 overflow-y-auto no-scroll", // Keep overflow-y-auto from HEAD
           !isMobile && "left-0"
         )}
         initial={isInitialRender || !isMobile ? false : "closed"}
@@ -302,7 +305,10 @@ export default function DashboardLayout({
                   height={100}
                 />
                 {/* // TODO: Decide if this button uploads avatar or opens edit modal */}
-                <button className="absolute bottom-0 right-0 w-fit" aria-label="Edit profile picture">
+                <button
+                  className="absolute bottom-0 right-0 w-fit"
+                  aria-label="Edit profile picture"
+                >
                   <input
                     type="file"
                     className="absolute cursor-pointer inset-0 opacity-0 w-full h-full"
@@ -318,11 +324,11 @@ export default function DashboardLayout({
                 </button>
               </motion.div>
               <div className="mb-6 text-center">
-                 {/* // TODO: Replace with dynamic data */}
+                {/* // TODO: Replace with dynamic data */}
                 <h2 className="text-[18px] font-semibold mb-2">
                   Institution’s name
                 </h2>
-                 {/* // TODO: Replace with dynamic data */}
+                {/* // TODO: Replace with dynamic data */}
                 <p className="text-xs text-[#AEB9E1]">Institution@gmail.com</p>
               </div>
               <p
@@ -344,16 +350,21 @@ export default function DashboardLayout({
                 <h3>Total Balance</h3>
                 {/* // TODO: Add functionality to hide/show balance */}
                 <button aria-label="Toggle balance visibility">
-                   <Image src="/hidden.svg" alt="Balance hidden" width={14} height={14} />
+                  <Image
+                    src="/hidden.svg"
+                    alt="Balance hidden"
+                    width={14}
+                    height={14}
+                  />
                 </button>
               </div>
-               {/* // TODO: Replace with dynamic balance */}
+              {/* // TODO: Replace with dynamic balance */}
               <div className="text-center">$0</div>
               <motion.div
                 whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
                 whileTap={{ scale: 0.98 }}
               >
-                 {/* // TODO: Update link destination if needed */}
+                {/* // TODO: Update link destination if needed */}
                 <Link
                   href="/"
                   className="border rounded-full text-xs p-[12px] w-full block text-center border-[#343B4F] transition-colors duration-150 ease-in-out hover:bg-[#071630]"
@@ -368,7 +379,7 @@ export default function DashboardLayout({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.4 }}
-               className="mb-6" // Added margin
+              className="mb-6" // Added margin
             >
               <div>
                 <p className="mb-4 text-xs font-medium">Records</p>
@@ -376,7 +387,7 @@ export default function DashboardLayout({
                   <div className="text-[#AEB9E1] underline text-xs cursor-pointer hover:text-white">
                     Created Exams
                   </div>
-                   {/* // TODO: Replace with dynamic count */}
+                  {/* // TODO: Replace with dynamic count */}
                   <div className="text-xs font-medium">2</div>
                 </div>
               </div>
@@ -407,7 +418,11 @@ export default function DashboardLayout({
                 whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
                 whileTap={{ scale: 0.98 }}
                 disabled={!account} // Disable if no account
-                onClick={() => setIsDisconnectModalOpen(true)} // Trigger disconnect modal
+                onClick={() => {
+                  setIsDisconnectModalOpen(true);
+                  redirect("/");
+                }}
+                // Trigger disconnect modal
                 className="border rounded-full disabled:opacity-50 disabled:cursor-not-allowed text-xs p-[12px] w-full block text-center bg-[#1FACAA] border-[transparent] transition-opacity duration-150 ease-in-out hover:brightness-110"
               >
                 Disconnect Wallet
@@ -502,10 +517,8 @@ export default function DashboardLayout({
           </nav>
         )}
         {/* --- End of Conditional Rendering --- */}
-
-      </motion.div> {/* End Sidebar */}
-
-
+      </motion.div>{" "}
+      {/* End Sidebar */}
       {/* Main Content Area */}
       <motion.div
         className={cn(
@@ -545,10 +558,9 @@ export default function DashboardLayout({
               {title}
             </motion.h1>
           </div>
-
           {/* Right side: Notifications Button/Area - Use d195's complete structure */}
           <motion.div // Changed wrapping button to div to avoid nesting interactive elements inappropriately
-            className="flex items-center space-x-1 relative" // Added relative for modal positioning
+            className="flex items-center space-x-1 " // Added relative for modal positioning
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
@@ -558,38 +570,40 @@ export default function DashboardLayout({
               onClick={toggleNotification} // Add the handler
               whileHover={{ scale: 1.05 }} // Apply hover to the whole unit
               whileTap={{ scale: 0.95 }}
-              aria-label={`Notifications ${unreadCount > 0 ? `(${unreadCount} unread)` : ''}`}
+              aria-label={`Notifications ${
+                unreadCount > 0 ? `(${unreadCount} unread)` : ""
+              }`}
             >
               <Bell size={20} />
               {/* Conditional unread dot */}
               {unreadCount > 0 && (
                 <motion.span
-                  className="absolute top-1 right-6 w-2 h-2 bg-red-500 rounded-full" // Adjusted position relative to bell
+                  className="absolute top-1 left-0 w-2 h-2 bg-red-500 rounded-full" // Adjusted position relative to bell
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.8, duration: 0.3 }}
                 ></motion.span>
               )}
               <motion.h3
-                 className="scale-95 group-hover:scale-100 duration-200" // Simplified animation
-                 initial={{ opacity: 0 }}
-                 animate={{ opacity: 1 }}
-                 transition={{ delay: 0.4, duration: 0.3 }}
+                className="scale-95 group-hover:scale-100 duration-200" // Simplified animation
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.3 }}
               >
-                 Notifications
+                Notifications
               </motion.h3>
             </motion.button>
 
             {/* Render Notification Modal conditionally */}
             {/* Positioned absolutely relative to the wrapping div */}
             <NotificationModal
-               isOpen={notificationOpen}
-               onClose={() => setNotificationOpen(false)}
-               notifications={notifications}
-               markAllAsRead={markAllAsRead}
+              isOpen={notificationOpen}
+              onClose={() => setNotificationOpen(false)}
+              // notifications={notifications}
+              // markAllAsRead={markAllAsRead}
             />
-          </motion.div> {/* End Notification Area */}
-
+          </motion.div>{" "}
+          {/* End Notification Area */}
         </motion.header>
 
         {/* Main Content Body */}
@@ -601,8 +615,8 @@ export default function DashboardLayout({
         >
           {children}
         </motion.main>
-      </motion.div> {/* End Main Content Area */}
-
+      </motion.div>{" "}
+      {/* End Main Content Area */}
       {/* Modals Rendered at the Root Level - From HEAD */}
       <WalletDisconnectModal
         isOpen={isDisconnectModalOpen}
@@ -614,7 +628,6 @@ export default function DashboardLayout({
         onClose={() => setIsEditProfileModalOpen(false)}
         // TODO: Pass any necessary props like user data or update handlers
       />
-
     </div> // End main flex container
   ); // End return
 } // End component function

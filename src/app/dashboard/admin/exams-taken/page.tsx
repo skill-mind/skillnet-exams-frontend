@@ -22,7 +22,7 @@ function ExamsTaken() {
       activePage="Exams-Taken"
       subtitle="Have A Detailed Information About Past Examinations"
     >
-      <div className="space-y-3">
+      <div className="space-y-3 no-scrollbar">
         {/* Exam History Table */}
         <DataTable
           columns={[
@@ -32,7 +32,6 @@ function ExamsTaken() {
             { key: "date", label: "Date" },
             { key: "score", label: "Score" },
             { key: "status", label: "Status" },
-            { key: "options", label: "" },
           ]}
           data={examHistory}
         />

@@ -8,9 +8,11 @@ import VerificationSection from "./verification-section";
 import { Award } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import CertificateImage from "../../../../public/Solidity.png";
 
 export default function CertificateView() {
-  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null)
+  const [selectedCertificate, setSelectedCertificate] =
+    useState<Certificate | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -92,7 +94,7 @@ export default function CertificateView() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <AnimatePresence mode="wait">
         {showVerification ? (
           <motion.div
@@ -116,7 +118,12 @@ export default function CertificateView() {
           >
             <div className="flex items-center gap-3 mb-8">
               <div className="bg-[#071630] p-3 rounded-lg">
-                <Image src="/svg/certificate-01.svg" width={44} height={44} alt="" />
+                <Image
+                  src="/svg/certificate-01.svg"
+                  width={44}
+                  height={44}
+                  alt=""
+                />
               </div>
               <div>
                 <div className="text-2xl font-bold">{certificates.length}</div>
@@ -163,14 +170,17 @@ export default function CertificateView() {
                   >
                     <div className="flex items-center gap-4">
                       <motion.div
-                        className="w-12 h-12 bg-gray-200 rounded-md"
+                        className="w-12 h-12  rounded-md overflow-hidden"
                         whileHover={{ scale: 1.1 }}
                         transition={{
                           type: "spring",
                           stiffness: 400,
                           damping: 10,
                         }}
-                      ></motion.div>
+                      >
+                        {" "}
+                        <Image src={CertificateImage} alt={"Certificate"} />
+                      </motion.div>
                       <div>
                         <h3 className="font-medium">{certificate.title}</h3>
                         <p className="text-sm text-gray-400">

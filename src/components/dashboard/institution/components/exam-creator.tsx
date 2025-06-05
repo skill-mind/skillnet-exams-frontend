@@ -1,21 +1,20 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState, useRef, useEffect } from "react"
-import Image from "next/image"
-import { Bell, ChevronDown } from "lucide-react"
-import RichTextEditor from "./rich-text-editor"
-import DatePicker from "./date-picker"
+import type React from "react";
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import { ChevronDown, ChevronUp, Plus } from "lucide-react";
+import RichTextEditor from "./rich-text-editor";
+import DatePicker from "./date-picker";
 
 // Custom Button Component
 interface ButtonProps {
-  children: React.ReactNode
-  variant?: "default" | "outline" | "ghost"
-  size?: "default" | "sm" | "lg" | "icon"
-  className?: string
-  onClick?: () => void
-  disabled?: boolean
+  children: React.ReactNode;
+  variant?: "default" | "outline" | "ghost";
+  size?: "default" | "sm" | "lg" | "icon";
+  className?: string;
+  onClick?: () => void;
+  disabled?: boolean;
 }
 
 function Button({
@@ -27,20 +26,21 @@ function Button({
   disabled = false,
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none"
+    "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none";
 
   const variantStyles = {
     default: "bg-teal-500 text-white hover:bg-teal-600",
-    outline: "bg-transparent border border-white/20 text-white hover:bg-white/10",
+    outline:
+      "bg-transparent border border-white/20 text-white hover:bg-white/10",
     ghost: "bg-transparent text-white hover:bg-white/10",
-  }
+  };
 
   const sizeStyles = {
     default: "h-10 py-2 px-4",
     sm: "h-8 px-3 text-sm",
     lg: "h-12 px-6",
     icon: "h-10 w-10 p-0",
-  }
+  };
 
   return (
     <button
@@ -50,20 +50,27 @@ function Button({
     >
       {children}
     </button>
-  )
+  );
 }
 
 // Custom Input Component
 interface InputProps {
-  value?: string
-  defaultValue?: string
-  placeholder?: string
-  className?: string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  value?: string;
+  defaultValue?: string;
+  placeholder?: string;
+  className?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-function Input({ value, defaultValue, placeholder, className = "", onChange, onKeyDown }: InputProps) {
+function Input({
+  value,
+  defaultValue,
+  placeholder,
+  className = "",
+  onChange,
+  onKeyDown,
+}: InputProps) {
   return (
     <input
       value={value}
@@ -73,19 +80,25 @@ function Input({ value, defaultValue, placeholder, className = "", onChange, onK
       onKeyDown={onKeyDown}
       className={`flex h-10 w-full rounded-md border border-[#2a3552] bg-[#0a1022] px-3 py-2 text-sm text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-teal-500 ${className}`}
     />
-  )
+  );
 }
 
 // Custom Textarea Component
 interface TextareaProps {
-  value?: string
-  defaultValue?: string
-  placeholder?: string
-  className?: string
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+  value?: string;
+  defaultValue?: string;
+  placeholder?: string;
+  className?: string;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-function Textarea({ value, defaultValue, placeholder, className = "", onChange }: TextareaProps) {
+function Textarea({
+  value,
+  defaultValue,
+  placeholder,
+  className = "",
+  onChange,
+}: TextareaProps) {
   return (
     <textarea
       value={value}
@@ -94,22 +107,22 @@ function Textarea({ value, defaultValue, placeholder, className = "", onChange }
       onChange={onChange}
       className={`flex min-h-[80px] w-full rounded-md border border-[#2a3552] bg-[#0a1022] px-3 py-2 text-sm text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-teal-500 ${className}`}
     />
-  )
+  );
 }
 
 // Custom Select Component
 interface SelectOption {
-  value: string
-  label: string
+  value: string;
+  label: string;
 }
 
 interface SelectProps {
-  options: SelectOption[]
-  value?: string
-  defaultValue?: string
-  placeholder?: string
-  className?: string
-  onChange?: (value: string) => void
+  options: SelectOption[];
+  value?: string;
+  defaultValue?: string;
+  placeholder?: string;
+  className?: string;
+  onChange?: (value: string) => void;
 }
 
 function Select({
@@ -120,31 +133,37 @@ function Select({
   className = "",
   onChange,
 }: SelectProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const [selectedValue, setSelectedValue] = useState(value || defaultValue || "")
-  const selectRef = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(
+    value || defaultValue || ""
+  );
+  const selectRef = useRef<HTMLDivElement>(null);
 
   const handleSelect = (option: SelectOption) => {
-    setSelectedValue(option.value)
-    onChange?.(option.value)
-    setIsOpen(false)
-  }
+    setSelectedValue(option.value);
+    onChange?.(option.value);
+    setIsOpen(false);
+  };
 
-  const selectedOption = options.find((option) => option.value === selectedValue)
+  const selectedOption = options.find(
+    (option) => option.value === selectedValue
+  );
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="relative" ref={selectRef}>
@@ -162,7 +181,9 @@ function Select({
             <div
               key={option.value}
               className={`px-3 py-2 text-sm cursor-pointer hover:bg-[#2a3552] ${
-                selectedValue === option.value ? "bg-[#2a3552] text-white" : "text-white"
+                selectedValue === option.value
+                  ? "bg-[#2a3552] text-white"
+                  : "text-white"
               }`}
               onClick={() => handleSelect(option)}
             >
@@ -172,31 +193,38 @@ function Select({
         </div>
       )}
     </div>
-  )
+  );
 }
 
 // Custom Switch Component
 interface SwitchProps {
-  checked?: boolean
-  defaultChecked?: boolean
-  onChange?: (checked: boolean) => void
-  className?: string
+  checked?: boolean;
+  defaultChecked?: boolean;
+  onChange?: (checked: boolean) => void;
+  className?: string;
 }
 
-function Switch({ checked, defaultChecked, onChange, className = "" }: SwitchProps) {
-  const [isChecked, setIsChecked] = useState(checked !== undefined ? checked : defaultChecked || false)
+function Switch({
+  checked,
+  defaultChecked,
+  onChange,
+  className = "",
+}: SwitchProps) {
+  const [isChecked, setIsChecked] = useState(
+    checked !== undefined ? checked : defaultChecked || false
+  );
 
   const handleToggle = () => {
-    const newValue = !isChecked
-    setIsChecked(newValue)
-    onChange?.(newValue)
-  }
+    const newValue = !isChecked;
+    setIsChecked(newValue);
+    onChange?.(newValue);
+  };
 
   useEffect(() => {
     if (checked !== undefined) {
-      setIsChecked(checked)
+      setIsChecked(checked);
     }
-  }, [checked])
+  }, [checked]);
 
   return (
     <button
@@ -214,14 +242,14 @@ function Switch({ checked, defaultChecked, onChange, className = "" }: SwitchPro
         }`}
       />
     </button>
-  )
+  );
 }
 
 // Custom Badge Component
 interface BadgeProps {
-  children: React.ReactNode
-  className?: string
-  onClick?: () => void
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
 }
 
 function Badge({ children, className = "", onClick }: BadgeProps) {
@@ -234,38 +262,89 @@ function Badge({ children, className = "", onClick }: BadgeProps) {
     >
       {children}
     </span>
-  )
+  );
+}
+
+interface Question {
+  id: string;
+  content: string;
+  answers: string[];
+  isExpanded: boolean;
 }
 
 export default function ExamCreator() {
-  const [tags, setTags] = useState<string[]>(["Front-End"])
-  const [newTag, setNewTag] = useState("")
-  const [questionContent, setQuestionContent] = useState("")
-  const [answerContents, setAnswerContents] = useState(["", "", "", ""])
-  const [descriptionContent, setDescriptionContent] = useState("")
-  const [examDate, setExamDate] = useState<Date | null>(new Date("2025-05-12"))
+  const [tags, setTags] = useState<string[]>(["Front-End"]);
+  const [newTag, setNewTag] = useState("");
+  const [questions, setQuestions] = useState<Question[]>([
+    {
+      id: "q1",
+      content: "",
+      answers: ["", "", "", ""],
+      isExpanded: true,
+    },
+  ]);
+  const [descriptionContent, setDescriptionContent] = useState("");
+  const [examDate, setExamDate] = useState<Date | null>(new Date("2025-05-12"));
 
   const addTag = () => {
     if (newTag && !tags.includes(newTag)) {
-      setTags([...tags, newTag])
-      setNewTag("")
+      setTags([...tags, newTag]);
+      setNewTag("");
     }
-  }
+  };
 
   const removeTag = (tagToRemove: string) => {
-    setTags(tags.filter((tag) => tag !== tagToRemove))
-  }
+    setTags(tags.filter((tag) => tag !== tagToRemove));
+  };
 
-  const updateAnswerContent = (index: number, content: string) => {
-    const newAnswerContents = [...answerContents]
-    newAnswerContents[index] = content
-    setAnswerContents(newAnswerContents)
-  }
+  const addQuestion = () => {
+    const newQuestionId = `q${questions.length + 1}`;
+    setQuestions((prev) =>
+      prev
+        .map((q) => ({ ...q, isExpanded: false }))
+        .concat({
+          id: newQuestionId,
+          content: "",
+          answers: ["", "", "", ""],
+          isExpanded: true,
+        })
+    );
+  };
+
+  const updateQuestionContent = (id: string, content: string) => {
+    setQuestions((prev) =>
+      prev.map((q) => (q.id === id ? { ...q, content } : q))
+    );
+  };
+
+  const updateAnswerContent = (
+    questionId: string,
+    index: number,
+    content: string
+  ) => {
+    setQuestions((prev) =>
+      prev.map((q) =>
+        q.id === questionId
+          ? {
+              ...q,
+              answers: q.answers.map((a, i) => (i === index ? content : a)),
+            }
+          : q
+      )
+    );
+  };
+
+  const toggleQuestion = (id: string) => {
+    setQuestions((prev) =>
+      prev.map((q) => ({
+        ...q,
+        isExpanded: q.id === id ? !q.isExpanded : q.isExpanded,
+      }))
+    );
+  };
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 pb-16 bg-[#081028]">
-      
-
       <div className="rounded-lg overflow-hidden mb-6">
         <Image
           src="/images/exam-banner.png"
@@ -368,65 +447,77 @@ export default function ExamCreator() {
       <div>
         <h2 className="text-white/80 text-lg mb-4">Questions</h2>
 
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center">
-              <Select
-                options={[
-                  { value: "q1", label: "Question 1" },
-                  { value: "q2", label: "Question 2" },
-                  { value: "q3", label: "Question 3" },
-                ]}
-                defaultValue="q1"
-                className="w-[150px]"
-              />
+        {questions.map((question, index) => (
+          <div
+            key={question.id}
+            className="mb-6 bg-[#0a1022] rounded-lg p-4 border border-[#2a3552]"
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="ghost"
+                  className="text-white hover:bg-[#2a3552] flex items-center gap-2"
+                  onClick={() => toggleQuestion(question.id)}
+                >
+                  <span className="text-sm font-medium">
+                    Question {index + 1}
+                  </span>
+                  {question.isExpanded ? (
+                    <ChevronUp className="h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4" />
+                  )}
+                </Button>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-white/70 text-sm">Autosave</span>
+                <Switch defaultChecked />
+              </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="text-white/70 text-sm">Autosave</span>
-              <Switch defaultChecked />
-            </div>
+            {question.isExpanded && (
+              <>
+                <RichTextEditor
+                  placeholder="Enter question....."
+                  content={question.content}
+                  onChange={(content) =>
+                    updateQuestionContent(question.id, content)
+                  }
+                  minHeight="min-h-[150px]"
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                  {question.answers.map((answer, i) => (
+                    <AnswerOption
+                      key={`${question.id}-answer-${i}`}
+                      number={i + 1}
+                      content={answer}
+                      onChange={(content) =>
+                        updateAnswerContent(question.id, i, content)
+                      }
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
+        ))}
 
-          <RichTextEditor
-            placeholder="Enter question....."
-            content={questionContent}
-            onChange={setQuestionContent}
-            minHeight="min-h-[150px]"
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <AnswerOption
-            number={1}
-            content={answerContents[0]}
-            onChange={(content) => updateAnswerContent(0, content)}
-          />
-          <AnswerOption
-            number={2}
-            content={answerContents[1]}
-            onChange={(content) => updateAnswerContent(1, content)}
-          />
-          <AnswerOption
-            number={3}
-            content={answerContents[2]}
-            onChange={(content) => updateAnswerContent(2, content)}
-          />
-          <AnswerOption
-            number={4}
-            content={answerContents[3]}
-            onChange={(content) => updateAnswerContent(3, content)}
-          />
-        </div>
+        <button
+          onClick={addQuestion}
+          className="mt-4 mx-auto text-[12px] bg-transparent border border-teal-500 rounded-full px-4 py-2 flex items-center gap-2 min-h-[14px] min-w-[76px] hover:bg-teal-500 hover:text-white transition-colors"
+        >
+          <Plus className="h-4 w-4" /> Add Question
+        </button>
       </div>
     </div>
-  )
+  );
 }
 
 interface AnswerOptionProps {
-  number: number
-  content: string
-  onChange: (content: string) => void
+  number: number;
+  content: string;
+  onChange: (content: string) => void;
 }
 
 function AnswerOption({ number, content, onChange }: AnswerOptionProps) {
@@ -444,7 +535,12 @@ function AnswerOption({ number, content, onChange }: AnswerOptionProps) {
         />
       </div>
 
-      <RichTextEditor placeholder="Enter answer....." content={content} onChange={onChange} minHeight="min-h-[100px]" />
+      <RichTextEditor
+        placeholder="Enter answer....."
+        content={content}
+        onChange={onChange}
+        minHeight="min-h-[100px]"
+      />
     </div>
-  )
+  );
 }

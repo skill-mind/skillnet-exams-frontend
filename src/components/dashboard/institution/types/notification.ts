@@ -4,13 +4,24 @@ export type NotificationType =
   | "NEW_REGISTRATION"
   | "CERTIFICATE_VERIFICATION"
   | "REMINDER"
-  | "GENERAL";
+  | "GENERAL"
+  | "NEW_SIGN_UP"
+  | "EXAM_UPDATE";
 
 export interface BaseNotification {
   id: string;
   type: NotificationType;
   createdAt: Date;
   userImage: string;
+}
+
+export interface ExamUpdateNotification extends BaseNotification {
+  type: "EXAM_UPDATE";
+  courseName: string;
+}
+export interface NewSignUpNotification extends BaseNotification {
+  type: "NEW_SIGN_UP";
+  accountName: string;
 }
 
 export interface NewRegistrationNotification extends BaseNotification {
@@ -34,8 +45,21 @@ export interface GeneralNotification extends BaseNotification {
   message: string;
 }
 
+export interface UserNotification {
+  id: string;
+  avatar: string;
+  header: string;
+  message: string;
+  course?: string;
+  time: string;
+  link: string;
+  read: boolean;
+}
+
 export type Notifications =
   | NewRegistrationNotification
   | CertificateVerificationNotification
   | ReminderNotification
-  | GeneralNotification;
+  | GeneralNotification
+  | ExamUpdateNotification
+  | NewSignUpNotification;

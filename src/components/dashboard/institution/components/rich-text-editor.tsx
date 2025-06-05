@@ -1,29 +1,42 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useEditor, EditorContent, type Editor } from "@tiptap/react"
-import StarterKit from "@tiptap/starter-kit"
-import Underline from "@tiptap/extension-underline"
-import { Bold, Italic, UnderlineIcon, List, ListOrdered, AlignLeft } from "lucide-react"
+import { useEditor, EditorContent, type Editor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import Underline from "@tiptap/extension-underline";
+import {
+  Bold,
+  Italic,
+  UnderlineIcon,
+  List,
+  ListOrdered,
+  AlignLeft,
+} from "lucide-react";
 
 interface RichTextEditorProps {
-  placeholder?: string
-  content?: string
-  onChange?: (html: string) => void
-  minHeight?: string
+  placeholder?: string;
+  content?: string;
+  onChange?: (html: string) => void;
+  minHeight?: string;
 }
 
 // Custom Button Component for the editor
 interface MenuButtonProps {
-  editor: Editor
-  name: string
-  onClick: () => void
-  isActive: boolean
-  children: React.ReactNode
+  editor: Editor;
+  name: string;
+  onClick: () => void;
+  isActive: boolean;
+  children: React.ReactNode;
 }
 
-function MenuButton({ editor, name, onClick, isActive, children }: MenuButtonProps) {
+function MenuButton({
+  editor,
+  name,
+  onClick,
+  isActive,
+  children,
+}: MenuButtonProps) {
   return (
     <button
       type="button"
@@ -35,7 +48,7 @@ function MenuButton({ editor, name, onClick, isActive, children }: MenuButtonPro
     >
       {children}
     </button>
-  )
+  );
 }
 
 export default function RichTextEditor({
@@ -53,12 +66,12 @@ export default function RichTextEditor({
       },
     },
     onUpdate: ({ editor }) => {
-      onChange?.(editor.getHTML())
+      onChange?.(editor.getHTML());
     },
-  })
+  });
 
   if (!editor) {
-    return null
+    return null;
   }
 
   return (
@@ -145,5 +158,5 @@ export default function RichTextEditor({
         }
       `}</style>
     </div>
-  )
+  );
 }
