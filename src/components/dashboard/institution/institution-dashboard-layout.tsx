@@ -54,6 +54,7 @@ export default function InstitutionLayout({
   const handleDisconnect = () => {
     disconnectWallet();
     setIsDisconnectModalOpen(false);
+    console.log("Disconnected");
   };
 
   const handleNotificationClick = () => {

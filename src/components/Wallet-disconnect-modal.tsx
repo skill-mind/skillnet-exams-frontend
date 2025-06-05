@@ -18,21 +18,16 @@ export default function WalletDisconnectModal({
   onDisconnect,
 }: WalletDisconnectModalProps) {
   //pathname check
-  const pathName = usePathname();
-  const userDashboardPath = "/dashboard/user";
-  const institutionDashboardPath = "/dashboard/institution";
+  // const pathName = usePathname();
+  // const userDashboardPath = "/dashboard/user";
+  // const institutionDashboardPath = "/dashboard/institution";
 
   //router
   // const router = useRouter();
 
   const handleDisconnect = () => {
-    if (
-      userDashboardPath === pathName ||
-      institutionDashboardPath === pathName
-    ) {
-      window.location.href = "/"; // full reload
-    }
     onDisconnect();
+    window.location.href = "/";
   };
 
   const modalVariants = {

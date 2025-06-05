@@ -1,9 +1,22 @@
 import AnimationWrapper from "@/motion/Animation-wrapper";
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import WalletConnectModal from "./Wallet-connect-modal";
+import { useWalletContext } from "./WalletProvider";
 
 const Hero = () => {
+  const [isConnectModalOpen, setIsConnectModalOpen] = useState(false); 
+  const { connectWallet, connectors } = useWalletContext();
+
+  const handleWalletSelect = (walletId: string) => {
+    const connector = connectors.find((c) => c.id === walletId);
+    if (connector) {
+      connectWallet(connector); // invoke Starknet-React’s useConnect() :contentReference[oaicite:3]{index=3}
+    }
+    setIsConnectModalOpen(false);
+  };
+
   return (
     <section className="pt-32 pb-16">
       <div className="container mx-auto px-4 text-center">
@@ -25,8 +38,9 @@ const Hero = () => {
         <div className="flex flex-wrap justify-center gap-4 mb-16">
           <AnimationWrapper variant="slideRight" delay={0.3}>
             <Link
-              href="#Launch-App"
-              className="px-8 py-3 rounded-full bg-teal-500 text-white font-medium hover:bg-teal-600 transition-colors"
+              href="/"
+              onClick={() => setIsConnectModalOpen(true)}
+              className="px-8 py-3 rounded-full bg-teal-500  text-white font-medium hover:bg-teal-600 transition-colors"
             >
               Launch App
             </Link>
@@ -97,6 +111,12 @@ const Hero = () => {
           ))}
         </div>
       </div>
+
+      <WalletConnectModal
+        isOpen={isConnectModalOpen}
+        onClose={() => setIsConnectModalOpen(false)}
+        onSelect={handleWalletSelect}
+      />
     </section>
   );
 };
