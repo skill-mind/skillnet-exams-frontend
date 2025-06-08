@@ -133,8 +133,8 @@ export default function InstitutionDashboardPage() {
                 {/* Created Exams Section */}
                 <div>
                   <h2 className="text-xl mb-4 text-gray-300">Created Exams</h2>
-                  <div className="bg-[#0f1c3f] rounded-lg p-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div className="bg-[#0f1c3f] rounded-lg p-1">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       {exams.map((exam) => (
                         <ExamCard
                           key={exam.id}
@@ -143,20 +143,14 @@ export default function InstitutionDashboardPage() {
                         />
                       ))}
                     </div>
-                    <Link
-                      href="/exams"
-                      className="block w-full text-center py-3 bg-[#0a1128] hover:bg-black rounded-lg transition-colors"
-                    >
-                      Go To Page
-                    </Link>
                   </div>
                 </div>
 
                 {/* Drafts Section */}
                 <div>
                   <h2 className="text-xl mb-4 text-gray-300">Drafts</h2>
-                  <div className="bg-[#0f1c3f] rounded-lg p-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div className="bg-[#0f1c3f] rounded-lg p-1">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       {exams.map((exam) => (
                         <ExamCard
                           key={`draft-${exam.id}`}
@@ -165,12 +159,6 @@ export default function InstitutionDashboardPage() {
                         />
                       ))}
                     </div>
-                    <Link
-                      href="/exams"
-                      className="block w-full text-center py-3 bg-[#0a1128] hover:bg-black rounded-lg transition-colors"
-                    >
-                      Go To Page
-                    </Link>
                   </div>
                 </div>
               </div>

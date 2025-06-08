@@ -28,7 +28,7 @@ import { redirect } from "next/navigation";
 interface DashboardLayoutProps {
   children: ReactNode;
   title: string;
-  activePage: "dashboard" | "my-exams" | "certificates" | "register" | "help";
+  activePage: "dashboard" | "my-exams" | "certificates" | "help";
 }
 
 export default function DashboardLayout({
@@ -139,13 +139,7 @@ export default function DashboardLayout({
       label: "View Certificates",
       icon: CertificateIcon,
       href: "/dashboard/user/view-certificate",
-    },
-    {
-      key: "register",
-      label: "Register For Exams",
-      icon: RegisterIcon,
-      href: "/dashboard/user/register-exam",
-    },
+    }
   ];
 
   // --- Animation Variants ---

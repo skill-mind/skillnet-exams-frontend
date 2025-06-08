@@ -85,7 +85,7 @@ export default function ExamDetailsModal({ exam, onClose }: ExamDetailsModalProp
                   variant="outline"
                   className="bg-transparent border border-gray-600 hover:bg-gray-700 rounded-full px-4 py-2 text-sm"
                 >
-                  Go to Page
+                  Close
                 </Button>
               </Link>
             </div>
