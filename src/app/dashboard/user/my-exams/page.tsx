@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DashboardLayout from '@/components/dashboard/exam/components/new-dashboard-layout';
 import { StatCard } from '@/components/dashboard/exam/components/ui/exams-page-content-header';
-import MyExamCard from '@/components/dashboard/exam/components/ui/my-exam-card';
+import MyExamCard from '@/components/dashboard/exam/components/ui/my-exam-card2';
 import ExamIcon from "../../../../../public/license.svg";
 import RegisterIcon from "../../../../../public/pencil-edit.svg";
 import { examData } from '@/components/dashboard/exam/examdata';
