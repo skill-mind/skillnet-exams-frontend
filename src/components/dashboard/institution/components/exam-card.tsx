@@ -19,6 +19,10 @@ interface ExamCardProps {
   onTakeExam: () => void;
 }
 
+const handleCLickViewExamDetails = () => {
+  window.location.href = "/dashboard/institution/created-exam";
+};
+
 export default function ExamCard({ exam, onTakeExam }: ExamCardProps) {
   return (
     <div className="bg-[#0a1128] rounded-lg p-6 flex flex-col text-center items-center">
@@ -36,10 +40,10 @@ export default function ExamCard({ exam, onTakeExam }: ExamCardProps) {
       <h3 className="text-lg font-semibold mb-2">{exam.title}</h3>
       <p className="text-sm text-gray-300 mb-6">{exam.description}</p>
       <Button
-        onClick={onTakeExam}
-        className="w-full py-2 border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white rounded-lg transition-colors bg-transparent"
+        onClick={handleCLickViewExamDetails}
+        className="w-full py-1 text-sm border border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white rounded-lg transition-colors bg-transparent"
       >
-        Take Exam
+        View Exam Details
       </Button>
     </div>
   );

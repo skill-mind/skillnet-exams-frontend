@@ -20,7 +20,7 @@ export interface examInfoProps {
 export default function RegisterPage() {
 
     return (
-        <DashboardLayout title="Register For Exams" activePage="register">
+        <DashboardLayout title="Register For Exams" activePage="my-exams">
             <ExamsPageHeaderAndContent />
         </DashboardLayout>
     );

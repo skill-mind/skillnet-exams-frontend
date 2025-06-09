@@ -3,8 +3,8 @@ import { buffer } from "stream/consumers";
 
 // Function to handle click for taking exam
 
-const handleCLickTakeExam = () => {
-  window.location.href = "/dashboard/exam-page";
+const handleCLickRegisterExam = () => {
+  window.location.href = "/dashboard/user/register-exam";
 };
 const MyExamCard = ({
   title,
@@ -34,10 +34,10 @@ const MyExamCard = ({
       </button>
     ) : (
       <button
-        onClick={handleCLickTakeExam}
+        onClick={handleCLickRegisterExam}
         className="text-white border border-[#F4F9FF] rounded-full py-2 px-4 w-full hover:bg-gray-700 transition-colors"
       >
-        Take Exam
+        Register for Exam
       </button>
     )}
   </div>
