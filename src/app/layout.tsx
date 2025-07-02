@@ -1,37 +1,77 @@
 import { Metadata } from "next";
-import { Providers } from "@/components/Providers";
 import { WalletProvider } from "@/components/WalletProvider";
 import "@/app/globals.css";
+import ClientProviders from "../components/client-providers";
+import { StructuredData } from "@/components/metadata/structured-data";
 
 export const metadata: Metadata = {
-  title: {
-    default: "Skillnet Exam Hub - Decentralized Learning & Certification",
-    template: "%s | Skillnet Exam Hub",
-  },
+  title: "SkillNet - Blockchain-Powered Exam Platform & Academic Credentialing",
   description:
-    "Skillnet Exam Hub is a decentralized platform for skill acquisition, professional growth, and certification. Learn from experts and verify credentials securely on the blockchain.",
+    "SkillNet is a revolutionary exam platform leveraging blockchain technology, AI proctoring, and NFT-based certificate minting for secure, transparent, and verifiable academic records.",
+  keywords: [
+    "blockchain exam platform",
+    "AI proctoring",
+    "NFT certificates",
+    "academic credentialing",
+    "secure assessments",
+    "verifiable credentials",
+    "educational technology",
+    "blockchain education",
+    "digital certificates",
+    "online exams",
+    "decentralized education",
+    "skill verification",
+    "exam integrity",
+    "student records",
+    "academic blockchain",
+    "exam security",
+    "decentralized assessments",
+    "AI in education",
+    "blockchain credentials",
+    "digital identity",
+    "education technology",
+    "skill verification platform",
+    "starknet",
+  ],
+  authors: [{ name: "SKillNet Team" }],
+  creator: "SkillNet",
+  publisher: "SkillNet",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL("https://skillnet.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Skillnet Exam Hub - Decentralized Learning & Certification",
+    type: "website",
+    locale: "en_US",
+    url: "https://skillnet.com",
+    title:
+      "SkillNet - Blockchain-Powered Exam Platform & Academic Credentialing",
     description:
-      "Join Skillnet Exam Hub to gain industry-relevant skills, earn blockchain-verified certifications, and accelerate your career growth.",
-    url: "https://www.skillnetexamhub.com",
-    siteName: "Skillnet Exam Hub",
+      "Revolutionary exam platform with blockchain technology, AI proctoring, and NFT-based certificates for secure academic credentialing.",
+    siteName: "SkillNet",
     images: [
       {
-        url: "/images/seo-skillnet-sample.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
+        alt: "SkillNet - Decentralized Exam Platform",
       },
     ],
-    locale: "en_US",
-    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Skillnet Exam Hub - Decentralized Learning & Certification",
+    title:
+      "SkillNet - Blockchain-Powered Exam Platform & Academic Credentialing",
     description:
-      "Master new skills, earn blockchain-verified certifications, and grow professionally with Skillnet Exam Hub.",
-    images: ["/images/seo-skillnet-sample.jpg"],
+      "Experience the future of education with SkillNet's blockchain exam platform, AI proctoring, and NFT certificates. Secure, transparent, and verifiable academic records.",
+    images: ["/twitter-image.png"],
+    creator: "@skillnet",
+    site: "@skillnet",
   },
   robots: {
     index: true,
@@ -44,8 +84,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: "https://www.skillnetexamhub.com",
+  verification: {
+    google: "your-google-verification-code",
+    yandex: "your-yandex-verification-code",
   },
 };
 
@@ -60,11 +101,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className="scroll-smooth" lang="en">
+    <html lang="en">
+      <head>
+        <StructuredData />
+      </head>
       <body className="bg-[#00031B] text-[#EAEDE7]">
-        <Providers>
+        <ClientProviders>
           <WalletProvider>{children}</WalletProvider>
-        </Providers>
+        </ClientProviders>
       </body>
     </html>
   );

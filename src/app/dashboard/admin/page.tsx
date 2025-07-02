@@ -7,6 +7,7 @@ import { StatCard } from "@/components/dashboard/admin/components/stat-card";
 import { RecentExamsCard } from "@/components/dashboard/admin/components/recent-exams-card";
 import { useWalletContext } from "@/components/WalletProvider";
 
+
 // Dashboard stats with proper LucideIcon types
 const dashboardStats = [
   {
