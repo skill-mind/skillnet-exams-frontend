@@ -2,13 +2,13 @@
 
 import DashboardLayout from "@/components/dashboard/exam/components/new-dashboard-layout";
 import ExamsPageHeaderAndContent from "@/components/dashboard/exam/components/ui/exams-page-content-header";
-import { Providers } from "@/components/Providers";
+import StarknetProvider from "@/components/StarknetProvider";
 import { WalletProvider } from "@/components/WalletProvider";
 
 export default function Dashboard() {
   return (
     //providers for connect wallet feature
-    <Providers>
+    <StarknetProvider>
       <WalletProvider>
         
         <DashboardLayout title="Dashboard" activePage="dashboard">
@@ -16,6 +16,6 @@ export default function Dashboard() {
         </DashboardLayout>
 
       </WalletProvider>
-    </Providers>
+    </StarknetProvider>
   );
 }

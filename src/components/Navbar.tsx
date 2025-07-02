@@ -1,16 +1,17 @@
+
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, SetStateAction } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, MoreVertical } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimationWrapper from "@/motion/Animation-wrapper";
-import WalletConnectModal from "./Wallet-connect-modal";
 import WalletDisconnectModal from "./Wallet-disconnect-modal";
 
 // starknet imports
 import { useWalletContext } from "./WalletProvider";
+import { ConnectButton } from "./connect-button";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,8 +22,6 @@ export default function Navbar() {
 
   const { account, connectWallet, disconnectWallet, connectors } =
     useWalletContext();
-
- 
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -47,7 +46,7 @@ export default function Navbar() {
   const handleWalletSelect = (walletId: string) => {
     const connector = connectors.find((c) => c.id === walletId);
     if (connector) {
-      connectWallet(connector); // invoke Starknet-React’s useConnect() :contentReference[oaicite:3]{index=3}
+      connectWallet(connector);
     }
     setIsConnectModalOpen(false);
   };
@@ -61,7 +60,7 @@ export default function Navbar() {
   };
 
   const handleDisconnect = () => {
-    disconnectWallet(); // real Starknet-React disconnect :contentReference[oaicite:4]{index=4}
+    disconnectWallet();
     setIsDisconnectModalOpen(false);
   };
 
@@ -91,10 +90,9 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8 text-[#FCFCFC]">
             {navLinks.map((link) => (
-              <AnimationWrapper variant="slideRight">
+              <AnimationWrapper variant="slideRight" key={link.name}>
                 <Link
                   href={link.href}
-                  key={link.name}
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   {link.name}
@@ -152,15 +150,7 @@ export default function Navbar() {
                         >
                           Disconnect
                         </button>
-                        <Link
-                          href="/role/"
-                          className="w-full block text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 transition-colors"
-                        >
-                          View Profile
-                        </Link>
-                        <button className="w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 transition-colors">
-                          Settings
-                        </button>
+                     
                       </div>
                     </div>
                   )}
@@ -237,10 +227,10 @@ export default function Navbar() {
         </AnimatePresence>
       </header>
 
-      <WalletConnectModal
+      <ConnectButton
         isOpen={isConnectModalOpen}
-        onClose={() => setIsConnectModalOpen(false)}
         onSelect={handleWalletSelect}
+        setIsModalOpen={setIsConnectModalOpen}
       />
 
       <WalletDisconnectModal
