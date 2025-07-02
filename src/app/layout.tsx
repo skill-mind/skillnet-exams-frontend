@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { Providers } from "@/components/Providers";
 import { WalletProvider } from "@/components/WalletProvider";
 import "@/app/globals.css";
+import ClientProviders from "@/components/client-providers";
 
 export const metadata: Metadata = {
   title: {
@@ -62,9 +62,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-[#00031B] text-[#EAEDE7]">
-        <Providers>
+        <ClientProviders>
           <WalletProvider>{children}</WalletProvider>
-        </Providers>
+        </ClientProviders>
       </body>
     </html>
   );

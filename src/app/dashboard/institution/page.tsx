@@ -8,9 +8,9 @@ import InstitutionLayout from "@/components/dashboard/institution/institution-da
 import ExamCard from "@/components/dashboard/institution/components/exam-card";
 import ExamHistoryTable from "@/components/dashboard/institution/components/exam-history-table";
 import ExamDetailsModal from "@/components/dashboard/institution/components/modals/exam-details-modal";
-import { Providers } from "@/components/Providers";
 import { WalletProvider } from "@/components/WalletProvider";
 import { useWalletContext } from "@/components/WalletProvider";
+import StarknetProvider from "@/components/StarknetProvider";
 
 // Define exam type for better type safety
 interface ExamType {
@@ -68,7 +68,7 @@ export default function InstitutionDashboardPage() {
   ];
 
   return (
-    <Providers>
+    <StarknetProvider>
       <WalletProvider>
         <InstitutionLayout title="Institution Dashboard" activePage="Dashboard">
           <Suspense fallback={<div>Loading...</div>}>
@@ -184,6 +184,6 @@ export default function InstitutionDashboardPage() {
           </Suspense>
         </InstitutionLayout>
       </WalletProvider>
-    </Providers>
+    </StarknetProvider>
   );
 }

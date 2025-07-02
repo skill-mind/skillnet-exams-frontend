@@ -1,9 +1,52 @@
+
+"use client";
+
 import AnimationWrapper from "@/motion/Animation-wrapper";
 import Link from "next/link";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useWalletContext } from "./WalletProvider";
+import { ConnectButton } from "./connect-button";
+import WalletDisconnectModal from "./Wallet-disconnect-modal";
+
+// Utility to shorten wallet address
+const shortenAddress = (address: string) => {
+  return `${address.slice(0, 6)}…${address.slice(-4)}`;
+};
 
 const Hero = () => {
+  const [isConnectModalOpen, setIsConnectModalOpen] = useState(false);
+  const [isDisconnectModalOpen, setIsDisconnectModalOpen] = useState(false);
+
+  const { account, connectWallet, disconnectWallet, connectors } = useWalletContext();
+
+  // Close connect modal once wallet is connected
+  useEffect(() => {
+    if (account) {
+      setIsConnectModalOpen(false);
+    }
+  }, [account]);
+
+  const handleWalletSelect = (walletId: string) => {
+    const connector = connectors.find((c) => c.id === walletId);
+    if (connector) {
+      connectWallet(connector);
+    }
+  };
+
+  const handleLaunchAppClick = () => {
+    if (account) {
+      setIsDisconnectModalOpen(true); // Already connected → show disconnect modal
+    } else {
+      setIsConnectModalOpen(true); // Not connected → show connect modal
+    }
+  };
+
+  const handleDisconnect = () => {
+    disconnectWallet();
+    setIsDisconnectModalOpen(false);
+  };
+
   return (
     <section className="pt-32 pb-16">
       <div className="container mx-auto px-4 text-center">
@@ -24,24 +67,25 @@ const Hero = () => {
 
         <div className="flex flex-wrap justify-center gap-4 mb-16">
           <AnimationWrapper variant="slideRight" delay={0.3}>
-            <Link
-              href="#Launch-App"
-              className="px-8 py-3 rounded-full bg-teal-500 text-white font-medium hover:bg-teal-600 transition-colors"
+            <button
+              onClick={handleLaunchAppClick}
+              className="px-8 py-3 rounded-full bg-teal-500 text-white font-medium hover:bg-teal-700 transition-colors"
             >
-              Launch App
-            </Link>
+              {account ? shortenAddress(account) : "Launch App"}
+            </button>
           </AnimationWrapper>
 
-          <AnimationWrapper variant="slideLeft" delay={0.3}>
+          <AnimationWrapper variant="slideLeft" delay={0.3} className="mt-3">
             <Link
-              href="#learn-more"
-              className="px-8 py-3 rounded-full border border-gray-700 text-white font-medium hover:bg-gray-800 transition-colors"
+              href="#how-it-works"
+              className="px-8 py-3 rounded-full border  border-teal-700 text-white font-medium hover:bg-gray-800 transition-colors"
             >
               Learn More
             </Link>
           </AnimationWrapper>
         </div>
 
+        {/* Grid features section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mx-auto">
           {[
             {
@@ -69,7 +113,6 @@ const Hero = () => {
               key={item.name}
               variant="scale"
               delay={0.4 + index * 0.1}
-              className=""
             >
               <div
                 className={`mb-3 border ${item.border} border-opacity-40 p-4 rounded-[38px] w-[70%]`}
@@ -97,6 +140,20 @@ const Hero = () => {
           ))}
         </div>
       </div>
+
+      {/* Connect modal */}
+      <ConnectButton
+        isOpen={isConnectModalOpen}
+        onSelect={handleWalletSelect}
+        setIsModalOpen={setIsConnectModalOpen}
+      />
+
+      {/* Disconnect modal */}
+      <WalletDisconnectModal
+        isOpen={isDisconnectModalOpen}
+        onClose={() => setIsDisconnectModalOpen(false)}
+        onDisconnect={handleDisconnect}
+      />
     </section>
   );
 };
