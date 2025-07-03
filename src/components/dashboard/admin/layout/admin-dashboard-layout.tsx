@@ -17,7 +17,7 @@ import OngoingExamsIcon from "../../../../../public/license.svg";
 import RegistrationIcon from "../../../../../public/new-releases.svg";
 import InstitutionsIcon from "../../../../../public/new-releases.svg";
 import HelpIcon from "../../../../../public/help-square.svg";
-import SkillNetLogo from "../../../../../public/skillnet-white logo.png";
+import SkillNetLogo from "../../../../../public/skillnet white logo .svg";
 import MenuCollapseIcon from "../../../../../public/menu-collapse.svg";
 import UserIcon from "../../../../../public/new-releases.svg";
 import AdminNotification from "../../exam/components/modals/admin-notification-modal";

@@ -13,7 +13,7 @@ import CertificateIcon from "../../../../../public/certificate.svg";
 import RegisterIcon from "../../../../../public/pencil-edit.svg";
 import UserIcon from "../../../../../public/Ellipse 43.svg";
 import HelpIcon from "../../../../../public/help-square.svg";
-import SkillNetLogo from "../../../../../public/skillnet-white logo.png";
+import SkillNetLogo from "../../../../../public/skillnet white logo .svg";
 import MenuCollapseIcon from "../../../../../public/menu-collapse.svg";
 
 // Component/Context/Data Imports (Combined)
@@ -24,6 +24,8 @@ import { useWalletContext } from "@/components/WalletProvider";
 import NotificationModal from "./notification-modal";
 import { notificationsData } from "@/data/notification-data";
 import { redirect } from "next/navigation";
+import { useBalance } from "@starknet-react/core";
+import { fetchBalance } from "@/utils/helper";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -48,9 +50,23 @@ export default function DashboardLayout({
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [notifications, setNotifications] = useState(notificationsData);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [balance,setBalance] = useState(0)
 
   // --- Wallet Context ---
   const { account, disconnectWallet } = useWalletContext();
+  // const { data} = useBalance({
+  //   address: account && account.startsWith("0x") ? account as `0x${string}` : undefined,
+    
+  // });
+
+
+
+  useEffect(() => {
+    if (!account) {
+      return;
+    }
+    fetchBalance(account, setBalance);
+  }, [account]);
 
   // --- Handlers ---
   const handleDisconnect = () => {
@@ -327,9 +343,13 @@ export default function DashboardLayout({
               </div>
               <p
                 className="text-xs text-center truncate"
-                title={account || "Wallet not connected"}
+                title={
+                  `${account?.slice(0, 6)}…${account?.slice(-4)}` ||
+                  "Wallet not connected"
+                }
               >
-                {account || "Wallet not connected"}
+                {`${account?.slice(0, 6)}…${account?.slice(-4)}` ||
+                  "Wallet not connected"}
               </p>
             </div>
 
@@ -353,7 +373,7 @@ export default function DashboardLayout({
                 </button>
               </div>
               {/* // TODO: Replace with dynamic balance */}
-              <div className="text-center">$0</div>
+              <div className="text-center">STK {balance.toFixed(2)}</div>
               <motion.div
                 whileHover={{ scale: 1.03, filter: "brightness(1.1)" }}
                 whileTap={{ scale: 0.98 }}
