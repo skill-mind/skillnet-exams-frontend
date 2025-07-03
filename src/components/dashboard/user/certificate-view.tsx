@@ -8,7 +8,7 @@ import VerificationSection from "./verification-section";
 import { Award } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import CertificateImage from "../../../../public/Solidity.png";
+import CertificateImage from "../../../../public/Solidity.svg";
 
 export default function CertificateView() {
   const [selectedCertificate, setSelectedCertificate] =

@@ -15,7 +15,7 @@ import VerifyCertificateIcon from "../../../../public/certificate.svg";
 import ViewExamIcon from "../../../../public/license.svg";
 import UserIcon from "../../../../public/Ellipse 43.svg";
 import HelpIcon from "../../../../public/help-square.svg";
-import SkillNetLogo from "../../../../public/skillnet-white logo.png";
+import SkillNetLogo from "../../../../public/skillnet white logo .svg";
 import MenuCollapseIcon from "../../../../public/menu-collapse.svg";
 import EditProfileModal from "../edit-profile-modal";
 import { useWalletContext } from "@/components/WalletProvider";
